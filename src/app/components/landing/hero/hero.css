@@ -1,0 +1,104 @@
+/* ========================================================= */
+/* ANIMATIONS DU HERO UNACREP                                */
+/* ========================================================= */
+
+/* Flottement doux de la carte principale */
+@keyframes heroFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+
+/* Mouvement du badge paiement */
+@keyframes heroPayment {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+
+/* Mouvement du badge sécurité */
+@keyframes heroSecurity {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(8px);
+  }
+}
+
+
+/* Respiration du halo */
+@keyframes heroGlow {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.08);
+    opacity: 0.9;
+  }
+}
+
+
+/* Animation de la barre de progression */
+@keyframes heroProgress {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 60%;
+  }
+}
+
+
+/* Application des animations */
+
+.hero-card {
+  animation: heroFloat 5s ease-in-out infinite;
+}
+
+.hero-badge-payment {
+  animation: heroPayment 4s ease-in-out infinite;
+}
+
+.hero-badge-security {
+  animation: heroSecurity 4.5s ease-in-out infinite;
+}
+
+.hero-glow {
+  animation: heroGlow 5s ease-in-out infinite;
+}
+
+.hero-progress {
+  animation: heroProgress 1.8s ease-out forwards;
+}
+
+
+/* Respect des préférences d'accessibilité */
+@media (prefers-reduced-motion: reduce) {
+  .hero-card,
+  .hero-badge-payment,
+  .hero-badge-security,
+  .hero-glow,
+  .hero-progress {
+    animation: none;
+  }
+}
+

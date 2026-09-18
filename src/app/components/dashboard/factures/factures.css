@@ -1,0 +1,798 @@
+/* ============================================================
+   DOCUMENT RELEVÉ
+   ============================================================ */
+
+.releve-document {
+  color: #172033;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 1.35;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.releve-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 30px;
+  padding: 24px 30px 18px;
+  border-bottom: 3px solid #059669;
+}
+
+.releve-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.releve-logo {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.releve-brand-name {
+  font-size: 19px;
+  line-height: 1;
+  font-weight: 800;
+  color: #111827;
+  letter-spacing: -0.5px;
+}
+
+.releve-brand-subtitle {
+  margin-top: 5px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  color: #059669;
+}
+
+.releve-brand-description {
+  margin-top: 4px;
+  font-size: 8px;
+  color: #64748b;
+}
+
+.releve-title {
+  text-align: right;
+}
+
+.releve-title > span {
+  display: block;
+  margin-bottom: 3px;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 2px;
+  color: #64748b;
+}
+
+.releve-title h1 {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 900;
+  letter-spacing: -0.4px;
+  color: #111827;
+}
+
+.releve-title strong {
+  display: block;
+  margin-top: 7px;
+  font-size: 9px;
+  color: #334155;
+}
+
+.releve-title small {
+  display: block;
+  margin-top: 3px;
+  font-size: 8px;
+  font-weight: 700;
+  color: #059669;
+}
+
+
+/* ============================================================
+   INFORMATIONS
+   ============================================================ */
+
+.releve-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  padding: 15px 30px 12px;
+}
+
+.releve-info-box {
+  overflow: hidden;
+  border: 1px solid #dfe5eb;
+  border-radius: 8px;
+}
+
+.releve-section-title {
+  padding: 7px 11px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #64748b;
+}
+
+.releve-info-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px 14px;
+  padding: 10px 11px;
+}
+
+.releve-field {
+  min-width: 0;
+}
+
+.releve-field-full {
+  grid-column: 1 / -1;
+}
+
+.releve-field span {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 7px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  color: #94a3b8;
+}
+
+.releve-field strong {
+  display: block;
+  font-size: 9px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.releve-green {
+  color: #059669 !important;
+}
+
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+
+.releve-section {
+  padding: 0 30px 12px;
+}
+
+.releve-heading-row {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin-bottom: 7px;
+}
+
+.releve-kicker {
+  display: block;
+  margin-bottom: 2px;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.6px;
+  color: #059669;
+}
+
+.releve-heading-row h2 {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 800;
+  color: #172033;
+}
+
+.releve-legend {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 7px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.releve-legend span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.releve-legend i {
+  width: 7px;
+  height: 7px;
+  display: block;
+  border-radius: 50%;
+}
+
+.legend-done {
+  background: #10b981;
+}
+
+.legend-empty {
+  background: #dbe2e8;
+}
+
+
+/* ============================================================
+   POINTAGE
+   ============================================================ */
+
+.pointage-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 5px;
+  padding: 7px;
+  border: 1px solid #dfe5eb;
+  border-radius: 8px;
+}
+
+.pointage-cell {
+  min-height: 39px;
+  padding: 5px 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+.pointage-done {
+  border-color: #a7f3d0;
+  background: #f0fdf9;
+}
+
+.pointage-empty {
+  background: #ffffff;
+}
+
+.pointage-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.pointage-top strong {
+  font-size: 7px;
+  font-weight: 800;
+  color: #64748b;
+}
+
+.pointage-top svg {
+  width: 11px;
+  height: 11px;
+  color: #059669;
+}
+
+.pointage-dot {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #cbd5e1;
+}
+
+.pointage-cell small {
+  display: block;
+  margin-top: 5px;
+  font-size: 6.5px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+
+/* ============================================================
+   SYNTHÈSE FINANCIÈRE
+   ============================================================ */
+
+.releve-financial {
+  margin: 0 30px 12px;
+  overflow: hidden;
+  border: 1px solid #dfe5eb;
+  border-radius: 8px;
+}
+
+.releve-financial-title {
+  padding: 7px 11px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 8px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #64748b;
+}
+
+.releve-financial-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.financial-item {
+  min-height: 58px;
+  padding: 9px 11px;
+  border-right: 1px solid #e2e8f0;
+}
+
+.financial-item:last-child {
+  border-right: none;
+}
+
+.financial-item span {
+  display: block;
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.financial-item strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #172033;
+}
+
+.financial-item small {
+  display: block;
+  margin-top: 2px;
+  font-size: 7px;
+  color: #94a3b8;
+}
+
+.financial-balance {
+  background: #f0fdf9;
+}
+
+.financial-balance span,
+.financial-balance strong {
+  color: #059669;
+}
+
+
+/* ============================================================
+   RETRAIT
+   ============================================================ */
+
+.retrait-box {
+  margin: 0 30px 14px;
+  overflow: hidden;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
+}
+
+.retrait-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 12px;
+  background: #f0fdf9;
+  border-bottom: 1px solid #d1fae5;
+}
+
+.retrait-header > div > span {
+  display: block;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #059669;
+}
+
+.retrait-header h2 {
+  margin: 2px 0 0;
+  font-size: 11px;
+  font-weight: 800;
+  color: #172033;
+}
+
+.retrait-header > strong {
+  font-size: 7px;
+  letter-spacing: 0.8px;
+}
+
+.retrait-status-done {
+  color: #059669;
+}
+
+.retrait-status-pending {
+  color: #d97706;
+}
+
+.retrait-content {
+  display: grid;
+  grid-template-columns: 1fr 155px;
+  gap: 12px;
+  padding: 11px 12px;
+}
+
+.retrait-details {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px 14px;
+}
+
+.retrait-details > div {
+  min-width: 0;
+}
+
+.retrait-details span {
+  display: block;
+  font-size: 7px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #94a3b8;
+}
+
+.retrait-details strong {
+  display: block;
+  margin-top: 4px;
+  font-size: 9px;
+  font-weight: 700;
+  color: #334155;
+}
+
+.retrait-details .commission {
+  color: #d97706;
+}
+
+.net-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 10px 12px;
+  border-radius: 7px;
+  background: #059669;
+  color: white;
+}
+
+.net-box span {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.2px;
+  color: #d1fae5;
+}
+
+.net-box strong {
+  margin-top: 3px;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 900;
+}
+
+.net-box small {
+  margin-top: 3px;
+  font-size: 7px;
+  color: #d1fae5;
+}
+
+
+/* ============================================================
+   VALIDATION
+   ============================================================ */
+
+.releve-validation {
+  display: grid;
+  grid-template-columns: 1fr 130px;
+  gap: 25px;
+  align-items: center;
+  padding: 13px 30px 12px;
+  border-top: 1px solid #e2e8f0;
+}
+
+.validation-text > span {
+  display: block;
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  color: #64748b;
+}
+
+.validation-text p {
+  max-width: 470px;
+  margin: 5px 0 13px;
+  font-size: 7.5px;
+  line-height: 1.5;
+  color: #64748b;
+}
+
+.signature-grid {
+  display: grid;
+  grid-template-columns: 160px 160px;
+  gap: 25px;
+}
+
+.signature-line {
+  height: 18px;
+  border-bottom: 1px dashed #94a3b8;
+}
+
+.signature-grid span {
+  display: block;
+  margin-top: 4px;
+  font-size: 6.5px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #64748b;
+}
+
+.qr-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+.qr-box canvas {
+  width: 90px !important;
+  height: 90px !important;
+}
+
+.qr-box span {
+  margin-top: 3px;
+  font-size: 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #64748b;
+  text-align: center;
+}
+
+.qr-box small {
+  margin-top: 2px;
+  font-size: 6px;
+  color: #94a3b8;
+}
+
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+
+.releve-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 30px;
+  background: #f8fafc;
+  border-top: 1px solid #e2e8f0;
+  font-size: 6.5px;
+  color: #94a3b8;
+}
+
+.releve-footer strong {
+  color: #64748b;
+}
+
+.releve-footer span:last-child {
+  color: #059669;
+  font-weight: 700;
+}
+
+
+/* ============================================================
+   RESPONSIVE MODAL
+   ============================================================ */
+
+@media (max-width: 700px) {
+
+  .releve-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .releve-title {
+    text-align: left;
+  }
+
+  .releve-info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .pointage-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .releve-financial-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .financial-item:nth-child(2) {
+    border-right: none;
+  }
+
+  .financial-item:nth-child(-n+2) {
+    border-bottom: 1px solid #e2e8f0;
+  }
+
+  .retrait-content {
+    grid-template-columns: 1fr;
+  }
+
+  .retrait-details {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .releve-validation {
+    grid-template-columns: 1fr;
+  }
+
+  .qr-box {
+    width: 130px;
+  }
+
+  .releve-footer {
+    flex-direction: column;
+    gap: 3px;
+    align-items: flex-start;
+  }
+}
+
+
+/* ============================================================
+   IMPRESSION A4
+   ============================================================ */
+
+@page {
+  size: A4 portrait;
+  margin: 8mm;
+}
+
+
+@media print {
+
+  html,
+  body {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: white !important;
+  }
+
+  body {
+    overflow: visible !important;
+  }
+
+
+  /* On cache absolument toute l'application */
+
+  body * {
+    visibility: hidden !important;
+  }
+
+
+  /* On rend visible UNIQUEMENT le relevé */
+
+  #releve-print,
+  #releve-print * {
+    visibility: visible !important;
+  }
+
+
+  /* Le relevé devient la seule page imprimable */
+
+  #releve-print {
+    position: absolute !important;
+    left: 0 !important;
+    top: 0 !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    background: white !important;
+
+    box-shadow: none !important;
+  }
+
+
+  /* Suppression du modal */
+
+  .facture-modal {
+    position: static !important;
+
+    display: block !important;
+
+    width: auto !important;
+    height: auto !important;
+
+    padding: 0 !important;
+
+    background: white !important;
+  }
+
+
+  .facture-modal-container {
+    display: block !important;
+
+    width: auto !important;
+    max-width: none !important;
+
+    max-height: none !important;
+
+    overflow: visible !important;
+
+    background: white !important;
+
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+
+
+  .facture-modal-scroll {
+    overflow: visible !important;
+
+    padding: 0 !important;
+
+    background: white !important;
+  }
+
+
+  /* Barre de boutons invisible */
+
+  .facture-modal-toolbar {
+    display: none !important;
+  }
+
+
+  /* Document */
+
+  .releve-document {
+    width: 100% !important;
+    max-width: none !important;
+
+    margin: 0 !important;
+
+    box-shadow: none !important;
+  }
+
+
+  .releve-header {
+    padding-top: 0 !important;
+  }
+
+
+  /* Évite autant que possible les coupures */
+
+  .releve-header,
+  .releve-info-grid,
+  .releve-section,
+  .releve-financial,
+  .retrait-box,
+  .releve-validation,
+  .releve-footer {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+
+  .pointage-grid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+
+  .pointage-cell {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+  }
+
+
+  /* Pas de grand espace minimum */
+
+  .factures-page {
+    min-height: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: white !important;
+  }
+}

@@ -1,0 +1,1480 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+      <div class="flex items-center gap-3">
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-700">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 8l2 2 4-4"
+            />
+          </svg>
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">
+            Tâches
+          </h1>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Gestion et suivi des tâches de l'organisation.
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <button
+      type="button"
+      (click)="ouvrirAjout()"
+      class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4v16m8-8H4"
+        />
+      </svg>
+
+      Nouvelle tâche
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <!-- Total -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Total des tâches
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ totalTaches }}
+          </p>
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-700">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+      <div class="mt-4 flex items-center gap-2 text-xs text-gray-500">
+        <span class="h-2 w-2 rounded-full bg-green-500"></span>
+        Toutes les tâches
+      </div>
+
+    </div>
+
+
+    <!-- En attente -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Tâches en attente
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ tachesEnAttente }}
+          </p>
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100 text-gray-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+      <div class="mt-4 text-xs text-gray-500">
+        À traiter
+      </div>
+
+    </div>
+
+
+    <!-- En cours -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Tâches en cours
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ tachesEnCours }}
+          </p>
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4m-1-9l3 3m0 0l-3 3m3-3H10"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+      <div class="mt-4 text-xs text-gray-500">
+        Actuellement traitées
+      </div>
+
+    </div>
+
+
+    <!-- Terminées -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Tâches terminées
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ tachesTerminees }}
+          </p>
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-700">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+      <div class="mt-4 text-xs text-gray-500">
+        Tâches finalisées
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+    <div class="mb-4 flex items-center gap-2">
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5 text-gray-500"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414A1 1 0 0014 14.414V19l-4 2v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"
+        />
+      </svg>
+
+      <h2 class="text-sm font-semibold text-gray-900">
+        Recherche et filtres
+      </h2>
+
+    </div>
+
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+
+      <!-- Recherche -->
+      <div class="xl:col-span-1">
+
+        <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Recherche
+        </label>
+
+        <div class="relative">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z"
+            />
+          </svg>
+
+          <input
+            type="text"
+            [(ngModel)]="recherche"
+            placeholder="Titre, agence, utilisateur..."
+            class="w-full rounded-xl border border-gray-300 bg-white py-2.5 pl-10 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- Statut -->
+      <div>
+
+        <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Statut
+        </label>
+
+        <select
+          [(ngModel)]="filtreStatut"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+          <option value="Tous">
+            Tous les statuts
+          </option>
+
+          <option value="À faire">
+            À faire
+          </option>
+
+          <option value="En cours">
+            En cours
+          </option>
+
+          <option value="Terminée">
+            Terminée
+          </option>
+
+          <option value="Annulée">
+            Annulée
+          </option>
+        </select>
+
+      </div>
+
+
+      <!-- Priorité -->
+      <div>
+
+        <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Priorité
+        </label>
+
+        <select
+          [(ngModel)]="filtrePriorite"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+          <option value="Toutes">
+            Toutes les priorités
+          </option>
+
+          <option value="Basse">
+            Basse
+          </option>
+
+          <option value="Normale">
+            Normale
+          </option>
+
+          <option value="Haute">
+            Haute
+          </option>
+
+          <option value="Urgente">
+            Urgente
+          </option>
+        </select>
+
+      </div>
+
+
+      <!-- Agence -->
+      <div>
+
+        <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-gray-500">
+          Agence
+        </label>
+
+        <select
+          [(ngModel)]="filtreAgence"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+          <option value="Toutes">
+            Toutes les agences
+          </option>
+
+          <option
+            *ngFor="let agence of agences"
+            [value]="agence"
+          >
+            {{ agence }}
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================== -->
+    <!-- EXPORTATION -->
+    <!-- ===================================================== -->
+
+    <div class="mt-5 flex flex-col gap-3 border-t border-gray-100 pt-5 sm:flex-row sm:justify-end">
+
+      <!-- Export PDF -->
+      <button
+        type="button"
+        (click)="exporterPDF()"
+        class="inline-flex items-center justify-center gap-2 rounded-xl border border-red-200 bg-red-50 px-5 py-2.5 text-sm font-semibold text-red-600 transition hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 18h10M7 14h10M9 10h6M6 3h8l4 4v14H6V3z"
+          />
+        </svg>
+
+        Exporter PDF
+
+      </button>
+
+
+      <!-- Export Excel -->
+      <button
+        type="button"
+        (click)="exporterExcel()"
+        class="inline-flex items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 px-5 py-2.5 text-sm font-semibold text-green-700 transition hover:bg-green-100 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 4h16v16H4V4zm4 4l2 3-2 3m4-6h4m-4 3h4m-4 3h4"
+          />
+        </svg>
+
+        Exporter Excel
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- TABLEAU -->
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+
+    <!-- En-tête tableau -->
+    <div class="flex flex-col gap-3 border-b border-gray-200 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+
+      <div>
+
+        <h2 class="text-base font-semibold text-gray-900">
+          Liste des tâches
+        </h2>
+
+        <p class="mt-1 text-xs text-gray-500">
+          {{ tachesFiltrees.length }} tâche(s) affichée(s)
+        </p>
+
+      </div>
+
+      <div class="flex items-center gap-2 text-xs text-gray-500">
+
+        <span class="h-2 w-2 rounded-full bg-green-500"></span>
+
+        Gestion des tâches
+
+      </div>
+
+    </div>
+
+
+    <!-- Table -->
+    <div class="overflow-x-auto">
+
+      <table class="min-w-full divide-y divide-gray-200">
+
+        <thead class="bg-gray-50">
+
+          <tr>
+
+            <th
+              class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Tâche
+            </th>
+
+            <th
+              class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Agence
+            </th>
+
+            <th
+              class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Assignée à
+            </th>
+
+            <th
+              class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Priorité
+            </th>
+
+            <th
+              class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Statut
+            </th>
+
+            <th
+              class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Échéance
+            </th>
+
+            <th
+              class="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500"
+            >
+              Actions
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-gray-100 bg-white">
+
+          <!-- Tâches -->
+          <tr
+            *ngFor="let tache of tachesFiltrees"
+            class="transition hover:bg-gray-50"
+          >
+
+            <!-- Tâche -->
+            <td class="px-5 py-4">
+
+              <div class="max-w-sm">
+
+                <button
+                  type="button"
+                  (click)="voirTache(tache)"
+                  class="text-left text-sm font-semibold text-gray-900 transition hover:text-green-700"
+                >
+                  {{ tache.titre }}
+                </button>
+
+                <p class="mt-1 truncate text-xs text-gray-500">
+                  {{ tache.description }}
+                </p>
+
+              </div>
+
+            </td>
+
+
+            <!-- Agence -->
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <div class="flex items-center gap-2">
+
+                <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-green-50 text-green-700">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-4 w-4"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M3 21h18M5 21V5a2 2 0 012-2h6a2 2 0 012 2v16m-9 0h8m-2-10h2m-2 4h2M9 7h2m-2 4h2m-2 4h2m6 6V9a2 2 0 00-2-2h-2"
+                    />
+                  </svg>
+
+                </div>
+
+                <span class="text-sm text-gray-700">
+                  {{ tache.agence }}
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <!-- Assigné -->
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <div class="flex items-center gap-3">
+
+                <div class="flex h-9 w-9 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
+                  {{ initiales(tache.assigneA) }}
+                </div>
+
+                <div>
+                  <p class="text-sm font-medium text-gray-900">
+                    {{ tache.assigneA }}
+                  </p>
+
+                  <p class="text-xs text-gray-500">
+                    Responsable
+                  </p>
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- Priorité -->
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <span
+                class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset"
+                [ngClass]="classePriorite(tache.priorite)"
+              >
+                {{ tache.priorite }}
+              </span>
+
+            </td>
+
+
+            <!-- Statut -->
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <button
+                type="button"
+                (click)="changerStatut(tache)"
+                class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset transition hover:opacity-80"
+                [ngClass]="classeStatut(tache.statut)"
+                title="Cliquer pour changer le statut"
+              >
+
+                <span
+                  class="mr-1.5 h-1.5 w-1.5 rounded-full bg-current"
+                ></span>
+
+                {{ tache.statut }}
+
+              </button>
+
+            </td>
+
+
+            <!-- Échéance -->
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <div
+                class="flex items-center gap-2"
+                [ngClass]="dateEchue(tache) ? 'text-red-600' : 'text-gray-700'"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-4 w-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+
+                <div>
+                  <p class="text-sm font-medium">
+                    {{ formatDate(tache.dateEcheance) }}
+                  </p>
+
+                  <p
+                    *ngIf="dateEchue(tache)"
+                    class="text-[11px] font-semibold"
+                  >
+                    En retard
+                  </p>
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- Actions -->
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <div class="flex items-center justify-end gap-1">
+
+                <!-- Voir -->
+                <button
+                  type="button"
+                  (click)="voirTache(tache)"
+                  class="rounded-lg p-2 text-gray-500 transition hover:bg-green-50 hover:text-green-700"
+                  title="Voir les détails"
+                >
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                    />
+
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                    />
+                  </svg>
+
+                </button>
+
+
+                <!-- Modifier -->
+                <button
+                  type="button"
+                  (click)="ouvrirModification(tache)"
+                  class="rounded-lg p-2 text-gray-500 transition hover:bg-blue-50 hover:text-blue-700"
+                  title="Modifier"
+                >
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.5-9.5a2.121 2.121 0 013 3L12 14l-4 1 1-4 7.5-7.5z"
+                    />
+                  </svg>
+
+                </button>
+
+
+                <!-- Supprimer -->
+                <button
+                  type="button"
+                  (click)="supprimerTache(tache)"
+                  class="rounded-lg p-2 text-gray-500 transition hover:bg-red-50 hover:text-red-600"
+                  title="Supprimer"
+                >
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-5 w-5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-8 0h10"
+                    />
+                  </svg>
+
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- Aucun résultat -->
+          <tr *ngIf="tachesFiltrees.length === 0">
+
+            <td
+              colspan="7"
+              class="px-5 py-14 text-center"
+            >
+
+              <div class="flex flex-col items-center justify-center">
+
+                <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-7 w-7"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
+                    />
+                  </svg>
+
+                </div>
+
+                <h3 class="text-sm font-semibold text-gray-900">
+                  Aucune tâche trouvée
+                </h3>
+
+                <p class="mt-1 text-xs text-gray-500">
+                  Modifiez vos critères de recherche ou créez une nouvelle tâche.
+                </p>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODALE AJOUT / MODIFICATION -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalTache"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm"
+    (click)="fermerModalTache()"
+  >
+
+    <div
+      class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- Header modal -->
+      <div class="flex items-center justify-between border-b border-gray-200 px-6 py-5">
+
+        <div>
+
+          <h2 class="text-lg font-bold text-gray-900">
+            {{ modeEdition ? 'Modifier la tâche' : 'Nouvelle tâche' }}
+          </h2>
+
+          <p class="mt-1 text-xs text-gray-500">
+            {{ modeEdition
+              ? 'Modifiez les informations de cette tâche.'
+              : 'Créez une nouvelle tâche et assignez-la à un responsable.'
+            }}
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          (click)="fermerModalTache()"
+          class="rounded-lg p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- Formulaire -->
+      <div class="space-y-6 p-6">
+
+        <!-- Informations générales -->
+        <div>
+
+          <h3 class="mb-4 text-sm font-semibold text-gray-900">
+            Informations générales
+          </h3>
+
+          <div class="space-y-4">
+
+            <!-- Titre -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Titre de la tâche
+                <span class="text-red-500">*</span>
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="nouvelleTache.titre"
+                placeholder="Ex. Vérifier les cotisations du cycle"
+                class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+
+            <!-- Description -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Description
+              </label>
+
+              <textarea
+                [(ngModel)]="nouvelleTache.description"
+                rows="4"
+                placeholder="Décrivez la tâche à réaliser..."
+                class="w-full resize-none rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              ></textarea>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Affectation -->
+        <div class="border-t border-gray-100 pt-6">
+
+          <h3 class="mb-4 text-sm font-semibold text-gray-900">
+            Affectation
+          </h3>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+            <!-- Agence -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Agence
+                <span class="text-red-500">*</span>
+              </label>
+
+              <select
+                [(ngModel)]="nouvelleTache.agence"
+                class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              >
+
+                <option value="">
+                  Sélectionner une agence
+                </option>
+
+                <option
+                  *ngFor="let agence of agences"
+                  [value]="agence"
+                >
+                  {{ agence }}
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Utilisateur -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Assigner à
+                <span class="text-red-500">*</span>
+              </label>
+
+              <select
+                [(ngModel)]="nouvelleTache.assigneA"
+                class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              >
+
+                <option value="">
+                  Sélectionner un utilisateur
+                </option>
+
+                <option
+                  *ngFor="let utilisateur of utilisateurs"
+                  [value]="utilisateur"
+                >
+                  {{ utilisateur }}
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Suivi -->
+        <div class="border-t border-gray-100 pt-6">
+
+          <h3 class="mb-4 text-sm font-semibold text-gray-900">
+            Suivi de la tâche
+          </h3>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
+
+            <!-- Priorité -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Priorité
+              </label>
+
+              <select
+                [(ngModel)]="nouvelleTache.priorite"
+                class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              >
+
+                <option value="Basse">
+                  Basse
+                </option>
+
+                <option value="Normale">
+                  Normale
+                </option>
+
+                <option value="Haute">
+                  Haute
+                </option>
+
+                <option value="Urgente">
+                  Urgente
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Statut -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Statut
+              </label>
+
+              <select
+                [(ngModel)]="nouvelleTache.statut"
+                class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              >
+
+                <option value="À faire">
+                  À faire
+                </option>
+
+                <option value="En cours">
+                  En cours
+                </option>
+
+                <option value="Terminée">
+                  Terminée
+                </option>
+
+                <option value="Annulée">
+                  Annulée
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <!-- Échéance -->
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Date d'échéance
+                <span class="text-red-500">*</span>
+              </label>
+
+              <input
+                type="date"
+                [(ngModel)]="nouvelleTache.dateEcheance"
+                class="w-full rounded-xl border border-gray-300 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Footer modal -->
+      <div class="flex flex-col-reverse gap-3 border-t border-gray-200 bg-gray-50 px-6 py-4 sm:flex-row sm:justify-end">
+
+        <button
+          type="button"
+          (click)="fermerModalTache()"
+          class="rounded-xl border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+        >
+          Annuler
+        </button>
+
+        <button
+          type="button"
+          (click)="enregistrerTache()"
+          class="rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+        >
+          {{ modeEdition ? 'Enregistrer les modifications' : 'Créer la tâche' }}
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODALE DÉTAILS -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalDetails && tacheSelectionnee"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm"
+    (click)="fermerModalDetails()"
+  >
+
+    <div
+      class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- Header -->
+      <div class="flex items-start justify-between border-b border-gray-200 px-6 py-5">
+
+        <div class="flex items-start gap-4">
+
+          <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-700">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M9 5H7a2 2 0 00-2 2v11a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 7h6m-6 4h4"
+              />
+            </svg>
+
+          </div>
+
+          <div>
+
+            <h2 class="text-lg font-bold text-gray-900">
+              {{ tacheSelectionnee.titre }}
+            </h2>
+
+            <p class="mt-1 text-xs text-gray-500">
+              Créée le {{ formatDate(tacheSelectionnee.dateCreation) }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerModalDetails()"
+          class="rounded-lg p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- Contenu -->
+      <div class="space-y-6 p-6">
+
+        <!-- Description -->
+        <div>
+
+          <h3 class="mb-2 text-sm font-semibold text-gray-900">
+            Description
+          </h3>
+
+          <div class="rounded-xl bg-gray-50 p-4">
+
+            <p class="text-sm leading-6 text-gray-600">
+              {{ tacheSelectionnee.description || 'Aucune description renseignée.' }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <!-- Informations -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+          <!-- Agence -->
+          <div class="rounded-xl border border-gray-200 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Agence
+            </p>
+
+            <div class="mt-2 flex items-center gap-2">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M3 21h18M5 21V5a2 2 0 012-2h6a2 2 0 012 2v16m-9 0h8m-2-10h2m-2 4h2M9 7h2m-2 4h2m-2 4h2m6 6V9a2 2 0 00-2-2h-2"
+                />
+              </svg>
+
+              <span class="text-sm font-semibold text-gray-900">
+                {{ tacheSelectionnee.agence }}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Assigné -->
+          <div class="rounded-xl border border-gray-200 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Assignée à
+            </p>
+
+            <div class="mt-2 flex items-center gap-3">
+
+              <div class="flex h-8 w-8 items-center justify-center rounded-full bg-green-100 text-xs font-bold text-green-700">
+                {{ initiales(tacheSelectionnee.assigneA) }}
+              </div>
+
+              <span class="text-sm font-semibold text-gray-900">
+                {{ tacheSelectionnee.assigneA }}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Priorité -->
+          <div class="rounded-xl border border-gray-200 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Priorité
+            </p>
+
+            <div class="mt-2">
+
+              <span
+                class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset"
+                [ngClass]="classePriorite(tacheSelectionnee.priorite)"
+              >
+                {{ tacheSelectionnee.priorite }}
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <!-- Statut -->
+          <div class="rounded-xl border border-gray-200 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Statut
+            </p>
+
+            <div class="mt-2">
+
+              <span
+                class="inline-flex items-center rounded-full px-2.5 py-1 text-xs font-semibold ring-1 ring-inset"
+                [ngClass]="classeStatut(tacheSelectionnee.statut)"
+              >
+
+                <span class="mr-1.5 h-1.5 w-1.5 rounded-full bg-current"></span>
+
+                {{ tacheSelectionnee.statut }}
+
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Échéance -->
+        <div
+          class="rounded-xl border p-4"
+          [ngClass]="dateEchue(tacheSelectionnee)
+            ? 'border-red-200 bg-red-50'
+            : 'border-gray-200 bg-white'"
+        >
+
+          <div class="flex items-center gap-3">
+
+            <div
+              class="flex h-10 w-10 items-center justify-center rounded-lg"
+              [ngClass]="dateEchue(tacheSelectionnee)
+                ? 'bg-red-100 text-red-600'
+                : 'bg-green-100 text-green-700'"
+            >
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                />
+              </svg>
+
+            </div>
+
+            <div>
+
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+                Date d'échéance
+              </p>
+
+              <p
+                class="mt-1 text-sm font-bold"
+                [ngClass]="dateEchue(tacheSelectionnee)
+                  ? 'text-red-700'
+                  : 'text-gray-900'"
+              >
+                {{ formatDate(tacheSelectionnee.dateEcheance) }}
+              </p>
+
+              <p
+                *ngIf="dateEchue(tacheSelectionnee)"
+                class="mt-0.5 text-xs font-semibold text-red-600"
+              >
+                Cette tâche est en retard.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Footer -->
+      <div class="flex flex-col gap-3 border-t border-gray-200 bg-gray-50 px-6 py-4 sm:flex-row sm:justify-end">
+
+        <button
+          type="button"
+          (click)="fermerModalDetails()"
+          class="rounded-xl border border-gray-300 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+        >
+          Fermer
+        </button>
+
+        <button
+          type="button"
+          (click)="fermerModalDetails(); ouvrirModification(tacheSelectionnee!)"
+          class="rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700"
+        >
+          Modifier la tâche
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

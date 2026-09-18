@@ -1,0 +1,1309 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+      <div class="mb-2 flex items-center gap-3">
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100">
+          <svg
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 12v-2m0 2c-1.11 0-2.08-.402-2.599-1M12 18c-1.657 0-3-.895-3-2m3 2c1.11 0 2.08-.402 2.599-1M12 6c1.657 0 3 .895 3 2"
+            />
+          </svg>
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">
+            Retraits
+          </h1>
+
+          <p class="text-sm text-gray-500">
+            Gérez vos demandes de retrait Mobile Money
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- BOUTON DEMANDER UN RETRAIT -->
+
+    <button
+      type="button"
+      (click)="ouvrirModalRetrait()"
+      class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+    >
+
+      <svg
+        class="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 4v16m8-8H4"
+        />
+      </svg>
+
+      Demander un retrait
+
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <!-- TOTAL -->
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            Total retraits
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-gray-900">
+            {{ totalRetraits }}
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gray-100">
+
+          <svg
+            class="h-6 w-6 text-gray-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 12v-2m0 2c-1.11 0-2.08-.402-2.599-1M12 18c-1.657 0-3-.895-3-2m3 2c1.11 0 2.08-.402 2.599-1M12 6c1.657 0 3 .895 3 2"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- EN ATTENTE -->
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            En attente
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-orange-600">
+            {{ retraitsEnAttente }}
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100">
+
+          <svg
+            class="h-6 w-6 text-orange-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8v4l3 2m6-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- APPROUVÉS -->
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            Approuvés
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-blue-600">
+            {{ retraitsApprouves }}
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100">
+
+          <svg
+            class="h-6 w-6 text-blue-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M9 12l2 2 4-4m5.5-2.5A9 9 0 1112 3a9 9 0 018.5 6.5z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- MONTANT RETIRÉ -->
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            Montant retiré
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-green-600">
+            {{ formaterMontant(montantTotalRetire) }}
+            <span class="text-sm font-medium">
+              FCFA
+            </span>
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100">
+
+          <svg
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 12v-2"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+
+      <!-- RECHERCHE -->
+
+      <div class="md:col-span-2">
+
+        <label class="mb-2 block text-sm font-medium text-gray-700">
+          Rechercher
+        </label>
+
+        <div class="relative">
+
+          <svg
+            class="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m21 21-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+          </svg>
+
+          <input
+            type="text"
+            [(ngModel)]="recherche"
+            placeholder="N° retrait, client, carte, cycle..."
+            class="w-full rounded-xl border border-gray-200 py-3 pl-10 pr-4 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- STATUT -->
+
+      <div>
+
+        <label class="mb-2 block text-sm font-medium text-gray-700">
+          Statut
+        </label>
+
+        <select
+          [(ngModel)]="filtreStatut"
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="Tous">
+            Tous les statuts
+          </option>
+
+          <option value="En attente">
+            En attente
+          </option>
+
+          <option value="Approuvé">
+            Approuvé
+          </option>
+
+          <option value="Payé">
+            Payé
+          </option>
+
+          <option value="Rejeté">
+            Rejeté
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- TYPE -->
+
+      <div>
+
+        <label class="mb-2 block text-sm font-medium text-gray-700">
+          Type de carte
+        </label>
+
+        <select
+          [(ngModel)]="filtreType"
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="Tous">
+            Tous les types
+          </option>
+
+          <option value="Journalière">
+            Journalière
+          </option>
+
+          <option value="Mensuelle">
+            Mensuelle
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <div class="mt-4 flex justify-end">
+
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="text-sm font-medium text-gray-500 transition hover:text-green-600"
+      >
+        Réinitialiser les filtres
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- HISTORIQUE DES RETRAITS -->
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+
+    <div class="border-b border-gray-100 px-5 py-5">
+
+      <h2 class="text-lg font-bold text-gray-900">
+        Historique des retraits
+      </h2>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Consultez vos demandes de retrait et leur statut.
+      </p>
+
+    </div>
+
+
+    <div class="overflow-x-auto">
+
+      <table class="min-w-full">
+
+        <thead class="bg-gray-50">
+
+          <tr>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Retrait
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Carte
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Montant
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Mobile Money
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Date
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Statut
+            </th>
+
+            <th class="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-gray-100">
+
+          <tr
+            *ngFor="let retrait of retraitsFiltres"
+            class="transition hover:bg-gray-50"
+          >
+
+            <!-- RETRAIT -->
+
+            <td class="px-5 py-4">
+
+              <div class="font-semibold text-gray-900">
+                {{ retrait.numero }}
+              </div>
+
+              <div class="text-xs text-gray-500">
+                {{ retrait.cycle }}
+              </div>
+
+            </td>
+
+
+            <!-- CARTE -->
+
+            <td class="px-5 py-4">
+
+              <div class="font-medium text-gray-900">
+                {{ retrait.carte }}
+              </div>
+
+              <div class="text-xs text-gray-500">
+                {{ retrait.typeCarte }}
+              </div>
+
+            </td>
+
+
+            <!-- MONTANT -->
+
+            <td class="px-5 py-4">
+
+              <div class="font-semibold text-gray-900">
+                {{ formaterMontant(retrait.montantNet) }}
+                FCFA
+              </div>
+
+            </td>
+
+
+            <!-- MOBILE MONEY -->
+
+            <td class="px-5 py-4">
+
+              <div class="font-medium text-gray-900">
+                {{ getLabelOperateur(retrait.operateur) }}
+              </div>
+
+              <div class="text-xs text-gray-500">
+                {{ retrait.numeroMobileMoney }}
+              </div>
+
+            </td>
+
+
+            <!-- DATE -->
+
+            <td class="px-5 py-4">
+
+              <span class="text-sm text-gray-600">
+                {{ formaterDate(retrait.dateDemande) }}
+              </span>
+
+            </td>
+
+
+            <!-- STATUT -->
+
+            <td class="px-5 py-4">
+
+              <span
+                class="inline-flex rounded-full px-3 py-1 text-xs font-semibold"
+                [ngClass]="getClasseStatut(retrait.statut)"
+              >
+                {{ retrait.statut }}
+              </span>
+
+            </td>
+
+
+            <!-- ACTION -->
+
+            <td class="px-5 py-4 text-right">
+
+              <button
+                type="button"
+                (click)="voirDetails(retrait)"
+                class="inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-medium text-green-600 transition hover:bg-green-50"
+              >
+
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                  />
+
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                  />
+                </svg>
+
+                Détails
+
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <!-- AUCUN RÉSULTAT -->
+
+          <tr *ngIf="retraitsFiltres.length === 0">
+
+            <td
+              colspan="7"
+              class="px-5 py-12 text-center"
+            >
+
+              <div class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
+
+                <svg
+                  class="h-7 w-7 text-gray-400"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 13h6m-3-3v6m8-3a8 8 0 11-16 0 8 8 0 0116 0z"
+                  />
+                </svg>
+
+              </div>
+
+              <p class="mt-4 font-medium text-gray-700">
+                Aucun retrait trouvé
+              </p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                Modifiez vos critères de recherche.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- MODAL : DEMANDER UN RETRAIT -->
+<!-- ========================================================= -->
+
+<div
+  *ngIf="afficherModalRetrait"
+  class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+  (click)="fermerModalRetrait()"
+>
+
+  <div
+    class="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+    (click)="$event.stopPropagation()"
+  >
+
+    <!-- HEADER MODAL -->
+
+    <div class="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-6 py-5">
+
+      <div>
+
+        <h2 class="text-xl font-bold text-gray-900">
+          Demander un retrait
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Sélectionnez une carte et indiquez le compte Mobile Money à créditer.
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        (click)="fermerModalRetrait()"
+        class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+      >
+
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+
+      </button>
+
+    </div>
+
+
+    <!-- CONTENU MODAL -->
+
+    <div class="space-y-6 p-6">
+
+      <!-- MESSAGE ERREUR -->
+
+      <div
+        *ngIf="messageErreur"
+        class="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
+      >
+        {{ messageErreur }}
+      </div>
+
+
+      <!-- MESSAGE SUCCÈS -->
+
+      <div
+        *ngIf="messageSucces"
+        class="rounded-xl border border-green-200 bg-green-50 px-4 py-3 text-sm text-green-700"
+      >
+        {{ messageSucces }}
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- CARTES -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <h3 class="font-semibold text-gray-900">
+          Sélectionnez la carte
+        </h3>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Choisissez la carte dont le cycle est arrivé à échéance.
+        </p>
+
+
+        <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+          <button
+            *ngFor="let carte of cartes"
+            type="button"
+            (click)="selectionnerCarte(carte)"
+            [disabled]="carte.statut !== 'Éligible'"
+            class="relative rounded-2xl border-2 p-5 text-left transition"
+            [ngClass]="
+              carteSelectionnee?.id === carte.id
+                ? 'border-green-500 bg-green-50 shadow-sm'
+                : carte.statut === 'Éligible'
+                  ? 'border-gray-200 bg-white hover:border-green-300 hover:bg-green-50/40'
+                  : 'cursor-not-allowed border-gray-200 bg-gray-50 opacity-60'
+            "
+          >
+
+            <!-- CHECK -->
+
+            <div
+              *ngIf="carteSelectionnee?.id === carte.id"
+              class="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-white"
+            >
+
+              <svg
+                class="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M5 13l4 4L19 7"
+                />
+              </svg>
+
+            </div>
+
+
+            <!-- CARTE -->
+
+            <div class="flex items-start justify-between">
+
+              <div>
+
+                <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+                  Carte
+                </p>
+
+                <p class="mt-1 text-lg font-bold text-gray-900">
+                  {{ carte.numero }}
+                </p>
+
+              </div>
+
+              <span
+                class="rounded-lg bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-700"
+              >
+                {{ carte.type }}
+              </span>
+
+            </div>
+
+
+            <!-- CYCLE -->
+
+            <div class="mt-5">
+
+              <p class="text-xs text-gray-500">
+                Cycle
+              </p>
+
+              <p class="mt-1 text-sm font-medium text-gray-800">
+                {{ carte.cycle }}
+              </p>
+
+            </div>
+
+
+            <!-- SOLDE -->
+
+            <div class="mt-5 border-t border-gray-100 pt-4">
+
+              <p class="text-xs text-gray-500">
+                Solde disponible
+              </p>
+
+              <p class="mt-1 text-xl font-bold text-green-600">
+                {{ formaterMontant(carte.solde) }}
+                <span class="text-sm font-medium">
+                  FCFA
+                </span>
+              </p>
+
+            </div>
+
+
+            <!-- STATUT -->
+
+            <div class="mt-4">
+
+              <span
+                *ngIf="carte.statut === 'Éligible'"
+                class="inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold text-green-700"
+              >
+                Éligible au retrait
+              </span>
+
+              <span
+                *ngIf="carte.statut !== 'Éligible'"
+                class="inline-flex rounded-full bg-gray-100 px-3 py-1 text-xs font-semibold text-gray-500"
+              >
+                Non éligible
+              </span>
+
+            </div>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- MONTANT -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="carteSelectionnee"
+        class="rounded-2xl border border-green-100 bg-green-50 p-5"
+      >
+
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+          <div>
+
+            <p class="text-sm text-green-700">
+              Solde disponible
+            </p>
+
+            <p class="mt-1 text-2xl font-bold text-green-800">
+              {{ formaterMontant(soldeDisponible) }}
+              <span class="text-sm font-medium">
+                FCFA
+              </span>
+            </p>
+
+          </div>
+
+
+          <div>
+
+            <p class="text-sm text-green-700">
+              Montant à recevoir
+            </p>
+
+            <p class="mt-1 text-2xl font-bold text-green-800">
+              {{ formaterMontant(montantNetRetrait) }}
+              <span class="text-sm font-medium">
+                FCFA
+              </span>
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- OPÉRATEURS -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <h3 class="font-semibold text-gray-900">
+          Choisir l'opérateur Mobile Money
+        </h3>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Sélectionnez l'opérateur sur lequel vous souhaitez recevoir le retrait.
+        </p>
+
+
+        <div class="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
+          <!-- MTN -->
+
+          <button
+            type="button"
+            (click)="selectionnerOperateur('MTN')"
+            class="flex min-h-[120px] flex-col items-center justify-center rounded-2xl border-2 p-4 transition"
+            [ngClass]="
+              operateurSelectionne === 'MTN'
+                ? 'border-green-500 bg-green-50 shadow-sm'
+                : 'border-gray-200 bg-white hover:border-green-300'
+            "
+          >
+
+            <img
+              src="images/operators/mtn.png"
+              alt="MTN Mobile Money"
+              class="mb-3 h-12 w-auto object-contain"
+            />
+
+            <span class="text-sm font-semibold text-gray-700">
+              MTN Mobile Money
+            </span>
+
+          </button>
+
+
+          <!-- MOOV -->
+
+          <button
+            type="button"
+            (click)="selectionnerOperateur('MOOV')"
+            class="flex min-h-[120px] flex-col items-center justify-center rounded-2xl border-2 p-4 transition"
+            [ngClass]="
+              operateurSelectionne === 'MOOV'
+                ? 'border-green-500 bg-green-50 shadow-sm'
+                : 'border-gray-200 bg-white hover:border-green-300'
+            "
+          >
+
+            <img
+              src="images/operators/moov.png"
+              alt="Moov Money"
+              class="mb-3 h-12 w-auto object-contain"
+            />
+
+            <span class="text-sm font-semibold text-gray-700">
+              Moov Money
+            </span>
+
+          </button>
+
+
+          <!-- CELTIIS -->
+
+          <button
+            type="button"
+            (click)="selectionnerOperateur('CELTIS')"
+            class="flex min-h-[120px] flex-col items-center justify-center rounded-2xl border-2 p-4 transition"
+            [ngClass]="
+              operateurSelectionne === 'CELTIS'
+                ? 'border-green-500 bg-green-50 shadow-sm'
+                : 'border-gray-200 bg-white hover:border-green-300'
+            "
+          >
+
+            <img
+              src="images/operators/celtis-cash.png"
+              alt="Celtiis Cash"
+              class="mb-3 h-12 w-auto object-contain"
+            />
+
+            <span class="text-sm font-semibold text-gray-700">
+              Celtiis Cash
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- NUMÉRO MOBILE MONEY -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label class="mb-2 block text-sm font-semibold text-gray-900">
+          Numéro Mobile Money
+        </label>
+
+        <input
+          type="tel"
+          [(ngModel)]="numeroMobileMoney"
+          maxlength="10"
+          placeholder="01 XX XX XX XX"
+          class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        />
+
+        <p class="mt-2 text-xs text-gray-500">
+          Le montant à recevoir sera envoyé sur ce numéro après validation de votre demande.
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- FOOTER MODAL -->
+    <!-- ================================================= -->
+
+    <div class="flex flex-col-reverse gap-3 border-t border-gray-100 bg-gray-50 px-6 py-4 sm:flex-row sm:justify-end">
+
+      <button
+        type="button"
+        (click)="fermerModalRetrait()"
+        [disabled]="retraitEnCours"
+        class="rounded-xl border border-gray-200 bg-white px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-100 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+        Annuler
+      </button>
+
+
+      <button
+        type="button"
+        (click)="demanderRetrait()"
+        [disabled]="!formulaireRetraitValide()"
+        class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+      >
+
+        <svg
+          *ngIf="!retraitEnCours"
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 4v16m8-8H4"
+          />
+        </svg>
+
+
+        <svg
+          *ngIf="retraitEnCours"
+          class="h-5 w-5 animate-spin"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          />
+
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          />
+        </svg>
+
+
+        <span *ngIf="!retraitEnCours">
+          Demander le retrait
+        </span>
+
+        <span *ngIf="retraitEnCours">
+          Traitement...
+        </span>
+
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- ========================================================= -->
+<!-- MODAL : DÉTAILS DU RETRAIT -->
+<!-- ========================================================= -->
+
+<div
+  *ngIf="afficherDetails && retraitSelectionne"
+  class="fixed inset-0 z-[60] flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+  (click)="fermerDetails()"
+>
+
+  <div
+    class="w-full max-w-2xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+    (click)="$event.stopPropagation()"
+  >
+
+    <!-- HEADER -->
+
+    <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+      <div>
+
+        <h2 class="text-xl font-bold text-gray-900">
+          Détails du retrait
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-500">
+          {{ retraitSelectionne.numero }}
+        </p>
+
+      </div>
+
+
+      <button
+        type="button"
+        (click)="fermerDetails()"
+        class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+      >
+
+        <svg
+          class="h-5 w-5"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+
+      </button>
+
+    </div>
+
+
+    <!-- BODY -->
+
+    <div class="space-y-5 p-6">
+
+      <!-- STATUT -->
+
+      <div class="flex items-center justify-between rounded-xl bg-gray-50 p-4">
+
+        <span class="text-sm font-medium text-gray-600">
+          Statut
+        </span>
+
+        <span
+          class="rounded-full px-3 py-1 text-xs font-semibold"
+          [ngClass]="getClasseStatut(retraitSelectionne.statut)"
+        >
+          {{ retraitSelectionne.statut }}
+        </span>
+
+      </div>
+
+
+      <!-- CARTE + CYCLE -->
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+        <div class="rounded-xl border border-gray-100 p-4">
+
+          <p class="text-xs text-gray-500">
+            Carte
+          </p>
+
+          <p class="mt-1 font-semibold text-gray-900">
+            {{ retraitSelectionne.carte }}
+          </p>
+
+          <p class="mt-1 text-sm text-gray-500">
+            {{ retraitSelectionne.typeCarte }}
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl border border-gray-100 p-4">
+
+          <p class="text-xs text-gray-500">
+            Cycle
+          </p>
+
+          <p class="mt-1 font-semibold text-gray-900">
+            {{ retraitSelectionne.cycle }}
+          </p>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Fin :
+            {{ formaterDate(retraitSelectionne.dateFinCycle) }}
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- MONTANT À RECEVOIR -->
+
+      <div class="rounded-xl bg-green-50 p-5">
+
+        <p class="text-sm text-green-700">
+          Montant à recevoir
+        </p>
+
+        <p class="mt-1 text-3xl font-bold text-green-800">
+
+          {{ formaterMontant(retraitSelectionne.montantNet) }}
+
+          <span class="text-base font-medium">
+            FCFA
+          </span>
+
+        </p>
+
+      </div>
+
+
+      <!-- MOBILE MONEY -->
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+        <div class="rounded-xl border border-gray-100 p-4">
+
+          <p class="text-xs text-gray-500">
+            Opérateur
+          </p>
+
+          <p class="mt-1 font-semibold text-gray-900">
+            {{ getLabelOperateur(retraitSelectionne.operateur) }}
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl border border-gray-100 p-4">
+
+          <p class="text-xs text-gray-500">
+            Numéro Mobile Money
+          </p>
+
+          <p class="mt-1 font-semibold text-gray-900">
+            {{ retraitSelectionne.numeroMobileMoney }}
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- DATES -->
+
+      <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+        <div>
+
+          <p class="text-xs text-gray-500">
+            Date de demande
+          </p>
+
+          <p class="mt-1 text-sm font-medium text-gray-800">
+            {{ formaterDate(retraitSelectionne.dateDemande) }}
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <p class="text-xs text-gray-500">
+            Date de paiement
+          </p>
+
+          <p class="mt-1 text-sm font-medium text-gray-800">
+
+            {{
+              retraitSelectionne.datePaiement
+                ? formaterDate(retraitSelectionne.datePaiement)
+                : 'Pas encore payé'
+            }}
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- FOOTER -->
+
+    <div class="flex justify-end border-t border-gray-100 bg-gray-50 px-6 py-4">
+
+      <button
+        type="button"
+        (click)="fermerDetails()"
+        class="rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800"
+      >
+        Fermer
+      </button>
+
+    </div>
+
+  </div>
+
+</div>

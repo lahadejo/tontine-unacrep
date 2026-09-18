@@ -1,0 +1,1157 @@
+
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+      <div class="flex items-center gap-3">
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m4-10a4 4 0 110 8 4 4 0 000-8zm6 4a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h1 class="text-2xl font-bold text-gray-900">
+            Utilisateurs
+          </h1>
+
+          <p class="text-sm text-gray-500">
+            Gestion des utilisateurs, rôles et permissions.
+          </p>
+
+        </div>
+
+      </div>
+    </div>
+
+    <button
+      type="button"
+      (click)="ouvrirAjout()"
+      class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2">
+
+      <svg xmlns="http://www.w3.org/2000/svg"
+           class="h-5 w-5"
+           fill="none"
+           viewBox="0 0 24 24"
+           stroke="currentColor"
+           stroke-width="2">
+        <path stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4v16m8-8H4" />
+      </svg>
+
+      Nouvel utilisateur
+
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <!-- Total -->
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Total utilisateurs
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ totalUtilisateurs }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m4-10a4 4 0 110 8 4 4 0 000-8z" />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Actifs -->
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Utilisateurs actifs
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ utilisateursActifs }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M5 13l4 4L19 7" />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Inactifs -->
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Utilisateurs inactifs
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ utilisateursInactifs }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-red-100 text-red-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12" />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Administrateurs -->
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Administrateurs
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ administrateurs }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 15l-2 2m0 0l-2-2m2 2v-3m8-4a8 8 0 11-16 0 8 8 0 0116 0z" />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-100 bg-white p-4 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
+
+      <!-- Recherche -->
+      <div class="relative">
+
+        <div class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-5 w-5 text-gray-400"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z" />
+          </svg>
+
+        </div>
+
+        <input
+          type="text"
+          [(ngModel)]="recherche"
+          placeholder="Rechercher un utilisateur..."
+          class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-10 pr-4 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100" />
+
+      </div>
+
+
+      <!-- Statut -->
+      <select
+        [(ngModel)]="filtreStatut"
+        class="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100">
+
+        <option value="Tous">
+          Tous les statuts
+        </option>
+
+        <option value="Actif">
+          Actifs
+        </option>
+
+        <option value="Inactif">
+          Inactifs
+        </option>
+
+      </select>
+
+
+      <!-- Rôle -->
+      <select
+        [(ngModel)]="filtreRole"
+        class="rounded-xl border border-gray-200 bg-gray-50 px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100">
+
+        <option value="Tous">
+          Tous les rôles
+        </option>
+
+        <option
+          *ngFor="let role of roles"
+          [value]="role.name">
+
+          {{ role.label }}
+
+        </option>
+
+      </select>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- TABLEAU -->
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+
+    <div class="overflow-x-auto">
+
+      <table class="min-w-full divide-y divide-gray-100">
+
+        <thead class="bg-gray-50">
+
+          <tr>
+
+            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Utilisateur
+            </th>
+
+            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Agence
+            </th>
+
+            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Rôle
+            </th>
+
+            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Permissions
+            </th>
+
+            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Statut
+            </th>
+
+            <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Dernière connexion
+            </th>
+
+            <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+              Actions
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-gray-100">
+
+          <tr
+            *ngFor="let utilisateur of utilisateursFiltres"
+            class="transition hover:bg-gray-50">
+
+            <!-- Utilisateur -->
+            <td class="whitespace-nowrap px-6 py-4">
+
+              <div class="flex items-center gap-3">
+
+                <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-green-100 text-sm font-bold text-green-700">
+                  {{ initiales(utilisateur) }}
+                </div>
+
+                <div>
+
+                  <p class="font-semibold text-gray-900">
+                    {{ utilisateur.prenom }} {{ utilisateur.nom }}
+                  </p>
+
+                  <p class="text-sm text-gray-500">
+                    {{ utilisateur.email }}
+                  </p>
+
+                  <p class="text-xs text-gray-400">
+                    {{ utilisateur.telephone }}
+                  </p>
+
+                </div>
+
+              </div>
+
+            </td>
+
+
+            <!-- Agence -->
+            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-700">
+              {{ utilisateur.agence }}
+            </td>
+
+
+            <!-- Rôle -->
+            <td class="whitespace-nowrap px-6 py-4">
+
+              <span class="inline-flex rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
+                {{ nomRole(utilisateur.role) }}
+              </span>
+
+            </td>
+
+
+            <!-- Permissions -->
+            <td class="px-6 py-4">
+
+              <div class="flex flex-wrap gap-1.5">
+
+                <span
+                  *ngFor="let permission of permissionsUtilisateur(utilisateur).slice(0, 3)"
+                  class="rounded-md bg-gray-100 px-2 py-1 text-xs font-medium text-gray-600">
+
+                  {{ permission }}
+
+                </span>
+
+                <span
+                  *ngIf="permissionsUtilisateur(utilisateur).length > 3"
+                  class="rounded-md bg-green-50 px-2 py-1 text-xs font-semibold text-green-700">
+
+                  +{{ permissionsUtilisateur(utilisateur).length - 3 }}
+
+                </span>
+
+              </div>
+
+            </td>
+
+
+            <!-- Statut -->
+            <td class="whitespace-nowrap px-6 py-4">
+
+              <button
+                type="button"
+                (click)="changerStatut(utilisateur)"
+                class="inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-semibold transition"
+                [ngClass]="
+                  utilisateur.statut === 'Actif'
+                    ? 'bg-green-50 text-green-700 hover:bg-green-100'
+                    : 'bg-red-50 text-red-700 hover:bg-red-100'
+                ">
+
+                <span
+                  class="h-2 w-2 rounded-full"
+                  [ngClass]="
+                    utilisateur.statut === 'Actif'
+                      ? 'bg-green-500'
+                      : 'bg-red-500'
+                  ">
+                </span>
+
+                {{ utilisateur.statut }}
+
+              </button>
+
+            </td>
+
+
+            <!-- Dernière connexion -->
+            <td class="whitespace-nowrap px-6 py-4 text-sm text-gray-500">
+              {{ utilisateur.derniereConnexion }}
+            </td>
+
+
+            <!-- Actions -->
+            <td class="whitespace-nowrap px-6 py-4 text-right">
+
+              <div class="flex items-center justify-end gap-1">
+
+                <!-- Voir -->
+                <button
+                  type="button"
+                  (click)="voirUtilisateur(utilisateur)"
+                  title="Voir"
+                  class="rounded-lg p-2 text-gray-500 transition hover:bg-green-50 hover:text-green-600">
+
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="h-5 w-5"
+                       fill="none"
+                       viewBox="0 0 24 24"
+                       stroke="currentColor"
+                       stroke-width="2">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+                  </svg>
+
+                </button>
+
+
+                <!-- Modifier -->
+                <button
+                  type="button"
+                  (click)="ouvrirModification(utilisateur)"
+                  title="Modifier"
+                  class="rounded-lg p-2 text-gray-500 transition hover:bg-blue-50 hover:text-blue-600">
+
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="h-5 w-5"
+                       fill="none"
+                       viewBox="0 0 24 24"
+                       stroke="currentColor"
+                       stroke-width="2">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5" />
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z" />
+                  </svg>
+
+                </button>
+
+
+                <!-- Supprimer -->
+                <button
+                  type="button"
+                  (click)="supprimerUtilisateur(utilisateur)"
+                  title="Supprimer"
+                  class="rounded-lg p-2 text-gray-500 transition hover:bg-red-50 hover:text-red-600">
+
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="h-5 w-5"
+                       fill="none"
+                       viewBox="0 0 24 24"
+                       stroke="currentColor"
+                       stroke-width="2">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-7 0h10" />
+                  </svg>
+
+                </button>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+
+          <!-- Aucun résultat -->
+          <tr *ngIf="utilisateursFiltres.length === 0">
+
+            <td colspan="7" class="px-6 py-12 text-center">
+
+              <div class="flex flex-col items-center">
+
+                <div class="mb-3 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+
+                  <svg xmlns="http://www.w3.org/2000/svg"
+                       class="h-7 w-7"
+                       fill="none"
+                       viewBox="0 0 24 24"
+                       stroke="currentColor"
+                       stroke-width="2">
+                    <path stroke-linecap="round"
+                          stroke-linejoin="round"
+                          d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m4-10a4 4 0 110 8 4 4 0 000-8z" />
+                  </svg>
+
+                </div>
+
+                <p class="font-semibold text-gray-700">
+                  Aucun utilisateur trouvé
+                </p>
+
+                <p class="mt-1 text-sm text-gray-400">
+                  Modifiez vos critères de recherche ou créez un nouvel utilisateur.
+                </p>
+
+              </div>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL AJOUT / MODIFICATION -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalUtilisateur"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm">
+
+    <div class="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
+
+      <!-- Header -->
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-gray-100 bg-white px-6 py-5">
+
+        <div>
+
+          <h2 class="text-xl font-bold text-gray-900">
+            {{ modeEdition ? 'Modifier l’utilisateur' : 'Nouvel utilisateur' }}
+          </h2>
+
+          <p class="mt-1 text-sm text-gray-500">
+            {{ modeEdition
+              ? 'Modifiez les informations et les accès de cet utilisateur.'
+              : 'Créez un nouvel utilisateur et attribuez-lui un rôle.'
+            }}
+          </p>
+
+        </div>
+
+        <button
+          type="button"
+          (click)="fermerModalUtilisateur()"
+          class="rounded-lg p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12" />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <div class="space-y-8 p-6">
+
+        <!-- INFORMATIONS -->
+        <div>
+
+          <h3 class="mb-4 text-sm font-bold uppercase tracking-wide text-gray-700">
+            Informations personnelles
+          </h3>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Prénom <span class="text-red-500">*</span>
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="nouvelUtilisateur.prenom"
+                placeholder="Ex. Jean"
+                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100" />
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Nom <span class="text-red-500">*</span>
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="nouvelUtilisateur.nom"
+                placeholder="Ex. Kossi"
+                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100" />
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Adresse e-mail <span class="text-red-500">*</span>
+              </label>
+
+              <input
+                type="email"
+                [(ngModel)]="nouvelUtilisateur.email"
+                placeholder="exemple@unacrep.bj"
+                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100" />
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Téléphone
+              </label>
+
+              <input
+                type="tel"
+                [(ngModel)]="nouvelUtilisateur.telephone"
+                placeholder="+229 XX XX XX XX"
+                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100" />
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- AFFECTATION -->
+        <div>
+
+          <h3 class="mb-4 text-sm font-bold uppercase tracking-wide text-gray-700">
+            Affectation
+          </h3>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Agence <span class="text-red-500">*</span>
+              </label>
+
+              <select
+                [(ngModel)]="nouvelUtilisateur.agence"
+                class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100">
+
+                <option value="">
+                  Sélectionner une agence
+                </option>
+
+                <option
+                  *ngFor="let agence of agences"
+                  [value]="agence">
+
+                  {{ agence }}
+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Statut
+              </label>
+
+              <select
+                [(ngModel)]="nouvelUtilisateur.statut"
+                class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100">
+
+                <option value="Actif">
+                  Actif
+                </option>
+
+                <option value="Inactif">
+                  Inactif
+                </option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- RÔLE -->
+        <div>
+
+          <div class="mb-4">
+
+            <h3 class="text-sm font-bold uppercase tracking-wide text-gray-700">
+              Rôle et accès
+            </h3>
+
+            <p class="mt-1 text-sm text-gray-500">
+              Le rôle détermine les permissions héritées par l’utilisateur.
+            </p>
+
+          </div>
+
+          <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-gray-700">
+                Rôle <span class="text-red-500">*</span>
+              </label>
+
+              <select
+                [(ngModel)]="nouvelUtilisateur.role"
+                (change)="changementRole()"
+                class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100">
+
+                <option value="">
+                  Sélectionner un rôle
+                </option>
+
+                <option
+                  *ngFor="let role of roles"
+                  [value]="role.name">
+
+                  {{ role.label }}
+
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+
+              <p class="text-xs font-semibold uppercase tracking-wide text-green-700">
+                Permissions héritées
+              </p>
+
+              <ng-container
+                *ngIf="nouvelUtilisateur.role; else aucunRole">
+
+                <p class="mt-2 text-sm font-medium text-gray-800">
+                  {{ nomRole(nouvelUtilisateur.role) }}
+                </p>
+
+                <p class="mt-1 text-xs text-gray-500">
+                  Les permissions du rôle seront appliquées automatiquement par Laravel Spatie.
+                </p>
+
+              </ng-container>
+
+              <ng-template #aucunRole>
+
+                <p class="mt-2 text-sm text-gray-500">
+                  Aucun rôle sélectionné.
+                </p>
+
+              </ng-template>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- PERMISSIONS DIRECTES -->
+        <div>
+
+          <div class="mb-4">
+
+            <h3 class="text-sm font-bold uppercase tracking-wide text-gray-700">
+              Permissions directes
+            </h3>
+
+            <p class="mt-1 text-sm text-gray-500">
+              Facultatif : attribuez des permissions supplémentaires directement à cet utilisateur.
+            </p>
+
+          </div>
+
+          <div class="space-y-5">
+
+            <div
+              *ngFor="let module of modulesPermissions"
+              class="overflow-hidden rounded-xl border border-gray-200">
+
+              <div class="border-b border-gray-200 bg-gray-50 px-4 py-3">
+
+                <h4 class="text-sm font-semibold text-gray-800">
+                  {{ module }}
+                </h4>
+
+              </div>
+
+              <div class="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2 lg:grid-cols-3">
+
+                <label
+                  *ngFor="let permission of permissionsParModule(module)"
+                  class="flex cursor-pointer items-start gap-3 rounded-lg border border-gray-100 p-3 transition hover:border-green-200 hover:bg-green-50">
+
+                  <input
+                    type="checkbox"
+                    [checked]="permissionEstActive(permission.name)"
+                    (change)="togglePermission(permission.name)"
+                    class="mt-0.5 h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500" />
+
+                  <span>
+
+                    <span class="block text-sm font-medium text-gray-700">
+                      {{ permission.label }}
+                    </span>
+
+                    <span class="mt-0.5 block text-xs text-gray-400">
+                      {{ permission.name }}
+                    </span>
+
+                  </span>
+
+                </label>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER -->
+      <div class="sticky bottom-0 flex flex-col-reverse gap-3 border-t border-gray-100 bg-white px-6 py-4 sm:flex-row sm:justify-end">
+
+        <button
+          type="button"
+          (click)="fermerModalUtilisateur()"
+          class="rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50">
+
+          Annuler
+
+        </button>
+
+        <button
+          type="button"
+          (click)="enregistrerUtilisateur()"
+          class="rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700">
+
+          {{ modeEdition ? 'Enregistrer les modifications' : 'Créer l’utilisateur' }}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL DÉTAILS -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalDetails && utilisateurSelectionne"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm">
+
+    <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl">
+
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+        <div class="flex items-center gap-3">
+
+          <div class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 font-bold text-green-700">
+            {{ initiales(utilisateurSelectionne) }}
+          </div>
+
+          <div>
+
+            <h2 class="text-xl font-bold text-gray-900">
+              {{ utilisateurSelectionne.prenom }}
+              {{ utilisateurSelectionne.nom }}
+            </h2>
+
+            <p class="text-sm text-gray-500">
+              {{ utilisateurSelectionne.email }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerModalDetails()"
+          class="rounded-lg p-2 text-gray-400 transition hover:bg-gray-100 hover:text-gray-600">
+
+          <svg xmlns="http://www.w3.org/2000/svg"
+               class="h-6 w-6"
+               fill="none"
+               viewBox="0 0 24 24"
+               stroke="currentColor"
+               stroke-width="2">
+            <path stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M6 18L18 6M6 6l12 12" />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <div class="space-y-6 p-6">
+
+        <!-- Informations -->
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+          <div class="rounded-xl bg-gray-50 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Téléphone
+            </p>
+
+            <p class="mt-1 font-medium text-gray-800">
+              {{ utilisateurSelectionne.telephone }}
+            </p>
+
+          </div>
+
+
+          <div class="rounded-xl bg-gray-50 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Agence
+            </p>
+
+            <p class="mt-1 font-medium text-gray-800">
+              {{ utilisateurSelectionne.agence }}
+            </p>
+
+          </div>
+
+
+          <div class="rounded-xl bg-gray-50 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Rôle
+            </p>
+
+            <p class="mt-1 font-medium text-green-700">
+              {{ nomRole(utilisateurSelectionne.role) }}
+            </p>
+
+          </div>
+
+
+          <div class="rounded-xl bg-gray-50 p-4">
+
+            <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+              Statut
+            </p>
+
+            <span
+              class="mt-1 inline-flex rounded-full px-3 py-1 text-xs font-semibold"
+              [ngClass]="
+                utilisateurSelectionne.statut === 'Actif'
+                  ? 'bg-green-100 text-green-700'
+                  : 'bg-red-100 text-red-700'
+              ">
+
+              {{ utilisateurSelectionne.statut }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Dernière connexion -->
+        <div>
+
+          <h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-gray-700">
+            Dernière connexion
+          </h3>
+
+          <div class="rounded-xl border border-gray-100 bg-gray-50 p-4 text-sm text-gray-600">
+            {{ utilisateurSelectionne.derniereConnexion }}
+          </div>
+
+        </div>
+
+
+        <!-- Permissions -->
+        <div>
+
+          <h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-gray-700">
+            Permissions effectives
+          </h3>
+
+          <div class="flex flex-wrap gap-2">
+
+            <span
+              *ngFor="let permission of permissionsUtilisateur(utilisateurSelectionne)"
+              class="rounded-lg bg-green-50 px-3 py-2 text-xs font-medium text-green-700">
+
+              {{ permission }}
+
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Permissions directes -->
+        <div>
+
+          <h3 class="mb-3 text-sm font-bold uppercase tracking-wide text-gray-700">
+            Permissions directes
+          </h3>
+
+          <div
+            *ngIf="utilisateurSelectionne.permissionsDirectes.length > 0; else aucunePermissionDirecte"
+            class="flex flex-wrap gap-2">
+
+            <span
+              *ngFor="let permission of utilisateurSelectionne.permissionsDirectes"
+              class="rounded-lg bg-blue-50 px-3 py-2 text-xs font-medium text-blue-700">
+
+              {{ permission }}
+
+            </span>
+
+          </div>
+
+          <ng-template #aucunePermissionDirecte>
+
+            <p class="text-sm text-gray-400">
+              Aucune permission attribuée directement.
+            </p>
+
+          </ng-template>
+
+        </div>
+
+      </div>
+
+
+      <!-- Footer -->
+      <div class="flex justify-end border-t border-gray-100 px-6 py-4">
+
+        <button
+          type="button"
+          (click)="fermerModalDetails()"
+          class="rounded-xl bg-gray-900 px-5 py-3 text-sm font-semibold text-white transition hover:bg-gray-800">
+
+          Fermer
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

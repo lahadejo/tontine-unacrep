@@ -1,0 +1,1047 @@
+<div class="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+
+    <div>
+      <div class="flex items-center gap-3">
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9a6 6 0 1 0-12 0v.75a8.967 8.967 0 0 1-2.31 6.022c1.733.64 3.547 1.088 5.454 1.31m5.713 0a24.255 24.255 0 0 1-5.713 0m5.713 0a3 3 0 1 1-5.713 0"
+            />
+          </svg>
+
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold text-slate-800">
+            Notifications
+          </h1>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Suivez les événements importants du système UNACREP
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="flex flex-wrap gap-3">
+
+      <!-- Actualiser -->
+      <button
+        type="button"
+        (click)="actualiser()"
+        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12a7.5 7.5 0 0 1 12.9-5.2L20 9.5M20 9.5V5m0 4.5h-4.5M19.5 12a7.5 7.5 0 0 1-12.9 5.2L4 14.5M4 14.5V19m0-4.5h4.5"
+          />
+        </svg>
+
+        Actualiser
+      </button>
+
+      <!-- Tout marquer comme lu -->
+      <button
+        type="button"
+        (click)="marquerToutesCommeLues()"
+        class="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m5 12 4 4L19 6"
+          />
+        </svg>
+
+        Tout marquer comme lu
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+    <!-- Total -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-start justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-slate-500">
+            Total notifications
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-slate-800">
+            {{ totalNotifications }}
+          </p>
+
+          <p class="mt-1 text-xs text-slate-500">
+            Notifications enregistrées
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-slate-100 text-slate-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9a6 6 0 1 0-12 0v.75a8.967 8.967 0 0 1-2.31 6.022c1.733.64 3.547 1.088 5.454 1.31m5.713 0a24.255 24.255 0 0 1-5.713 0m5.713 0a3 3 0 1 1-5.713 0"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Non lues -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-start justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-slate-500">
+            Non lues
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-green-600">
+            {{ notificationsNonLues }}
+          </p>
+
+          <p class="mt-1 text-xs text-slate-500">
+            À consulter
+          </p>
+        </div>
+
+        <div class="relative flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9a6 6 0 1 0-12 0v.75a8.967 8.967 0 0 1-2.31 6.022c1.733.64 3.547 1.088 5.454 1.31m5.713 0a24.255 24.255 0 0 1-5.713 0m5.713 0a3 3 0 1 1-5.713 0"
+            />
+          </svg>
+
+          <span
+            *ngIf="notificationsNonLues > 0"
+            class="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-red-500 px-1 text-[10px] font-bold text-white"
+          >
+            {{ notificationsNonLues }}
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Aujourd'hui -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-start justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-slate-500">
+            Aujourd’hui
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-blue-600">
+            {{ notificationsAujourdHui }}
+          </p>
+
+          <p class="mt-1 text-xs text-slate-500">
+            Notifications reçues
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-blue-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6.75 3v2.25M17.25 3v2.25M3 9.75h18M4.5 5.25h15A1.5 1.5 0 0 1 21 6.75v12A1.5 1.5 0 0 1 19.5 20.25h-15A1.5 1.5 0 0 1 3 18.75v-12a1.5 1.5 0 0 1 1.5-1.5Z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Importantes -->
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-start justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-slate-500">
+            Importantes
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-orange-600">
+            {{ notificationsImportantes }}
+          </p>
+
+          <p class="mt-1 text-xs text-slate-500">
+            À surveiller
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-100 text-orange-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3.75m0 3h.007v.008H12V15.75ZM10.34 3.94 2.69 17.19a1.5 1.5 0 0 0 1.3 2.25h16.02a1.5 1.5 0 0 0 1.3-2.25L13.66 3.94a1.91 1.91 0 0 0-3.32 0Z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
+
+      <!-- Recherche -->
+      <div class="lg:col-span-6">
+
+        <label class="mb-2 block text-sm font-medium text-slate-700">
+          Rechercher
+        </label>
+
+        <div class="relative">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m21 21-4.35-4.35m2.1-5.4a7.5 7.5 0 1 1-15 0 7.5 7.5 0 0 1 15 0Z"
+            />
+          </svg>
+
+          <input
+            type="text"
+            [(ngModel)]="recherche"
+            placeholder="Rechercher une notification..."
+            class="w-full rounded-xl border border-slate-200 bg-slate-50 py-2.5 pl-10 pr-4 text-sm text-slate-700 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- Type -->
+      <div class="lg:col-span-3">
+
+        <label class="mb-2 block text-sm font-medium text-slate-700">
+          Type
+        </label>
+
+        <select
+          [(ngModel)]="filtreType"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+        >
+          <option value="toutes">
+            Tous les types
+          </option>
+
+          <option value="cotisation">
+            Cotisations
+          </option>
+
+          <option value="retrait">
+            Retraits
+          </option>
+
+          <option value="carte">
+            Cartes
+          </option>
+
+          <option value="client">
+            Clients
+          </option>
+
+          <option value="systeme">
+            Système
+          </option>
+        </select>
+
+      </div>
+
+
+      <!-- Statut -->
+      <div class="lg:col-span-3">
+
+        <label class="mb-2 block text-sm font-medium text-slate-700">
+          Statut
+        </label>
+
+        <select
+          [(ngModel)]="filtreStatut"
+          class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm text-slate-700 outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+        >
+          <option value="toutes">
+            Toutes
+          </option>
+
+          <option value="non-lues">
+            Non lues
+          </option>
+
+          <option value="lues">
+            Lues
+          </option>
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- Résultat filtres -->
+    <div class="mt-4 flex flex-col gap-3 border-t border-slate-100 pt-4 sm:flex-row sm:items-center sm:justify-between">
+
+      <p class="text-sm text-slate-500">
+        <span class="font-semibold text-slate-700">
+          {{ notificationsFiltrees.length }}
+        </span>
+        notification(s) affichée(s)
+      </p>
+
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="inline-flex items-center gap-2 text-sm font-medium text-green-600 hover:text-green-700"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-4 w-4"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12a7.5 7.5 0 0 1 12.9-5.2L20 9.5M20 9.5V5m0 4.5h-4.5M19.5 12a7.5 7.5 0 0 1-12.9 5.2L4 14.5M4 14.5V19m0-4.5h4.5"
+          />
+        </svg>
+
+        Réinitialiser
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- LISTE DES NOTIFICATIONS -->
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+    <!-- En-tête -->
+    <div class="flex flex-col gap-3 border-b border-slate-100 px-5 py-4 sm:flex-row sm:items-center sm:justify-between">
+
+      <div>
+        <h2 class="font-semibold text-slate-800">
+          Activité récente
+        </h2>
+
+        <p class="mt-1 text-xs text-slate-500">
+          Les dernières activités enregistrées sur la plateforme
+        </p>
+      </div>
+
+      <div
+        *ngIf="notificationsNonLues > 0"
+        class="inline-flex w-fit items-center gap-2 rounded-full bg-green-50 px-3 py-1.5 text-xs font-semibold text-green-700"
+      >
+        <span class="h-2 w-2 rounded-full bg-green-500"></span>
+        {{ notificationsNonLues }} non lue(s)
+      </div>
+
+    </div>
+
+
+    <!-- Liste -->
+    <div *ngIf="notificationsFiltrees.length > 0">
+
+      <div
+        *ngFor="let notification of notificationsFiltrees; let dernier = last"
+        class="group relative flex gap-4 px-5 py-5 transition hover:bg-slate-50"
+        [class.border-b]="!dernier"
+        [class.border-slate-100]="!dernier"
+        [class.bg-green-50]="!notification.lue"
+      >
+
+        <!-- Indicateur non lu -->
+        <div
+          *ngIf="!notification.lue"
+          class="absolute left-0 top-0 h-full w-1 bg-green-500"
+        ></div>
+
+
+        <!-- Icône -->
+        <div
+          class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl"
+          [ngClass]="getIconBackground(notification.type)"
+        >
+
+          <!-- Cotisation -->
+          <svg
+            *ngIf="notification.type === 'cotisation'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v12m-3-3.5c0 1.105 1.343 2 3 2s3-.895 3-2-1.343-2-3-2-3-.895-3-2 1.343-2 3-2 3 .895 3 2"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5.25 4.5h13.5A1.75 1.75 0 0 1 20.5 6.25v11.5a1.75 1.75 0 0 1-1.75 1.75H5.25a1.75 1.75 0 0 1-1.75-1.75V6.25A1.75 1.75 0 0 1 5.25 4.5Z"
+            />
+          </svg>
+
+
+          <!-- Retrait -->
+          <svg
+            *ngIf="notification.type === 'retrait'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 3v13m0 0 4-4m-4 4-4-4"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 19.5h14"
+            />
+          </svg>
+
+
+          <!-- Carte -->
+          <svg
+            *ngIf="notification.type === 'carte'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+            />
+            <path
+              stroke-linecap="round"
+              d="M3 10h18"
+            />
+            <path
+              stroke-linecap="round"
+              d="M7 15h3"
+            />
+          </svg>
+
+
+          <!-- Client -->
+          <svg
+            *ngIf="notification.type === 'client'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15 19.5a6 6 0 0 0-12 0M9 11.25a3.75 3.75 0 1 0 0-7.5 3.75 3.75 0 0 0 0 7.5ZM18 8.25v6m3-3h-6"
+            />
+          </svg>
+
+
+          <!-- Système -->
+          <svg
+            *ngIf="notification.type === 'systeme'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 3.75h3l.55 2.2a6.8 6.8 0 0 1 1.54.9l2.15-.7 1.5 2.6-1.6 1.55c.1.4.15.82.15 1.25s-.05.85-.15 1.25l1.6 1.55-1.5 2.6-2.15-.7a6.8 6.8 0 0 1-1.54.9l-.55 2.2h-3l-.55-2.2a6.8 6.8 0 0 1-1.54-.9l-2.15.7-1.5-2.6 1.6-1.55A6.8 6.8 0 0 1 6.2 11.55c0-.43.05-.85.15-1.25L4.75 8.75l1.5-2.6 2.15.7a6.8 6.8 0 0 1 1.54-.9l.55-2.2Z"
+            />
+            <circle
+              cx="12"
+              cy="11.55"
+              r="2.5"
+            />
+          </svg>
+
+        </div>
+
+
+        <!-- Contenu -->
+        <div
+          class="min-w-0 flex-1 cursor-pointer"
+          (click)="ouvrirNotification(notification)"
+        >
+
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+
+            <div class="min-w-0">
+
+              <div class="flex flex-wrap items-center gap-2">
+
+                <h3
+                  class="truncate text-sm text-slate-800"
+                  [class.font-bold]="!notification.lue"
+                  [class.font-semibold]="notification.lue"
+                >
+                  {{ notification.titre }}
+                </h3>
+
+                <span
+                  class="rounded-full px-2 py-0.5 text-[10px] font-semibold"
+                  [ngClass]="getTypeClasses(notification.type)"
+                >
+                  {{ getTypeLabel(notification.type) }}
+                </span>
+
+                <span
+                  *ngIf="notification.importante"
+                  class="rounded-full bg-orange-100 px-2 py-0.5 text-[10px] font-semibold text-orange-700"
+                >
+                  Important
+                </span>
+
+              </div>
+
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                {{ notification.message }}
+              </p>
+
+              <div class="mt-2 flex flex-wrap items-center gap-3 text-xs text-slate-400">
+
+                <span class="inline-flex items-center gap-1">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-3.5 w-3.5"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="8.5"
+                    />
+                    <path
+                      stroke-linecap="round"
+                      d="M12 7.5v5l3 1.75"
+                    />
+                  </svg>
+
+                  {{ notification.date }} à {{ notification.heure }}
+
+                </span>
+
+                <span *ngIf="notification.reference">
+                  Réf. {{ notification.reference }}
+                </span>
+
+                <span
+                  *ngIf="notification.montant"
+                  class="font-semibold text-slate-600"
+                >
+                  {{ formatMontant(notification.montant) }}
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <!-- Actions -->
+            <div
+              class="flex shrink-0 items-center gap-1 opacity-100 transition sm:opacity-0 sm:group-hover:opacity-100"
+              (click)="$event.stopPropagation()"
+            >
+
+              <!-- Lire -->
+              <button
+                *ngIf="!notification.lue"
+                type="button"
+                (click)="marquerCommeLue(notification)"
+                title="Marquer comme lue"
+                class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-green-100 hover:text-green-600"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M2.5 12s3.5-6 9.5-6 9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"
+                  />
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="2.5"
+                  />
+                </svg>
+
+              </button>
+
+
+              <!-- Non lue -->
+              <button
+                *ngIf="notification.lue"
+                type="button"
+                (click)="marquerCommeNonLue(notification)"
+                title="Marquer comme non lue"
+                class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-blue-100 hover:text-blue-600"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M3 3l18 18"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M10.58 10.58a2 2 0 0 0 2.83 2.83"
+                  />
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9.88 5.09A9.2 9.2 0 0 1 12 4.75c6 0 9.5 7.25 9.5 7.25a17.7 17.7 0 0 1-3.16 3.96M6.61 6.61C4.11 8.26 2.5 12 2.5 12s3.5 7.25 9.5 7.25c1.52 0 2.9-.38 4.12-1.01"
+                  />
+                </svg>
+
+              </button>
+
+
+              <!-- Supprimer -->
+              <button
+                type="button"
+                (click)="supprimerNotification(notification)"
+                title="Supprimer"
+                class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 transition hover:bg-red-100 hover:text-red-600"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-5 w-5"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 7.5h15M9.5 11v5M14.5 11v5M6.5 7.5l.75 12h9.5l.75-12M9 7.5V5.75A1.25 1.25 0 0 1 10.25 4.5h3.5A1.25 1.25 0 0 1 15 5.75V7.5"
+                  />
+                </svg>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- État vide -->
+    <div
+      *ngIf="notificationsFiltrees.length === 0"
+      class="px-6 py-16 text-center"
+    >
+
+      <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-slate-100 text-slate-400">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-8 w-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9a6 6 0 1 0-12 0v.75a8.967 8.967 0 0 1-2.31 6.022c1.733.64 3.547 1.088 5.454 1.31m5.713 0a24.255 24.255 0 0 1-5.713 0"
+          />
+        </svg>
+
+      </div>
+
+      <h3 class="mt-4 text-base font-semibold text-slate-700">
+        Aucune notification trouvée
+      </h3>
+
+      <p class="mt-1 text-sm text-slate-500">
+        Aucune notification ne correspond aux critères sélectionnés.
+      </p>
+
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="mt-4 text-sm font-semibold text-green-600 hover:text-green-700"
+      >
+        Réinitialiser les filtres
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL DÉTAIL NOTIFICATION -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="afficherDetails && notificationSelectionnee"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 p-4 backdrop-blur-sm"
+    (click)="fermerDetails()"
+  >
+
+    <div
+      class="w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- Header modal -->
+      <div class="flex items-center justify-between border-b border-slate-100 px-6 py-4">
+
+        <div class="flex items-center gap-3">
+
+          <div
+            class="flex h-10 w-10 items-center justify-center rounded-xl"
+            [ngClass]="getIconBackground(notificationSelectionnee.type)"
+          >
+
+            <!-- Icône générique -->
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9a6 6 0 1 0-12 0v.75a8.967 8.967 0 0 1-2.31 6.022c1.733.64 3.547 1.088 5.454 1.31m5.713 0a24.255 24.255 0 0 1-5.713 0"
+              />
+            </svg>
+
+          </div>
+
+          <div>
+            <p class="text-xs font-medium text-slate-400">
+              {{ getTypeLabel(notificationSelectionnee.type) }}
+            </p>
+
+            <h3 class="font-semibold text-slate-800">
+              Détail de la notification
+            </h3>
+          </div>
+
+        </div>
+
+        <button
+          type="button"
+          (click)="fermerDetails()"
+          class="flex h-9 w-9 items-center justify-center rounded-lg text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              d="m6 6 12 12M18 6 6 18"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- Corps -->
+      <div class="p-6">
+
+        <div class="flex items-start justify-between gap-4">
+
+          <h4 class="text-lg font-bold text-slate-800">
+            {{ notificationSelectionnee.titre }}
+          </h4>
+
+          <span
+            *ngIf="notificationSelectionnee.importante"
+            class="shrink-0 rounded-full bg-orange-100 px-2.5 py-1 text-xs font-semibold text-orange-700"
+          >
+            Important
+          </span>
+
+        </div>
+
+        <p class="mt-4 leading-7 text-slate-600">
+          {{ notificationSelectionnee.message }}
+        </p>
+
+
+        <div class="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+
+          <div class="rounded-xl bg-slate-50 p-4">
+            <p class="text-xs text-slate-400">
+              Date
+            </p>
+
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+              {{ notificationSelectionnee.date }}
+            </p>
+          </div>
+
+          <div class="rounded-xl bg-slate-50 p-4">
+            <p class="text-xs text-slate-400">
+              Heure
+            </p>
+
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+              {{ notificationSelectionnee.heure }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="notificationSelectionnee.reference"
+            class="rounded-xl bg-slate-50 p-4"
+          >
+            <p class="text-xs text-slate-400">
+              Référence
+            </p>
+
+            <p class="mt-1 text-sm font-semibold text-slate-700">
+              {{ notificationSelectionnee.reference }}
+            </p>
+          </div>
+
+          <div
+            *ngIf="notificationSelectionnee.montant"
+            class="rounded-xl bg-green-50 p-4"
+          >
+            <p class="text-xs text-green-600">
+              Montant
+            </p>
+
+            <p class="mt-1 text-sm font-bold text-green-700">
+              {{ formatMontant(notificationSelectionnee.montant) }}
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- Footer -->
+      <div class="flex items-center justify-between border-t border-slate-100 px-6 py-4">
+
+        <button
+          type="button"
+          (click)="supprimerNotification(notificationSelectionnee)"
+          class="inline-flex items-center gap-2 rounded-xl px-3 py-2 text-sm font-medium text-red-600 transition hover:bg-red-50"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4.5 7.5h15M9.5 11v5M14.5 11v5M6.5 7.5l.75 12h9.5l.75-12M9 7.5V5.75A1.25 1.25 0 0 1 10.25 4.5h3.5A1.25 1.25 0 0 1 15 5.75V7.5"
+            />
+          </svg>
+
+          Supprimer
+        </button>
+
+        <button
+          type="button"
+          (click)="fermerDetails()"
+          class="rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700"
+        >
+          Fermer
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

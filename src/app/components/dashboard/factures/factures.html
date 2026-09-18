@@ -1,0 +1,1147 @@
+<div class="factures-page min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ====================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ====================================================== -->
+
+  <div class="mb-7 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+
+    <div>
+
+      <div class="mb-2 flex items-center gap-2">
+
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-100 text-emerald-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M7 3.75h10A2.25 2.25 0 0119.25 6v12A2.25 2.25 0 0117 20.25H7A2.25 2.25 0 014.75 18V6A2.25 2.25 0 017 3.75z" />
+
+            <path
+              stroke-linecap="round"
+              d="M8.5 8h7M8.5 12h7M8.5 16h4" />
+
+          </svg>
+
+        </span>
+
+        <span class="text-xs font-bold uppercase tracking-[0.2em] text-emerald-600">
+          Gestion financière
+        </span>
+
+      </div>
+
+      <h1 class="text-2xl font-bold text-slate-900">
+        Relevés de cartes
+      </h1>
+
+      <p class="mt-1 text-sm text-slate-500">
+        Consultez les relevés de cotisation et les opérations de retrait.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ====================================================== -->
+
+  <div class="mb-6 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+
+      <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+        Total relevés
+      </p>
+
+      <div class="mt-2 flex items-end justify-between">
+
+        <p class="text-2xl font-bold text-slate-900">
+          {{ totalFactures }}
+        </p>
+
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-slate-100 text-slate-500">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <path
+              stroke-linecap="round"
+              d="M8 4h8M7 7h10M6 4h12v16H6z" />
+
+          </svg>
+
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+
+      <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+        Retraits effectués
+      </p>
+
+      <div class="mt-2 flex items-end justify-between">
+
+        <p class="text-2xl font-bold text-emerald-600">
+          {{ facturesRetirees }}
+        </p>
+
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-emerald-50 text-emerald-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2">
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m5 12 4 4L19 6" />
+
+          </svg>
+
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+
+      <p class="text-[10px] font-bold uppercase tracking-wider text-slate-400">
+        Retraits en attente
+      </p>
+
+      <div class="mt-2 flex items-end justify-between">
+
+        <p class="text-2xl font-bold text-amber-600">
+          {{ facturesEnAttente }}
+        </p>
+
+        <span class="flex h-9 w-9 items-center justify-center rounded-xl bg-amber-50 text-amber-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <circle
+              cx="12"
+              cy="12"
+              r="8" />
+
+            <path
+              stroke-linecap="round"
+              d="M12 8v4l2.5 1.5" />
+
+          </svg>
+
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <div class="rounded-2xl bg-emerald-600 p-4 shadow-sm">
+
+      <p class="text-[10px] font-bold uppercase tracking-wider text-emerald-100">
+        Total cotisé
+      </p>
+
+      <div class="mt-2 flex items-end justify-between">
+
+        <p class="text-2xl font-bold text-white">
+          {{ formatNombre(montantTotal) }}
+        </p>
+
+        <span class="text-xs font-semibold text-emerald-100">
+          FCFA
+        </span>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- FILTRES -->
+  <!-- ====================================================== -->
+
+  <div class="mb-5 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-3 lg:grid-cols-[1fr_190px_190px_auto]">
+
+      <div class="relative">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m21 21-4.3-4.3m1.8-5.2a7 7 0 11-14 0 7 7 0 0114 0z" />
+
+        </svg>
+
+        <input
+          type="text"
+          [(ngModel)]="recherche"
+          placeholder="Rechercher un relevé, client ou carte..."
+          class="h-10 w-full rounded-xl border border-slate-200 bg-slate-50 pl-9 pr-3 text-sm outline-none focus:border-emerald-500 focus:bg-white focus:ring-4 focus:ring-emerald-500/10" />
+
+      </div>
+
+
+      <select
+        [(ngModel)]="filtreStatut"
+        class="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-slate-600 outline-none focus:border-emerald-500">
+
+        <option value="Tous">
+          Tous les statuts
+        </option>
+
+        <option value="Retiré">
+          Retraits effectués
+        </option>
+
+        <option value="En attente">
+          Retraits en attente
+        </option>
+
+      </select>
+
+
+      <select
+        [(ngModel)]="filtreType"
+        class="h-10 rounded-xl border border-slate-200 bg-slate-50 px-3 text-sm text-slate-600 outline-none focus:border-emerald-500">
+
+        <option value="Tous">
+          Tous les types
+        </option>
+
+        <option value="Journalière">
+          Journalière
+        </option>
+
+        <option value="Mensuelle">
+          Mensuelle
+        </option>
+
+      </select>
+
+
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="h-10 rounded-xl border border-slate-200 px-4 text-xs font-semibold text-slate-600 hover:bg-slate-50">
+
+        Réinitialiser
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- LISTE -->
+  <!-- ====================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+    <div class="flex items-center justify-between border-b border-slate-200 px-5 py-4">
+
+      <div>
+
+        <h2 class="text-sm font-bold text-slate-900">
+          Relevés disponibles
+        </h2>
+
+        <p class="mt-1 text-xs text-slate-400">
+          {{ facturesFiltrees.length }} relevé(s)
+        </p>
+
+      </div>
+
+      <span class="hidden rounded-full bg-emerald-50 px-3 py-1 text-[10px] font-bold text-emerald-700 sm:block">
+        DOCUMENTS OFFICIELS
+      </span>
+
+    </div>
+
+
+    <div class="overflow-x-auto">
+
+      <table class="w-full min-w-[850px]">
+
+        <thead class="bg-slate-50">
+
+          <tr>
+
+            <th class="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Relevé
+            </th>
+
+            <th class="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Client
+            </th>
+
+            <th class="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Carte
+            </th>
+
+            <th class="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Total cotisé
+            </th>
+
+            <th class="px-5 py-3 text-left text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Retrait
+            </th>
+
+            <th class="px-5 py-3 text-right text-[10px] font-bold uppercase tracking-wider text-slate-400">
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-slate-100">
+
+          <tr
+            *ngFor="let facture of facturesFiltrees"
+            class="hover:bg-slate-50">
+
+            <td class="px-5 py-4">
+
+              <p class="text-sm font-bold text-slate-800">
+                {{ facture.numero }}
+              </p>
+
+              <p class="mt-1 text-[11px] text-slate-400">
+                Émis le {{ facture.dateEmission }}
+              </p>
+
+            </td>
+
+
+            <td class="px-5 py-4">
+
+              <p class="text-sm font-semibold text-slate-800">
+                {{ facture.client.nom }}
+              </p>
+
+              <p class="mt-1 text-[11px] text-slate-400">
+                {{ facture.client.matricule }}
+              </p>
+
+            </td>
+
+
+            <td class="px-5 py-4">
+
+              <p class="text-sm font-semibold text-slate-800">
+                {{ facture.carte.numero }}
+              </p>
+
+              <p class="mt-1 text-[11px] text-slate-400">
+                {{ facture.carte.type }} ·
+                {{ formatMontant(facture.carte.montant) }}
+              </p>
+
+            </td>
+
+
+            <td class="px-5 py-4">
+
+              <p class="text-sm font-bold text-slate-800">
+                {{ formatMontant(facture.totalCotise) }}
+              </p>
+
+              <p class="mt-1 text-[11px] text-slate-400">
+                {{ getPourcentagePointage(facture) }} % du cycle
+              </p>
+
+            </td>
+
+
+            <td class="px-5 py-4">
+
+              <span
+                [ngClass]="
+                  facture.retrait.statut === 'effectue'
+                    ? 'bg-emerald-50 text-emerald-700'
+                    : 'bg-amber-50 text-amber-700'
+                "
+                class="rounded-full px-2.5 py-1 text-[10px] font-bold">
+
+                {{ getRetraitLabel(facture.retrait) }}
+
+              </span>
+
+            </td>
+
+
+            <td class="px-5 py-4 text-right">
+
+              <button
+                type="button"
+                (click)="openDetails(facture)"
+                class="inline-flex h-9 items-center gap-2 rounded-lg bg-slate-900 px-3 text-xs font-semibold text-white transition hover:bg-emerald-600">
+
+                Consulter
+
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <tr *ngIf="facturesFiltrees.length === 0">
+
+            <td colspan="6" class="py-14 text-center">
+
+              <p class="text-sm font-semibold text-slate-700">
+                Aucun relevé trouvé
+              </p>
+
+              <p class="mt-1 text-xs text-slate-400">
+                Modifiez vos critères de recherche.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- ====================================================== -->
+  <!-- MODAL -->
+  <!-- ====================================================== -->
+
+  <div
+    *ngIf="showDetailsModal && selectedFacture"
+    class="facture-modal fixed inset-0 z-50 flex items-center justify-center bg-slate-950/60 p-3 backdrop-blur-sm sm:p-5">
+
+    <div class="facture-modal-container flex max-h-[96vh] w-full max-w-5xl flex-col overflow-hidden rounded-2xl bg-slate-100 shadow-2xl">
+
+      <!-- BARRE MODALE -->
+
+      <div class="facture-modal-toolbar flex shrink-0 items-center justify-between border-b border-slate-200 bg-white px-4 py-3 sm:px-5">
+
+        <div>
+
+          <p class="text-sm font-bold text-slate-900">
+            Relevé de carte
+          </p>
+
+          <p class="text-[11px] text-slate-400">
+            {{ selectedFacture.numero }}
+          </p>
+
+        </div>
+
+
+        <div class="flex items-center gap-2">
+
+          <button
+            type="button"
+            (click)="telechargerPDF()"
+            class="hidden h-9 items-center rounded-lg border border-slate-200 px-3 text-xs font-semibold text-slate-600 hover:bg-slate-50 sm:flex">
+
+            PDF
+
+          </button>
+
+
+          <button
+            type="button"
+            (click)="imprimerFacture()"
+            class="h-9 rounded-lg bg-emerald-600 px-3.5 text-xs font-semibold text-white hover:bg-emerald-700">
+
+            Imprimer
+
+          </button>
+
+
+          <button
+            type="button"
+            (click)="closeDetails()"
+            class="flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 text-slate-500 hover:bg-slate-50">
+
+            ×
+
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ZONE DOCUMENT -->
+
+      <div class="facture-modal-scroll overflow-y-auto p-3 sm:p-6">
+
+        <div
+          id="releve-print"
+          class="releve-document mx-auto max-w-[820px] bg-white">
+
+          <!-- ============================================== -->
+          <!-- HEADER -->
+          <!-- ============================================== -->
+
+          <header class="releve-header">
+
+            <div class="releve-brand">
+
+              <img
+                src="/images/logo.png"
+                alt="UNACREP"
+                class="releve-logo" />
+
+              <div>
+
+                <div class="releve-brand-name">
+                  UNACREP
+                </div>
+
+                <div class="releve-brand-subtitle">
+                  UNION NATIONALE DES CAISSES
+                </div>
+
+                <div class="releve-brand-description">
+                  Système de gestion des tontines et paiements
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="releve-title">
+
+              <span>
+                DOCUMENT OFFICIEL
+              </span>
+
+              <h1>
+                RELEVÉ DE CARTE
+              </h1>
+
+              <strong>
+                {{ selectedFacture.numero }}
+              </strong>
+
+              <small>
+                Émis le {{ selectedFacture.dateEmission }}
+              </small>
+
+            </div>
+
+          </header>
+
+
+          <!-- ============================================== -->
+          <!-- INFOS CLIENT / CARTE -->
+          <!-- ============================================== -->
+
+          <section class="releve-info-grid">
+
+            <div class="releve-info-box">
+
+              <div class="releve-section-title">
+                INFORMATIONS CLIENT
+              </div>
+
+              <div class="releve-info-content">
+
+                <div class="releve-field releve-field-full">
+
+                  <span>
+                    Nom et prénoms
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.client.nom }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field">
+
+                  <span>
+                    Matricule
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.client.matricule }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field">
+
+                  <span>
+                    Téléphone
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.client.telephone }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field releve-field-full">
+
+                  <span>
+                    Agence
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.client.agence }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="releve-info-box">
+
+              <div class="releve-section-title">
+                INFORMATIONS CARTE
+              </div>
+
+              <div class="releve-info-content">
+
+                <div class="releve-field">
+
+                  <span>
+                    Numéro carte
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.carte.numero }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field">
+
+                  <span>
+                    Type
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.carte.type }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field">
+
+                  <span>
+                    Montant
+                  </span>
+
+                  <strong>
+                    {{ formatMontant(selectedFacture.carte.montant) }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field">
+
+                  <span>
+                    Fréquence
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.carte.frequence }}
+                  </strong>
+
+                </div>
+
+
+                <div class="releve-field releve-field-full">
+
+                  <span>
+                    Cycle de cotisation
+                  </span>
+
+                  <strong class="releve-green">
+                    {{ selectedFacture.carte.cycle }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ============================================== -->
+          <!-- POINTAGE -->
+          <!-- ============================================== -->
+
+          <section class="releve-section">
+
+            <div class="releve-heading-row">
+
+              <div>
+
+                <span class="releve-kicker">
+                  SUIVI DES COTISATIONS
+                </span>
+
+                <h2>
+                  Pointage du cycle
+                </h2>
+
+              </div>
+
+
+              <div class="releve-legend">
+
+                <span>
+                  <i class="legend-done"></i>
+                  Effectué
+                </span>
+
+                <span>
+                  <i class="legend-empty"></i>
+                  Non effectué
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div class="pointage-grid">
+
+              <div
+                *ngFor="let pointage of selectedFacture.pointages"
+                [ngClass]="
+                  pointage.statut === 'effectue'
+                    ? 'pointage-done'
+                    : 'pointage-empty'
+                "
+                class="pointage-cell">
+
+                <div class="pointage-top">
+
+                  <strong>
+                    J{{ pointage.jour }}
+                  </strong>
+
+                  <span>
+
+                    <svg
+                      *ngIf="pointage.statut === 'effectue'"
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24">
+
+                      <path
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m5 12 4 4L19 6" />
+
+                    </svg>
+
+                    <span
+                      *ngIf="pointage.statut !== 'effectue'"
+                      class="pointage-dot">
+                    </span>
+
+                  </span>
+
+                </div>
+
+                <small>
+                  {{ pointage.date }}
+                </small>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ============================================== -->
+          <!-- SYNTHESE -->
+          <!-- ============================================== -->
+
+          <section class="releve-financial">
+
+            <div class="releve-financial-title">
+              SYNTHÈSE FINANCIÈRE
+            </div>
+
+            <div class="releve-financial-grid">
+
+              <div class="financial-item">
+
+                <span>
+                  Cotisations prévues
+                </span>
+
+                <strong>
+                  {{ getNombrePointagesPrevus(selectedFacture) }}
+                </strong>
+
+                <small>
+                  pointages
+                </small>
+
+              </div>
+
+
+              <div class="financial-item">
+
+                <span>
+                  Cotisations effectuées
+                </span>
+
+                <strong class="releve-green">
+                  {{ getNombrePointagesEffectues(selectedFacture) }}
+                </strong>
+
+                <small>
+                  {{ getPourcentagePointage(selectedFacture) }} % du cycle
+                </small>
+
+              </div>
+
+
+              <div class="financial-item">
+
+                <span>
+                  Total cotisé
+                </span>
+
+                <strong>
+                  {{ formatMontant(selectedFacture.totalCotise) }}
+                </strong>
+
+              </div>
+
+
+              <div class="financial-item financial-balance">
+
+                <span>
+                  Solde disponible
+                </span>
+
+                <strong>
+                  {{ formatMontant(selectedFacture.solde) }}
+                </strong>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ============================================== -->
+          <!-- RETRAIT -->
+          <!-- ============================================== -->
+
+          <section class="retrait-box">
+
+            <div class="retrait-header">
+
+              <div>
+
+                <span>
+                  OPÉRATION DE RETRAIT
+                </span>
+
+                <h2>
+                  {{ getRetraitLabel(selectedFacture.retrait) }}
+                </h2>
+
+              </div>
+
+
+              <strong
+                [ngClass]="
+                  selectedFacture.retrait.statut === 'effectue'
+                    ? 'retrait-status-done'
+                    : 'retrait-status-pending'
+                ">
+
+                {{
+                  selectedFacture.retrait.statut === 'effectue'
+                    ? 'EXÉCUTÉ'
+                    : 'EN ATTENTE'
+                }}
+
+              </strong>
+
+            </div>
+
+
+            <div class="retrait-content">
+
+              <div class="retrait-details">
+
+                <div>
+
+                  <span>
+                    Montant brut
+                  </span>
+
+                  <strong>
+                    {{ formatMontant(selectedFacture.retrait.montantBrut) }}
+                  </strong>
+
+                </div>
+
+
+                <div>
+
+                  <span>
+                    Commission UNACREP
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.retrait.tauxCommission }} %
+                  </strong>
+
+                </div>
+
+
+                <div>
+
+                  <span>
+                    Montant commission
+                  </span>
+
+                  <strong class="commission">
+                    {{ formatMontant(selectedFacture.retrait.commission) }}
+                  </strong>
+
+                </div>
+
+
+                <div>
+
+                  <span>
+                    Mode
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.retrait.mode || 'Mobile Money' }}
+                  </strong>
+
+                </div>
+
+
+                <div
+                  *ngIf="selectedFacture.retrait.date">
+
+                  <span>
+                    Date du retrait
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.retrait.date }}
+                  </strong>
+
+                </div>
+
+
+                <div
+                  *ngIf="selectedFacture.retrait.reference">
+
+                  <span>
+                    Référence
+                  </span>
+
+                  <strong>
+                    {{ selectedFacture.retrait.reference }}
+                  </strong>
+
+                </div>
+
+              </div>
+
+
+              <div class="net-box">
+
+                <span>
+                  MONTANT NET
+                </span>
+
+                <strong>
+                  {{ formatNombre(selectedFacture.retrait.montantNet) }}
+                </strong>
+
+                <small>
+                  FCFA à recevoir
+                </small>
+
+              </div>
+
+            </div>
+
+          </section>
+
+
+          <!-- ============================================== -->
+          <!-- VALIDATION -->
+          <!-- ============================================== -->
+
+          <section class="releve-validation">
+
+            <div class="validation-text">
+
+              <span>
+                VALIDATION DU DOCUMENT
+              </span>
+
+              <p>
+                Ce relevé récapitule les cotisations enregistrées
+                sur la carte concernée ainsi que les informations
+                relatives au retrait et à la commission UNACREP.
+              </p>
+
+
+              <div class="signature-grid">
+
+                <div>
+
+                  <div class="signature-line"></div>
+
+                  <span>
+                    CAISSIER / COMPTABLE
+                  </span>
+
+                </div>
+
+
+                <div>
+
+                  <div class="signature-line"></div>
+
+                  <span>
+                    SIGNATURE
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="qr-box">
+
+              <canvas
+                [id]="'qr-' + selectedFacture.numero"
+                width="120"
+                height="120">
+              </canvas>
+
+              <span>
+                VÉRIFICATION DU RELEVÉ
+              </span>
+
+              <small>
+                {{ selectedFacture.numero }}
+              </small>
+
+            </div>
+
+          </section>
+
+
+          <!-- ============================================== -->
+          <!-- FOOTER -->
+          <!-- ============================================== -->
+
+          <footer class="releve-footer">
+
+            <span>
+              Document généré par le système de gestion UNACREP
+            </span>
+
+            <strong>
+              {{ selectedFacture.numero }}
+            </strong>
+
+            <span>
+              Document officiel
+            </span>
+
+          </footer>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

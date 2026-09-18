@@ -1,0 +1,1686 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+
+      <div class="flex items-center gap-3">
+
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-600 shadow-sm"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-white"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+            />
+
+            <path
+              d="M3 10h18"
+            />
+          </svg>
+
+        </div>
+
+        <div>
+
+          <h1 class="text-2xl font-bold text-gray-900">
+            Cartes de tontine
+          </h1>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Gestion des cartes, cycles et pointages des clients
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <button
+      type="button"
+      (click)="ouvrirNouvelleCarte()"
+      class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+    >
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M12 4v16m8-8H4"
+        />
+      </svg>
+
+      Nouvelle carte
+
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Total des cartes
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ totalCartes }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <rect
+              x="3"
+              y="5"
+              width="18"
+              height="14"
+              rx="2"
+            />
+
+            <path
+              d="M3 10h18"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Cartes actives
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-green-600">
+            {{ cartesActives }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Désactivées
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-700">
+            {{ cartesDesactivees }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-gray-100">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-gray-500"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 6l12 12M6 18L18 6"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Cycles en cours
+          </p>
+
+          <p class="mt-2 text-3xl font-bold text-gray-900">
+            {{ cyclesEnCours }}
+          </p>
+
+        </div>
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-50">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6 text-green-600"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="9"
+            />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 7v5l3 2"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- LISTE DES CARTES -->
+  <!-- ===================================================== -->
+
+  <div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm sm:p-6">
+
+    <div class="mb-6">
+
+      <h2 class="text-lg font-bold text-gray-900">
+        Cartes enregistrées
+      </h2>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Chaque carte possède son propre cycle et son propre pointage.
+      </p>
+
+    </div>
+
+
+    <div class="grid grid-cols-1 gap-5 lg:grid-cols-2 2xl:grid-cols-3">
+
+      <div
+        *ngFor="let carte of cartes"
+        class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+      >
+
+        <!-- En-tête compact -->
+        <div class="bg-green-700 px-5 py-4">
+
+          <div class="flex items-center justify-between gap-3">
+
+            <div class="flex items-center gap-3">
+
+              <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-white p-1.5">
+
+                <img
+                  src="/images/logo.png"
+                  alt="Logo UNACREP"
+                  class="max-h-full max-w-full object-contain"
+                />
+
+              </div>
+
+              <div>
+
+                <p class="text-xs uppercase tracking-wider text-white/70">
+                  UNACREP
+                </p>
+
+                <p class="text-sm font-bold text-white">
+                  Carte de tontine
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <span
+              class="rounded-full bg-white/15 px-3 py-1 text-[11px] font-semibold text-white"
+            >
+              {{ carte.numeroCarte }}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Corps -->
+        <div class="p-5">
+
+          <div class="flex items-start gap-4">
+
+            <!-- Photo -->
+            <div class="flex h-16 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-green-100 bg-gray-50">
+
+              <ng-container
+                *ngIf="getClient(carte.clientId)?.photo; else photoPlaceholder"
+              >
+
+                <img
+                  [src]="getClient(carte.clientId)?.photo"
+                  alt="Photo client"
+                  class="h-full w-full object-cover"
+                />
+
+              </ng-container>
+
+              <ng-template #photoPlaceholder>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-gray-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                  />
+
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 20.25a7.5 7.5 0 0115 0"
+                  />
+                </svg>
+
+              </ng-template>
+
+            </div>
+
+
+            <!-- Client automatique -->
+            <div class="min-w-0 flex-1">
+
+              <div class="flex items-start justify-between gap-2">
+
+                <div>
+
+                  <p class="text-base font-bold text-gray-900">
+                    {{ nomComplet(carte.clientId) }}
+                  </p>
+
+                  <p class="mt-0.5 text-xs text-gray-500">
+                    {{ getClient(carte.clientId)?.matricule }}
+                  </p>
+
+                </div>
+
+
+                <span
+                  [class]="classeStatut(carte.statut)"
+                  class="shrink-0 rounded-full px-2.5 py-1 text-[11px] font-semibold ring-1"
+                >
+                  {{ carte.statut }}
+                </span>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Informations -->
+          <div class="mt-5 grid grid-cols-2 gap-3">
+
+            <div class="rounded-xl bg-gray-50 p-3">
+
+              <p class="text-[11px] text-gray-400">
+                Type
+              </p>
+
+              <p class="mt-1 text-xs font-bold text-gray-800">
+                {{ carte.typeCarte }}
+              </p>
+
+            </div>
+
+
+            <div class="rounded-xl bg-green-50 p-3">
+
+              <p class="text-[11px] text-gray-500">
+                Cotisation
+              </p>
+
+              <p class="mt-1 text-xs font-bold text-green-700">
+                {{ formatMontant(carte.montantCotisation) }} FCFA
+              </p>
+
+            </div>
+
+
+            <div class="rounded-xl bg-gray-50 p-3">
+
+              <p class="text-[11px] text-gray-400">
+                Fréquence
+              </p>
+
+              <p class="mt-1 text-xs font-bold text-gray-800">
+                {{ carte.frequence }}
+              </p>
+
+            </div>
+
+
+            <div class="rounded-xl bg-gray-50 p-3">
+
+              <p class="text-[11px] text-gray-400">
+                Pointage
+              </p>
+
+              <p class="mt-1 text-xs font-bold text-gray-800">
+                {{ nombreCotisationsEffectuees(carte) }}/{{ carte.pointage.length }}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <!-- Cycle -->
+          <div class="mt-4 rounded-xl border border-green-100 bg-green-50 p-4">
+
+            <div class="mb-3 flex items-center gap-2">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                />
+
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M12 7v5l3 2"
+                />
+              </svg>
+
+              <span class="text-xs font-bold text-green-800">
+                Cycle de la carte
+              </span>
+
+            </div>
+
+
+            <div class="grid grid-cols-3 gap-2">
+
+              <div>
+
+                <p class="text-[10px] text-gray-500">
+                  Début
+                </p>
+
+                <p class="mt-1 text-[11px] font-semibold text-gray-800">
+                  {{ formatDate(carte.debutCycle) }}
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-[10px] text-gray-500">
+                  Fin
+                </p>
+
+                <p class="mt-1 text-[11px] font-semibold text-gray-800">
+                  {{ formatDate(carte.finCycle) }}
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-[10px] text-gray-500">
+                  Retrait
+                </p>
+
+                <p class="mt-1 text-[11px] font-semibold text-green-700">
+                  {{ formatDate(carte.dateRetrait) }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- Actions -->
+          <div class="mt-5 flex flex-wrap gap-2">
+
+            <button
+              type="button"
+              (click)="voirPointage(carte)"
+              class="inline-flex flex-1 items-center justify-center gap-2 rounded-xl border border-green-200 bg-green-50 px-3 py-2.5 text-xs font-semibold text-green-700 transition hover:bg-green-100"
+            >
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+
+              Voir le pointage
+
+            </button>
+
+
+            <!-- Modifier -->
+            <button
+              type="button"
+              (click)="modifierCarte(carte)"
+              class="inline-flex items-center justify-center gap-2 rounded-xl border border-green-200 bg-white px-3 py-2.5 text-xs font-semibold text-green-700 transition hover:bg-green-50"
+            >
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M16.862 3.487a2.25 2.25 0 013.182 3.182L8.25 18.463l-4.5 1.125 1.125-4.5L16.862 3.487z"
+                />
+              </svg>
+
+              Modifier
+
+            </button>
+
+
+            <!-- Voir -->
+            <button
+              type="button"
+              (click)="voirDetails(carte)"
+              class="inline-flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-xs font-semibold text-gray-700 transition hover:bg-gray-50"
+            >
+
+              Voir
+
+            </button>
+
+
+            <!-- Statut -->
+            <button
+              type="button"
+              (click)="changerStatut(carte)"
+              class="inline-flex items-center justify-center rounded-xl border border-gray-200 bg-white px-3 py-2.5 text-xs font-semibold text-gray-600 transition hover:bg-gray-50"
+            >
+
+              {{ carte.statut === 'Active' ? 'Désactiver' : 'Activer' }}
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL NOUVELLE CARTE / MODIFICATION -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalNouvelleCarte"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm"
+  >
+
+    <div
+      class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+    >
+
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+        <div>
+
+          <h2 class="text-lg font-bold text-gray-900">
+
+            {{
+              modeModification
+                ? 'Modifier la carte de tontine'
+                : 'Nouvelle carte de tontine'
+            }}
+
+          </h2>
+
+          <p class="mt-1 text-sm text-gray-500">
+
+            {{
+              modeModification
+                ? 'Modifier les informations de la carte'
+                : 'Créer une nouvelle carte pour votre compte'
+            }}
+
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerNouvelleCarte()"
+          class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 6l12 12M6 18L18 6"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- Formulaire -->
+      <div class="space-y-6 p-6">
+
+        <!-- ================================================= -->
+        <!-- CLIENT AUTOMATIQUE -->
+        <!-- ================================================= -->
+
+        <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+
+          <div class="mb-4 flex items-center gap-2">
+
+            <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-green-100">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5 text-green-600"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                />
+
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M4.5 20.25a7.5 7.5 0 0115 0"
+                />
+              </svg>
+
+            </div>
+
+            <div>
+
+              <p class="text-sm font-bold text-green-900">
+                Client connecté
+              </p>
+
+              <p class="text-xs text-green-700">
+                Le client est automatiquement rattaché à cette carte.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="flex items-center gap-4">
+
+            <div class="flex h-16 w-14 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-green-200 bg-white">
+
+              <ng-container
+                *ngIf="clientConnecte?.photo; else formPhotoPlaceholder"
+              >
+
+                <img
+                  [src]="clientConnecte?.photo"
+                  alt="Photo du client"
+                  class="h-full w-full object-cover"
+                />
+
+              </ng-container>
+
+              <ng-template #formPhotoPlaceholder>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-gray-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                  />
+
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 20.25a7.5 7.5 0 0115 0"
+                  />
+                </svg>
+
+              </ng-template>
+
+            </div>
+
+
+            <div class="min-w-0 flex-1">
+
+              <p class="text-base font-bold text-gray-900">
+                {{ clientConnecte?.nom }} {{ clientConnecte?.prenoms }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                Matricule :
+                {{ clientConnecte?.matricule }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                NPI :
+                {{ clientConnecte?.npi }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ clientConnecte?.localite }}
+                —
+                {{ clientConnecte?.agence }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- NUMÉRO DE CARTE -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="modeModification && carteEnModification"
+          class="rounded-xl border border-gray-100 bg-gray-50 p-4"
+        >
+
+          <p class="text-xs text-gray-400">
+            Numéro de carte
+          </p>
+
+          <p class="mt-1 text-sm font-bold text-gray-900">
+            {{ carteEnModification.numeroCarte }}
+          </p>
+
+          <p class="mt-1 text-xs text-gray-400">
+            Ce numéro est généré automatiquement par le système et ne peut pas être modifié.
+          </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- PHOTO -->
+        <!-- ================================================= -->
+
+        <div>
+
+          <label class="mb-2 block text-sm font-semibold text-gray-700">
+            Photo du client
+          </label>
+
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center">
+
+            <div class="flex h-24 w-20 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-green-100 bg-gray-50">
+
+              <ng-container
+                *ngIf="nouvelleCarte.photo; else uploadPhotoPlaceholder"
+              >
+
+                <img
+                  [src]="nouvelleCarte.photo"
+                  alt="Aperçu photo"
+                  class="h-full w-full object-cover"
+                />
+
+              </ng-container>
+
+              <ng-template #uploadPhotoPlaceholder>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-9 w-9 text-gray-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                  />
+
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 20.25a7.5 7.5 0 0115 0"
+                  />
+                </svg>
+
+              </ng-template>
+
+            </div>
+
+
+            <div class="flex-1">
+
+              <input
+                type="file"
+                accept="image/*"
+                (change)="onPhotoSelectionnee($event)"
+                class="block w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-green-50 file:px-4 file:py-2 file:text-sm file:font-semibold file:text-green-700 hover:file:bg-green-100"
+              />
+
+              <p class="mt-2 text-xs text-gray-400">
+                Sélectionnez une photo du client. Elle sera automatiquement associée à son profil et affichée sur ses cartes.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- TYPE -->
+        <!-- ================================================= -->
+
+        <div>
+
+          <label class="mb-2 block text-sm font-semibold text-gray-700">
+            Type de carte / offre <span class="text-red-500">*</span>
+          </label>
+
+          <select
+            [(ngModel)]="nouvelleCarte.typeCarte"
+            class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          >
+
+            <option value="">
+              Sélectionner une offre
+            </option>
+
+            <option value="Tontine Standard">
+              Tontine Standard
+            </option>
+
+            <option value="Tontine Épargne">
+              Tontine Épargne
+            </option>
+
+            <option value="Tontine Premium">
+              Tontine Premium
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- MONTANT + FRÉQUENCE -->
+        <!-- ================================================= -->
+
+        <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+          <div>
+
+            <label class="mb-2 block text-sm font-semibold text-gray-700">
+              Montant de cotisation <span class="text-red-500">*</span>
+            </label>
+
+            <div class="relative">
+
+              <input
+                type="number"
+                min="1"
+                [(ngModel)]="nouvelleCarte.montantCotisation"
+                placeholder="Ex : 500"
+                class="w-full rounded-xl border border-gray-200 px-4 py-3 pr-20 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+              />
+
+              <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs font-semibold text-gray-400">
+                FCFA
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div>
+
+            <label class="mb-2 block text-sm font-semibold text-gray-700">
+              Fréquence <span class="text-red-500">*</span>
+            </label>
+
+            <select
+              [(ngModel)]="nouvelleCarte.frequence"
+              class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+            >
+
+              <option value="Journalière">
+                Journalière
+              </option>
+
+              <option value="Hebdomadaire">
+                Hebdomadaire
+              </option>
+
+              <option value="Mensuelle">
+                Mensuelle
+              </option>
+
+            </select>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- DATE ACTIVATION -->
+        <!-- ================================================= -->
+
+        <div>
+
+          <label class="mb-2 block text-sm font-semibold text-gray-700">
+            Date d'activation <span class="text-red-500">*</span>
+          </label>
+
+          <input
+            type="date"
+            [(ngModel)]="nouvelleCarte.dateActivation"
+            class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+          <p class="mt-2 text-xs text-gray-400">
+            Le système calculera automatiquement le début, la fin du cycle et la date d'ouverture du retrait.
+          </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- RÉSUMÉ CYCLE -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="nouvelleCarte.dateActivation"
+          class="rounded-xl border border-green-100 bg-green-50 p-4"
+        >
+
+          <div class="mb-3 flex items-center gap-2">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <circle
+                cx="12"
+                cy="12"
+                r="9"
+              />
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 7v5l3 2"
+              />
+            </svg>
+
+            <span class="text-sm font-bold text-green-800">
+              Cycle automatique
+            </span>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Début
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-gray-800">
+                {{ formatDate(nouvelleCarte.dateActivation) }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Fin
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-gray-800">
+                {{ formatDate(calculerFinCycle(nouvelleCarte.dateActivation)) }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Retrait
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-green-700">
+                {{ formatDate(ajouterUnJour(calculerFinCycle(nouvelleCarte.dateActivation))) }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- FOOTER -->
+      <!-- ================================================= -->
+
+      <div class="flex flex-col-reverse gap-3 border-t border-gray-100 bg-gray-50 px-6 py-4 sm:flex-row sm:justify-end">
+
+        <button
+          type="button"
+          (click)="fermerNouvelleCarte()"
+          class="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-600 transition hover:bg-gray-50"
+        >
+          Annuler
+        </button>
+
+
+        <button
+          type="button"
+          (click)="enregistrerCarte()"
+          class="rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-green-700"
+        >
+
+          {{
+            modeModification
+              ? 'Enregistrer les modifications'
+              : 'Créer la carte'
+          }}
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL POINTAGE -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalPointage && carteSelectionnee"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm"
+  >
+
+    <div
+      class="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+    >
+
+      <!-- Header -->
+      <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+        <div>
+
+          <p class="text-xs font-semibold uppercase tracking-wider text-green-600">
+            Pointage de la carte
+          </p>
+
+          <h2 class="mt-1 text-lg font-bold text-gray-900">
+            {{ carteSelectionnee.numeroCarte }}
+          </h2>
+
+          <p class="mt-1 text-sm text-gray-500">
+            {{ nomComplet(carteSelectionnee.clientId) }}
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerPointage()"
+          class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 6l12 12M6 18L18 6"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <!-- Résumé -->
+      <div class="grid grid-cols-1 gap-4 p-6 sm:grid-cols-3">
+
+        <div class="rounded-xl bg-green-50 p-4">
+
+          <p class="text-xs text-gray-500">
+            Cotisations effectuées
+          </p>
+
+          <p class="mt-1 text-2xl font-bold text-green-700">
+            {{ nombreCotisationsEffectuees(carteSelectionnee) }}
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl bg-gray-50 p-4">
+
+          <p class="text-xs text-gray-500">
+            Cotisations restantes
+          </p>
+
+          <p class="mt-1 text-2xl font-bold text-gray-800">
+            {{ nombreCotisationsRestantes(carteSelectionnee) }}
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl bg-gray-50 p-4">
+
+          <p class="text-xs text-gray-500">
+            Montant par cotisation
+          </p>
+
+          <p class="mt-1 text-2xl font-bold text-gray-800">
+            {{ formatMontant(carteSelectionnee.montantCotisation) }}
+            <span class="text-sm">
+              FCFA
+            </span>
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- Calendrier -->
+      <div class="px-6 pb-6">
+
+        <div class="mb-4 flex items-center justify-between">
+
+          <div>
+
+            <h3 class="font-bold text-gray-900">
+              Calendrier du cycle
+            </h3>
+
+            <p class="mt-1 text-xs text-gray-500">
+              {{ formatDate(carteSelectionnee.debutCycle) }}
+              →
+              {{ formatDate(carteSelectionnee.finCycle) }}
+            </p>
+
+          </div>
+
+        </div>
+
+
+        <div class="grid grid-cols-4 gap-2 sm:grid-cols-6 md:grid-cols-8 lg:grid-cols-10">
+
+          <button
+            *ngFor="let jour of carteSelectionnee.pointage"
+            type="button"
+            (click)="togglePointage(jour)"
+            [class]="jour.paye
+              ? 'border-green-200 bg-green-50 text-green-700'
+              : 'border-gray-200 bg-gray-50 text-gray-500'"
+            class="flex min-h-[70px] flex-col items-center justify-center rounded-xl border transition hover:border-green-300"
+          >
+
+            <span class="text-xs font-bold">
+              {{ jour.jour }}
+            </span>
+
+            <svg
+              *ngIf="jour.paye"
+              xmlns="http://www.w3.org/2000/svg"
+              class="mt-1 h-5 w-5 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+
+
+            <span
+              *ngIf="!jour.paye"
+              class="mt-2 h-2 w-2 rounded-full bg-gray-300"
+            ></span>
+
+          </button>
+
+        </div>
+
+
+        <!-- Légende -->
+        <div class="mt-6 flex flex-wrap gap-5 border-t border-gray-100 pt-5 text-xs text-gray-500">
+
+          <div class="flex items-center gap-2">
+
+            <span class="h-3 w-3 rounded-full bg-green-500"></span>
+
+            Cotisation effectuée
+
+          </div>
+
+
+          <div class="flex items-center gap-2">
+
+            <span class="h-3 w-3 rounded-full bg-gray-300"></span>
+
+            Cotisation non effectuée
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL DÉTAILS -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalDetails && carteSelectionnee"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4 backdrop-blur-sm"
+  >
+
+    <div
+      class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+    >
+
+      <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+        <div>
+
+          <p class="text-xs font-semibold uppercase tracking-wider text-green-600">
+            Détails de la carte
+          </p>
+
+          <h2 class="mt-1 text-lg font-bold text-gray-900">
+            {{ carteSelectionnee.numeroCarte }}
+          </h2>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerDetails()"
+          class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 6l12 12M6 18L18 6"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+
+      <div class="space-y-6 p-6">
+
+        <!-- Client -->
+        <div class="rounded-xl bg-gray-50 p-5">
+
+          <p class="mb-4 text-sm font-bold text-gray-900">
+            Client
+          </p>
+
+          <div class="flex items-start gap-4">
+
+            <div class="flex h-20 w-16 shrink-0 items-center justify-center overflow-hidden rounded-xl border-2 border-green-100 bg-white">
+
+              <ng-container
+                *ngIf="getClient(carteSelectionnee.clientId)?.photo; else detailsPhotoPlaceholder"
+              >
+
+                <img
+                  [src]="getClient(carteSelectionnee.clientId)?.photo"
+                  alt="Photo client"
+                  class="h-full w-full object-cover"
+                />
+
+              </ng-container>
+
+              <ng-template #detailsPhotoPlaceholder>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-8 w-8 text-gray-300"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="1.5"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M15.75 6.75a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0z"
+                  />
+
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M4.5 20.25a7.5 7.5 0 0115 0"
+                  />
+                </svg>
+
+              </ng-template>
+
+            </div>
+
+
+            <div class="grid flex-1 grid-cols-1 gap-4 sm:grid-cols-2">
+
+              <div>
+
+                <p class="text-xs text-gray-400">
+                  Nom et prénoms
+                </p>
+
+                <p class="mt-1 text-sm font-semibold text-gray-800">
+                  {{ nomComplet(carteSelectionnee.clientId) }}
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs text-gray-400">
+                  Matricule
+                </p>
+
+                <p class="mt-1 text-sm font-semibold text-gray-800">
+                  {{ getClient(carteSelectionnee.clientId)?.matricule }}
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs text-gray-400">
+                  NPI
+                </p>
+
+                <p class="mt-1 text-sm font-semibold text-gray-800">
+                  {{ getClient(carteSelectionnee.clientId)?.npi }}
+                </p>
+
+              </div>
+
+
+              <div>
+
+                <p class="text-xs text-gray-400">
+                  Localité
+                </p>
+
+                <p class="mt-1 text-sm font-semibold text-gray-800">
+                  {{ getClient(carteSelectionnee.clientId)?.localite }}
+                </p>
+
+              </div>
+
+
+              <div class="sm:col-span-2">
+
+                <p class="text-xs text-gray-400">
+                  Agence de rattachement
+                </p>
+
+                <p class="mt-1 text-sm font-semibold text-gray-800">
+                  {{ getClient(carteSelectionnee.clientId)?.agence }}
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Carte -->
+        <div class="rounded-xl border border-green-100 bg-green-50 p-5">
+
+          <p class="mb-4 text-sm font-bold text-green-900">
+            Informations de la carte
+          </p>
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Numéro de carte
+              </p>
+
+              <p class="mt-1 text-sm font-bold text-gray-900">
+                {{ carteSelectionnee.numeroCarte }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Type
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-gray-800">
+                {{ carteSelectionnee.typeCarte }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Cotisation
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-green-700">
+                {{ formatMontant(carteSelectionnee.montantCotisation) }}
+                FCFA
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Fréquence
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-gray-800">
+                {{ carteSelectionnee.frequence }}
+              </p>
+
+            </div>
+
+
+            <div>
+
+              <p class="text-xs text-gray-500">
+                Statut
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-green-700">
+                {{ carteSelectionnee.statut }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Cycle -->
+        <div>
+
+          <p class="mb-4 text-sm font-bold text-gray-900">
+            Cycle
+          </p>
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+
+            <div class="rounded-xl border border-gray-100 p-4">
+
+              <p class="text-xs text-gray-400">
+                Activation
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-gray-800">
+                {{ formatDate(carteSelectionnee.dateActivation) }}
+              </p>
+
+            </div>
+
+
+            <div class="rounded-xl border border-gray-100 p-4">
+
+              <p class="text-xs text-gray-400">
+                Fin du cycle
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-gray-800">
+                {{ formatDate(carteSelectionnee.finCycle) }}
+              </p>
+
+            </div>
+
+
+            <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+
+              <p class="text-xs text-green-600">
+                Retrait ouvert
+              </p>
+
+              <p class="mt-1 text-sm font-semibold text-green-700">
+                {{ formatDate(carteSelectionnee.dateRetrait) }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

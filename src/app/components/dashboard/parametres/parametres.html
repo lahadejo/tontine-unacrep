@@ -1,0 +1,1966 @@
+<div class="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+
+    <div>
+      <div class="flex items-center gap-3">
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 3.75h3l.55 2.2a6.8 6.8 0 0 1 1.54.9l2.15-.7 1.5 2.6-1.6 1.55c.1.4.15.82.15 1.25s-.05.85-.15 1.25l1.6 1.55-1.5 2.6-2.15-.7a6.8 6.8 0 0 1-1.54.9l-.55 2.2h-3l-.55-2.2a6.8 6.8 0 0 1-1.54-.9l-2.15.7-1.5-2.6 1.6-1.55A6.8 6.8 0 0 1 6.2 11.55c0-.43.05-.85.15-1.25L4.75 8.75l1.5-2.6 2.15.7a6.8 6.8 0 0 1 1.54-.9l.55-2.2Z"
+            />
+            <circle
+              cx="12"
+              cy="11.55"
+              r="2.5"
+            />
+          </svg>
+
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold text-slate-800">
+            Paramètres
+          </h1>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Configurez les paramètres généraux du système UNACREP
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTIONS -->
+    <!-- ================================================= -->
+
+    <div class="flex flex-wrap gap-3">
+
+      <button
+        type="button"
+        (click)="reinitialiser()"
+        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12a7.5 7.5 0 0 1 12.9-5.2L20 9.5M20 9.5V5m0 4.5h-4.5M19.5 12a7.5 7.5 0 0 1-12.9 5.2L4 14.5M4 14.5V19m0-4.5h4.5"
+          />
+        </svg>
+
+        Réinitialiser
+
+      </button>
+
+
+      <button
+        type="button"
+        (click)="enregistrer()"
+        class="inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+      >
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M5 4.5h11.5L20 8v11.5H5V4.5Z"
+          />
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M8 4.5v5h8v-5M8.5 19.5v-5h7v5"
+          />
+        </svg>
+
+        Enregistrer les modifications
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MESSAGE SUCCÈS -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="afficherMessageSucces"
+    class="mb-6 flex items-start gap-3 rounded-2xl border border-green-200 bg-green-50 p-4 text-green-800"
+  >
+
+    <div class="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-green-100 text-green-600">
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m5 12 4 4L19 6"
+        />
+      </svg>
+
+    </div>
+
+    <div class="flex-1">
+
+      <p class="text-sm font-semibold">
+        Opération réussie
+      </p>
+
+      <p class="mt-0.5 text-sm text-green-700">
+        {{ messageSucces }}
+      </p>
+
+    </div>
+
+    <button
+      type="button"
+      (click)="fermerMessage()"
+      class="text-green-500 hover:text-green-700"
+    >
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="1.8"
+      >
+        <path
+          stroke-linecap="round"
+          d="m6 6 12 12M18 6 6 18"
+        />
+      </svg>
+
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- CONTENU PRINCIPAL -->
+  <!-- ===================================================== -->
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
+
+
+    <!-- =================================================== -->
+    <!-- MENU PARAMÈTRES -->
+    <!-- =================================================== -->
+
+    <aside class="lg:col-span-3">
+
+      <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+
+        <div class="mb-3 px-3 py-2">
+
+          <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">
+            Configuration
+          </p>
+
+        </div>
+
+
+        <button
+          *ngFor="let onglet of onglets"
+          type="button"
+          (click)="changerOnglet(onglet.id)"
+          class="mb-1 flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition"
+          [ngClass]="
+            ongletActif === onglet.id
+              ? 'bg-green-50 text-green-700'
+              : 'text-slate-600 hover:bg-slate-50 hover:text-slate-800'
+          "
+        >
+
+          <!-- Général -->
+          <svg
+            *ngIf="onglet.id === 'general'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 5.5A1.5 1.5 0 0 1 5.5 4h13A1.5 1.5 0 0 1 20 5.5v13a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 18.5v-13Z"
+            />
+            <path
+              stroke-linecap="round"
+              d="M8 8h8M8 12h5M8 16h7"
+            />
+          </svg>
+
+
+          <!-- Cotisations -->
+          <svg
+            *ngIf="onglet.id === 'cotisations'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <rect
+              x="4"
+              y="5"
+              width="16"
+              height="14"
+              rx="2"
+            />
+            <path
+              stroke-linecap="round"
+              d="M8 9h8M8 13h5M8 16h3"
+            />
+          </svg>
+
+
+          <!-- Commission -->
+          <svg
+            *ngIf="onglet.id === 'commissions'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <circle
+              cx="12"
+              cy="12"
+              r="8.5"
+            />
+            <path
+              stroke-linecap="round"
+              d="M9 15 15 9M9.25 9.25h.01M14.75 14.75h.01"
+            />
+          </svg>
+
+
+          <!-- Retraits -->
+          <svg
+            *ngIf="onglet.id === 'retraits'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 4v12m0 0 4-4m-4 4-4-4"
+            />
+            <path
+              stroke-linecap="round"
+              d="M5 20h14"
+            />
+          </svg>
+
+
+          <!-- Notifications -->
+          <svg
+            *ngIf="onglet.id === 'notifications'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9a6 6 0 1 0-12 0v.75a8.967 8.967 0 0 1-2.31 6.022c1.733.64 3.547 1.088 5.454 1.31m5.713 0a24.255 24.255 0 0 1-5.713 0"
+            />
+          </svg>
+
+
+          <!-- Sécurité -->
+          <svg
+            *ngIf="onglet.id === 'securite'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <rect
+              x="5"
+              y="10"
+              width="14"
+              height="10"
+              rx="2"
+            />
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M8 10V7a4 4 0 0 1 8 0v3"
+            />
+            <circle
+              cx="12"
+              cy="15"
+              r="1"
+            />
+          </svg>
+
+
+          <!-- Système -->
+          <svg
+            *ngIf="onglet.id === 'systeme'"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M10.5 3.75h3l.55 2.2a6.8 6.8 0 0 1 1.54.9l2.15-.7 1.5 2.6-1.6 1.55c.1.4.15.82.15 1.25s-.05.85-.15 1.25l1.6 1.55-1.5 2.6-2.15-.7a6.8 6.8 0 0 1-1.54.9l-.55 2.2h-3l-.55-2.2a6.8 6.8 0 0 1-1.54-.9l-2.15.7-1.5-2.6 1.6-1.55A6.8 6.8 0 0 1 6.2 11.55c0-.43.05-.85.15-1.25L4.75 8.75l1.5-2.6 2.15.7a6.8 6.8 0 0 1 1.54-.9l.55-2.2Z"
+            />
+            <circle
+              cx="12"
+              cy="11.55"
+              r="2.5"
+            />
+          </svg>
+
+
+          <span class="flex-1">
+            {{ onglet.label }}
+          </span>
+
+
+          <svg
+            *ngIf="ongletActif === onglet.id"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m9 18 6-6-6-6"
+            />
+          </svg>
+
+        </button>
+
+      </div>
+
+    </aside>
+
+
+    <!-- =================================================== -->
+    <!-- ZONE DE CONFIGURATION -->
+    <!-- =================================================== -->
+
+    <main class="lg:col-span-9">
+
+
+      <!-- ================================================= -->
+      <!-- GÉNÉRAL -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'general'"
+        class="space-y-6"
+      >
+
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+          <div class="border-b border-slate-100 px-6 py-5">
+
+            <h2 class="text-lg font-semibold text-slate-800">
+              Informations générales
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Informations principales de l’organisation
+            </p>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 gap-5 p-6 md:grid-cols-2">
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Nom de l’organisation
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="organisation.nom"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Sigle
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="organisation.sigle"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Téléphone
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="organisation.telephone"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Adresse e-mail
+              </label>
+
+              <input
+                type="email"
+                [(ngModel)]="organisation.email"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+
+            <div class="md:col-span-2">
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Adresse
+              </label>
+
+              <input
+                type="text"
+                [(ngModel)]="organisation.adresse"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              />
+
+            </div>
+
+
+            <div class="md:col-span-2">
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Description
+              </label>
+
+              <textarea
+                rows="4"
+                [(ngModel)]="organisation.description"
+                class="w-full resize-none rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              ></textarea>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Informations système -->
+
+        <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+
+          <div class="flex items-start gap-4">
+
+            <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-green-100 text-green-600">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="1.8"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="8.5"
+                />
+                <path
+                  stroke-linecap="round"
+                  d="M12 10.5v5M12 7.5h.01"
+                />
+              </svg>
+
+            </div>
+
+            <div>
+
+              <h3 class="font-semibold text-slate-800">
+                Configuration UNACREP
+              </h3>
+
+              <p class="mt-1 text-sm leading-6 text-slate-500">
+                Les informations générales seront utilisées dans les factures,
+                rapports, notifications et documents générés par la plateforme.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- COTISATIONS -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'cotisations'"
+        class="rounded-2xl border border-slate-200 bg-white shadow-sm"
+      >
+
+        <div class="border-b border-slate-100 px-6 py-5">
+
+          <h2 class="text-lg font-semibold text-slate-800">
+            Paramètres des cotisations
+          </h2>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Configurez les règles applicables aux cotisations des clients
+          </p>
+
+        </div>
+
+
+        <div class="divide-y divide-slate-100">
+
+          <!-- Mobile Money -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Paiement Mobile Money
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Autoriser les clients à payer leurs cotisations via Mobile Money.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.paiementMobileMoney = !cotisations.paiementMobileMoney"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.paiementMobileMoney ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.paiementMobileMoney ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Paiement direct -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Paiement direct par le client
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Le client effectue lui-même sa cotisation depuis son compte.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.paiementDirectClient = !cotisations.paiementDirectClient"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.paiementDirectClient ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.paiementDirectClient ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Agent -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Encaissement par agent
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Autoriser les agents à enregistrer directement les cotisations.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.paiementParAgent = !cotisations.paiementParAgent"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.paiementParAgent ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.paiementParAgent ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Retard -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Autoriser les retards
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Permettre le rattrapage des cotisations en retard.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.autoriserRetard = !cotisations.autoriserRetard"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.autoriserRetard ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.autoriserRetard ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Cycle actuel -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Rattrapage limité au cycle actuel
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Une cotisation en retard ne peut pas dépasser le cycle en cours.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.rattrapageCycleActuel = !cotisations.rattrapageCycleActuel"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.rattrapageCycleActuel ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.rattrapageCycleActuel ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Hors cycle -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Bloquer les paiements hors cycle
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Empêcher l’enregistrement d’une cotisation en dehors du cycle actif.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.bloquerHorsCycle = !cotisations.bloquerHorsCycle"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.bloquerHorsCycle ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.bloquerHorsCycle ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Confirmation -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Confirmation automatique
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Confirmer automatiquement les paiements Mobile Money validés.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="cotisations.confirmationAutomatique = !cotisations.confirmationAutomatique"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="cotisations.confirmationAutomatique ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="cotisations.confirmationAutomatique ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- COMMISSIONS -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'commissions'"
+        class="space-y-6"
+      >
+
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+          <div class="border-b border-slate-100 px-6 py-5">
+
+            <h2 class="text-lg font-semibold text-slate-800">
+              Commission UNACREP
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Configurez le taux appliqué lors du retrait en fin de cycle
+            </p>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Taux de commission
+              </label>
+
+              <div class="relative">
+
+                <input
+                  type="number"
+                  min="0"
+                  max="100"
+                  step="0.01"
+                  [(ngModel)]="commission.taux"
+                  class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 pr-12 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+                />
+
+                <span class="absolute right-4 top-1/2 -translate-y-1/2 font-semibold text-slate-400">
+                  %
+                </span>
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <label class="mb-2 block text-sm font-medium text-slate-700">
+                Mode d’application
+              </label>
+
+              <select
+                [(ngModel)]="commission.mode"
+                class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+              >
+
+                <option value="pourcentage">
+                  Pourcentage
+                </option>
+
+              </select>
+
+            </div>
+
+
+            <div class="md:col-span-2">
+
+              <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+
+                <div class="flex items-start gap-3">
+
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="mt-0.5 h-5 w-5 shrink-0 text-green-600"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  >
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="8.5"
+                    />
+
+                    <path
+                      stroke-linecap="round"
+                      d="M12 10.5v5M12 7.5h.01"
+                    />
+                  </svg>
+
+
+                  <div>
+
+                    <p class="text-sm font-semibold text-green-800">
+                      Règle métier UNACREP
+                    </p>
+
+                    <p class="mt-1 text-sm leading-6 text-green-700">
+                      La commission est appliquée une seule fois lors du retrait,
+                      à la fin du cycle de la carte. Elle n’est pas prélevée sur
+                      chaque cotisation.
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <div class="md:col-span-2">
+
+              <div class="flex items-center justify-between gap-4 rounded-xl border border-slate-200 p-4">
+
+                <div>
+
+                  <h3 class="text-sm font-semibold text-slate-800">
+                    Activer la commission
+                  </h3>
+
+                  <p class="mt-1 text-sm text-slate-500">
+                    Le système appliquera automatiquement le taux configuré.
+                  </p>
+
+                </div>
+
+
+                <button
+                  type="button"
+                  (click)="commission.active = !commission.active"
+                  class="relative h-6 w-11 shrink-0 rounded-full transition"
+                  [ngClass]="commission.active ? 'bg-green-600' : 'bg-slate-300'"
+                >
+
+                  <span
+                    class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                    [ngClass]="commission.active ? 'left-6' : 'left-1'"
+                  ></span>
+
+                </button>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- RETRAITS -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'retraits'"
+        class="rounded-2xl border border-slate-200 bg-white shadow-sm"
+      >
+
+        <div class="border-b border-slate-100 px-6 py-5">
+
+          <h2 class="text-lg font-semibold text-slate-800">
+            Paramètres des retraits
+          </h2>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Configurez les conditions de retrait des fonds
+          </p>
+
+        </div>
+
+
+        <div class="divide-y divide-slate-100">
+
+          <!-- Mobile Money -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Retrait par Mobile Money
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Autoriser les retraits via Mobile Money.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.mobileMoney = !retraits.mobileMoney"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.mobileMoney ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.mobileMoney ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Agence -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Retrait en agence
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Autoriser les retraits physiques au niveau des agences.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.retraitAgence = !retraits.retraitAgence"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.retraitAgence ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.retraitAgence ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Retrait anticipé -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Retrait anticipé
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Permettre un retrait avant la fin du cycle.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.retraitAnticipe = !retraits.retraitAnticipe"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.retraitAnticipe ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.retraitAnticipe ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Un retrait -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Un seul retrait par cycle
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Empêcher plusieurs retraits sur le même cycle.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.unRetraitParCycle = !retraits.unRetraitParCycle"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.unRetraitParCycle ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.unRetraitParCycle ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Fin cycle -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Retrait uniquement en fin de cycle
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Le retrait devient disponible lorsque le cycle de la carte arrive à échéance.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.autoriserRetraitFinCycle = !retraits.autoriserRetraitFinCycle"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.autoriserRetraitFinCycle ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.autoriserRetraitFinCycle ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Facture -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Génération automatique de facture
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Générer automatiquement la facture lors d’un retrait validé.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.factureAutomatique = !retraits.factureAutomatique"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.factureAutomatique ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.factureAutomatique ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Caissier -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Validation par le caissier
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Le caissier peut approuver et signer la facture de retrait.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.validationCaissier = !retraits.validationCaissier"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.validationCaissier ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.validationCaissier ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- Comptable -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Validation par le comptable
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Le comptable peut approuver et signer la facture de retrait.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="retraits.validationComptable = !retraits.validationComptable"
+              class="relative h-6 w-11 shrink-0 rounded-full transition"
+              [ngClass]="retraits.validationComptable ? 'bg-green-600' : 'bg-slate-300'"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                [ngClass]="retraits.validationComptable ? 'left-6' : 'left-1'"
+              ></span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- NOTIFICATIONS -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'notifications'"
+        class="rounded-2xl border border-slate-200 bg-white shadow-sm"
+      >
+
+        <div class="border-b border-slate-100 px-6 py-5">
+
+          <h2 class="text-lg font-semibold text-slate-800">
+            Préférences de notifications
+          </h2>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Choisissez les événements pour lesquels les utilisateurs doivent être avertis
+          </p>
+
+        </div>
+
+
+        <div class="divide-y divide-slate-100">
+
+
+          <!-- ================================================= -->
+          <!-- NOTIFICATIONS MÉTIER -->
+          <!-- ================================================= -->
+
+          <div
+            *ngFor="let notification of notificationsOptions"
+            class="flex items-center justify-between gap-4 px-6 py-5"
+          >
+
+            <div class="min-w-0">
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                {{ notification.titre }}
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                {{ notification.description }}
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="toggleNotification(notification.cle)"
+              class="relative h-6 w-11 shrink-0 rounded-full transition-colors duration-200"
+              [ngClass]="
+                getNotificationValue(notification.cle)
+                  ? 'bg-green-600'
+                  : 'bg-slate-300'
+              "
+              [attr.aria-pressed]="getNotificationValue(notification.cle)"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-200"
+                [ngClass]="
+                  getNotificationValue(notification.cle)
+                    ? 'left-6'
+                    : 'left-1'
+                "
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- NOTIFICATIONS NAVIGATEUR -->
+          <!-- ================================================= -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div class="min-w-0">
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Notifications navigateur
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Afficher les notifications directement dans le navigateur.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="notifications.notificationsNavigateur = !notifications.notificationsNavigateur"
+              class="relative h-6 w-11 shrink-0 rounded-full transition-colors duration-200"
+              [ngClass]="
+                notifications.notificationsNavigateur
+                  ? 'bg-green-600'
+                  : 'bg-slate-300'
+              "
+              [attr.aria-pressed]="notifications.notificationsNavigateur"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-200"
+                [ngClass]="
+                  notifications.notificationsNavigateur
+                    ? 'left-6'
+                    : 'left-1'
+                "
+              ></span>
+
+            </button>
+
+          </div>
+
+
+          <!-- ================================================= -->
+          <!-- NOTIFICATIONS EMAIL -->
+          <!-- ================================================= -->
+
+          <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+            <div class="min-w-0">
+
+              <h3 class="text-sm font-semibold text-slate-800">
+                Notifications par e-mail
+              </h3>
+
+              <p class="mt-1 text-sm text-slate-500">
+                Envoyer certaines notifications par courrier électronique.
+              </p>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="notifications.notificationsEmail = !notifications.notificationsEmail"
+              class="relative h-6 w-11 shrink-0 rounded-full transition-colors duration-200"
+              [ngClass]="
+                notifications.notificationsEmail
+                  ? 'bg-green-600'
+                  : 'bg-slate-300'
+              "
+              [attr.aria-pressed]="notifications.notificationsEmail"
+            >
+
+              <span
+                class="absolute top-1 h-4 w-4 rounded-full bg-white shadow-sm transition-all duration-200"
+                [ngClass]="
+                  notifications.notificationsEmail
+                    ? 'left-6'
+                    : 'left-1'
+                "
+              ></span>
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- SÉCURITÉ -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'securite'"
+        class="space-y-6"
+      >
+
+        <div class="rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+          <div class="border-b border-slate-100 px-6 py-5">
+
+            <h2 class="text-lg font-semibold text-slate-800">
+              Sécurité du système
+            </h2>
+
+            <p class="mt-1 text-sm text-slate-500">
+              Configurez les règles de sécurité des comptes utilisateurs
+            </p>
+
+          </div>
+
+
+          <div class="divide-y divide-slate-100">
+
+
+            <!-- 2FA -->
+
+            <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+              <div>
+
+                <h3 class="text-sm font-semibold text-slate-800">
+                  Double authentification
+                </h3>
+
+                <p class="mt-1 text-sm text-slate-500">
+                  Ajouter une seconde étape d’authentification aux comptes.
+                </p>
+
+              </div>
+
+
+              <button
+                type="button"
+                (click)="securite.doubleAuthentification = !securite.doubleAuthentification"
+                class="relative h-6 w-11 shrink-0 rounded-full transition"
+                [ngClass]="securite.doubleAuthentification ? 'bg-green-600' : 'bg-slate-300'"
+              >
+
+                <span
+                  class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                  [ngClass]="securite.doubleAuthentification ? 'left-6' : 'left-1'"
+                ></span>
+
+              </button>
+
+            </div>
+
+
+            <!-- Verrouillage -->
+
+            <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+              <div>
+
+                <h3 class="text-sm font-semibold text-slate-800">
+                  Verrouillage après plusieurs échecs
+                </h3>
+
+                <p class="mt-1 text-sm text-slate-500">
+                  Bloquer temporairement un compte après plusieurs tentatives incorrectes.
+                </p>
+
+              </div>
+
+
+              <button
+                type="button"
+                (click)="securite.verrouillageApresEchecs = !securite.verrouillageApresEchecs"
+                class="relative h-6 w-11 shrink-0 rounded-full transition"
+                [ngClass]="securite.verrouillageApresEchecs ? 'bg-green-600' : 'bg-slate-300'"
+              >
+
+                <span
+                  class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                  [ngClass]="securite.verrouillageApresEchecs ? 'left-6' : 'left-1'"
+                ></span>
+
+              </button>
+
+            </div>
+
+
+            <!-- Tentatives -->
+
+            <div class="grid grid-cols-1 gap-5 px-6 py-5 md:grid-cols-2">
+
+              <div>
+
+                <label class="mb-2 block text-sm font-medium text-slate-700">
+                  Nombre maximal de tentatives
+                </label>
+
+                <input
+                  type="number"
+                  min="1"
+                  max="20"
+                  [(ngModel)]="securite.nombreTentatives"
+                  class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+                />
+
+              </div>
+
+
+              <div>
+
+                <label class="mb-2 block text-sm font-medium text-slate-700">
+                  Expiration de session
+                </label>
+
+                <div class="relative">
+
+                  <input
+                    type="number"
+                    min="5"
+                    max="240"
+                    [(ngModel)]="securite.expirationSession"
+                    class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-2.5 pr-20 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+                  />
+
+                  <span class="absolute right-4 top-1/2 -translate-y-1/2 text-xs text-slate-400">
+                    minutes
+                  </span>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+            <!-- Journal -->
+
+            <div class="flex items-center justify-between gap-4 px-6 py-5">
+
+              <div>
+
+                <h3 class="text-sm font-semibold text-slate-800">
+                  Journalisation des activités
+                </h3>
+
+                <p class="mt-1 text-sm text-slate-500">
+                  Conserver les actions importantes réalisées par les utilisateurs.
+                </p>
+
+              </div>
+
+
+              <button
+                type="button"
+                (click)="securite.journalisation = !securite.journalisation"
+                class="relative h-6 w-11 shrink-0 rounded-full transition"
+                [ngClass]="securite.journalisation ? 'bg-green-600' : 'bg-slate-300'"
+              >
+
+                <span
+                  class="absolute top-1 h-4 w-4 rounded-full bg-white shadow transition"
+                  [ngClass]="securite.journalisation ? 'left-6' : 'left-1'"
+                ></span>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- Avertissement sécurité -->
+
+        <div class="rounded-2xl border border-orange-200 bg-orange-50 p-5">
+
+          <div class="flex items-start gap-3">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mt-0.5 h-5 w-5 shrink-0 text-orange-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M12 9v3.75m0 3h.007v.008H12V15.75ZM10.34 3.94 2.69 17.19a1.5 1.5 0 0 0 1.3 2.25h16.02a1.5 1.5 0 0 0 1.3-2.25L13.66 3.94a1.91 1.91 0 0 0-3.32 0Z"
+              />
+            </svg>
+
+
+            <div>
+
+              <h3 class="text-sm font-semibold text-orange-800">
+                Important
+              </h3>
+
+              <p class="mt-1 text-sm leading-6 text-orange-700">
+                Les paramètres de sécurité doivent être configurés avec prudence
+                afin d’éviter de bloquer les utilisateurs autorisés.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- SYSTÈME -->
+      <!-- ================================================= -->
+
+      <div
+        *ngIf="ongletActif === 'systeme'"
+        class="rounded-2xl border border-slate-200 bg-white shadow-sm"
+      >
+
+        <div class="border-b border-slate-100 px-6 py-5">
+
+          <h2 class="text-lg font-semibold text-slate-800">
+            Préférences système
+          </h2>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Configurez les paramètres régionaux et d’affichage
+          </p>
+
+        </div>
+
+
+        <div class="grid grid-cols-1 gap-6 p-6 md:grid-cols-2">
+
+
+          <!-- Langue -->
+
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-slate-700">
+              Langue
+            </label>
+
+            <select
+              [(ngModel)]="systeme.langue"
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+            >
+
+              <option value="fr">
+                Français
+              </option>
+
+              <option value="en">
+                English
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Fuseau -->
+
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-slate-700">
+              Fuseau horaire
+            </label>
+
+            <select
+              [(ngModel)]="systeme.fuseauHoraire"
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+            >
+
+              <option value="Africa/Porto-Novo">
+                Africa/Porto-Novo
+              </option>
+
+              <option value="Africa/Lagos">
+                Africa/Lagos
+              </option>
+
+              <option value="UTC">
+                UTC
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Devise -->
+
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-slate-700">
+              Devise
+            </label>
+
+            <select
+              [(ngModel)]="systeme.devise"
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+            >
+
+              <option value="FCFA">
+                FCFA
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Format date -->
+
+          <div>
+
+            <label class="mb-2 block text-sm font-medium text-slate-700">
+              Format de date
+            </label>
+
+            <select
+              [(ngModel)]="systeme.formatDate"
+              class="w-full rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+            >
+
+              <option value="DD/MM/YYYY">
+                DD/MM/YYYY
+              </option>
+
+              <option value="YYYY-MM-DD">
+                YYYY-MM-DD
+              </option>
+
+              <option value="MM/DD/YYYY">
+                MM/DD/YYYY
+              </option>
+
+            </select>
+
+          </div>
+
+
+          <!-- Thème -->
+
+          <div class="md:col-span-2">
+
+            <label class="mb-2 block text-sm font-medium text-slate-700">
+              Thème
+            </label>
+
+
+            <div class="grid grid-cols-1 gap-3 sm:grid-cols-2">
+
+
+              <!-- Thème clair -->
+
+              <button
+                type="button"
+                (click)="systeme.theme = 'clair'"
+                class="rounded-xl border p-4 text-left transition"
+                [ngClass]="
+                  systeme.theme === 'clair'
+                    ? 'border-green-500 bg-green-50 ring-2 ring-green-100'
+                    : 'border-slate-200 bg-white hover:bg-slate-50'
+                "
+              >
+
+                <div class="flex items-center gap-3">
+
+                  <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    >
+                      <circle
+                        cx="12"
+                        cy="12"
+                        r="4"
+                      />
+
+                      <path
+                        stroke-linecap="round"
+                        d="M12 2v2M12 20v2M4.93 4.93l1.42 1.42M17.65 17.65l1.42 1.42M2 12h2M20 12h2M4.93 19.07l1.42-1.42M17.65 6.35l1.42-1.42"
+                      />
+                    </svg>
+
+                  </div>
+
+
+                  <div>
+
+                    <p class="text-sm font-semibold text-slate-800">
+                      Thème clair
+                    </p>
+
+                    <p class="mt-0.5 text-xs text-slate-500">
+                      Interface claire
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </button>
+
+
+              <!-- Thème sombre -->
+
+              <button
+                type="button"
+                (click)="systeme.theme = 'sombre'"
+                class="rounded-xl border p-4 text-left transition"
+                [ngClass]="
+                  systeme.theme === 'sombre'
+                    ? 'border-green-500 bg-green-50 ring-2 ring-green-100'
+                    : 'border-slate-200 bg-white hover:bg-slate-50'
+                "
+              >
+
+                <div class="flex items-center gap-3">
+
+                  <div class="flex h-10 w-10 items-center justify-center rounded-lg bg-slate-100 text-slate-600">
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-5 w-5"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M20.5 14.5A8.5 8.5 0 0 1 9.5 3.5a8.53 8.53 0 1 0 11 11Z"
+                      />
+                    </svg>
+
+                  </div>
+
+
+                  <div>
+
+                    <p class="text-sm font-semibold text-slate-800">
+                      Thème sombre
+                    </p>
+
+                    <p class="mt-0.5 text-xs text-slate-500">
+                      Interface sombre
+                    </p>
+
+                  </div>
+
+                </div>
+
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+  </div>
+
+</div>

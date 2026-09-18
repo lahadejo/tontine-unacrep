@@ -1,0 +1,1078 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+
+  <!-- EN-TÊTE -->
+
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+<div>
+  <div class="flex items-center gap-3">
+
+    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-700">
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M12 15v2m-6 4h12a2 2 0 002-2v-7a2 2 0 00-2-2H6a2 2 0 00-2 2v7a2 2 0 002 2zm10-11V7a4 4 0 00-8 0v1h8z"
+        />
+      </svg>
+    </div>
+
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">
+        Rôles & Permissions
+      </h1>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Configurez les rôles et les permissions d'accès à la plateforme.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<button
+  type="button"
+  (click)="ouvrirAjout()"
+  class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+>
+  <svg
+    class="h-5 w-5"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M12 4v16m8-8H4"
+    />
+  </svg>
+
+  Nouveau rôle
+</button>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- STATISTIQUES -->
+
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+<!-- Total rôles -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Total des rôles
+      </p>
+
+      <p class="mt-2 text-3xl font-bold text-gray-900">
+        {{ totalRoles }}
+      </p>
+    </div>
+
+    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-green-700">
+
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M17 20h5v-2a4 4 0 00-4-4h-1m-4 6H6a4 4 0 01-4-4v-1a4 4 0 014-4h8a4 4 0 014 4v1a4 4 0 01-4 4zm0-10a4 4 0 100-8 4 4 0 000 8zm6 0a3 3 0 100-6 3 3 0 000 6z"
+        />
+      </svg>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- Rôles utilisés -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Rôles utilisés
+      </p>
+
+      <p class="mt-2 text-3xl font-bold text-gray-900">
+        {{ rolesActifs }}
+      </p>
+    </div>
+
+    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-blue-100 text-blue-700">
+
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M16 21v-2a4 4 0 00-4-4H6a4 4 0 00-4 4v2m8-8a4 4 0 100-8 4 4 0 000 8zm6-3a3 3 0 100-6 3 3 0 000 6zm0 3h2a4 4 0 014 4v2"
+        />
+      </svg>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- Permissions -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Permissions disponibles
+      </p>
+
+      <p class="mt-2 text-3xl font-bold text-gray-900">
+        {{ totalPermissions }}
+      </p>
+    </div>
+
+    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-purple-100 text-purple-700">
+
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 7a2 2 0 012 2v1a2 2 0 002 2h1a2 2 0 012 2v3a2 2 0 01-2 2h-3a2 2 0 01-2-2v-1a2 2 0 00-2-2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3z"
+        />
+      </svg>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- Modules -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Modules sécurisés
+      </p>
+
+      <p class="mt-2 text-3xl font-bold text-gray-900">
+        {{ modulesPermissions.length }}
+      </p>
+    </div>
+
+    <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-emerald-100 text-emerald-700">
+
+      <svg
+        class="h-6 w-6"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-.677-.056-1.34-.164-1.976z"
+        />
+      </svg>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- RECHERCHE -->
+
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+<div class="relative">
+
+  <svg
+    class="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
+      d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z"
+    />
+  </svg>
+
+  <input
+    type="text"
+    [(ngModel)]="recherche"
+    placeholder="Rechercher un rôle..."
+    class="w-full rounded-xl border border-gray-200 bg-gray-50 py-3 pl-12 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+  />
+
+</div>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- TABLEAU DES RÔLES -->
+
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+
+<div class="border-b border-gray-100 px-6 py-5">
+
+  <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+      <h2 class="text-lg font-semibold text-gray-900">
+        Rôles du système
+      </h2>
+
+      <p class="mt-1 text-sm text-gray-500">
+        {{ rolesFiltres.length }} rôle(s) affiché(s)
+      </p>
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="overflow-x-auto">
+
+  <table class="min-w-full divide-y divide-gray-100">
+
+    <thead class="bg-gray-50">
+
+      <tr>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Rôle
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Identifiant Spatie
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Permissions
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Utilisateurs
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Couverture
+        </th>
+
+        <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Actions
+        </th>
+
+      </tr>
+
+    </thead>
+
+
+    <tbody class="divide-y divide-gray-100">
+
+      <tr
+        *ngFor="let role of rolesFiltres"
+        class="transition hover:bg-gray-50"
+      >
+
+        <!-- Rôle -->
+        <td class="whitespace-nowrap px-6 py-5">
+
+          <div class="flex items-center gap-3">
+
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 font-bold text-green-700">
+              {{ role.label.charAt(0) }}
+            </div>
+
+            <div>
+              <p class="font-semibold text-gray-900">
+                {{ role.label }}
+              </p>
+
+              <p class="mt-1 max-w-xs truncate text-xs text-gray-500">
+                {{ role.description }}
+              </p>
+            </div>
+
+          </div>
+
+        </td>
+
+
+        <!-- Nom Spatie -->
+        <td class="whitespace-nowrap px-6 py-5">
+
+          <span class="rounded-lg bg-gray-100 px-3 py-1.5 font-mono text-xs font-medium text-gray-700">
+            {{ role.name }}
+          </span>
+
+        </td>
+
+
+        <!-- Permissions -->
+        <td class="whitespace-nowrap px-6 py-5">
+
+          <div class="flex items-center gap-2">
+
+            <span class="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
+              {{ nombrePermissionsRole(role) }}
+            </span>
+
+            <span class="text-xs text-gray-500">
+              permission(s)
+            </span>
+
+          </div>
+
+        </td>
+
+
+        <!-- Utilisateurs -->
+        <td class="whitespace-nowrap px-6 py-5">
+
+          <div class="flex items-center gap-2">
+
+            <svg
+              class="h-4 w-4 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M17 20h5v-2a4 4 0 00-4-4h-1m-4 6H6a4 4 0 01-4-4v-1a4 4 0 014-4h8a4 4 0 014 4v1a4 4 0 01-4 4zm0-10a4 4 0 100-8 4 4 0 000 8z"
+              />
+            </svg>
+
+            <span class="text-sm font-medium text-gray-700">
+              {{ role.utilisateurs }}
+            </span>
+
+          </div>
+
+        </td>
+
+
+        <!-- Couverture -->
+        <td class="whitespace-nowrap px-6 py-5">
+
+          <div class="w-32">
+
+            <div class="mb-1 flex items-center justify-between">
+
+              <span class="text-xs font-medium text-gray-500">
+                {{ pourcentagePermissions(role) }}%
+              </span>
+
+            </div>
+
+            <div class="h-2 overflow-hidden rounded-full bg-gray-100">
+
+              <div
+                class="h-full rounded-full bg-green-600 transition-all"
+                [style.width.%]="pourcentagePermissions(role)"
+              ></div>
+
+            </div>
+
+          </div>
+
+        </td>
+
+
+        <!-- Actions -->
+        <td class="whitespace-nowrap px-6 py-5">
+
+          <div class="flex items-center justify-end gap-2">
+
+            <!-- Voir -->
+            <button
+              type="button"
+              (click)="voirRole(role)"
+              title="Voir les détails"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
+            >
+
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.477 0 8.268 2.943 9.542 7-1.274 4.057-5.065 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+
+            </button>
+
+
+            <!-- Modifier -->
+            <button
+              type="button"
+              (click)="ouvrirModification(role)"
+              title="Modifier"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-blue-500 transition hover:bg-blue-50 hover:text-blue-700"
+            >
+
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"
+                />
+              </svg>
+
+            </button>
+
+
+            <!-- Supprimer -->
+            <button
+              type="button"
+              (click)="supprimerRole(role)"
+              title="Supprimer"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-red-500 transition hover:bg-red-50 hover:text-red-700"
+            >
+
+              <svg
+                class="h-5 w-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-9 0h12"
+                />
+              </svg>
+
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+
+      <!-- Aucun résultat -->
+      <tr *ngIf="rolesFiltres.length === 0">
+
+        <td
+          colspan="6"
+          class="px-6 py-14 text-center"
+        >
+
+          <div class="flex flex-col items-center">
+
+            <div class="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+
+              <svg
+                class="h-7 w-7"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z"
+                />
+              </svg>
+
+            </div>
+
+            <p class="font-semibold text-gray-700">
+              Aucun rôle trouvé
+            </p>
+
+            <p class="mt-1 text-sm text-gray-500">
+              Essayez une autre recherche.
+            </p>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- MODAL AJOUT / MODIFICATION -->
+
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalRole"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+  >
+
+<div
+  class="max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-2xl bg-white shadow-2xl"
+>
+
+  <!-- Header modal -->
+  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+    <div>
+      <h2 class="text-xl font-bold text-gray-900">
+        {{ modeEdition ? 'Modifier le rôle' : 'Nouveau rôle' }}
+      </h2>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Définissez le rôle et ses permissions d'accès.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      (click)="fermerModalRole()"
+      class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+    >
+
+      <svg
+        class="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+
+    </button>
+
+  </div>
+
+
+  <!-- Contenu -->
+  <div class="max-h-[calc(90vh-145px)] overflow-y-auto p-6">
+
+    <!-- Informations du rôle -->
+    <div class="mb-8">
+
+      <h3 class="mb-4 text-sm font-bold uppercase tracking-wide text-gray-700">
+        Informations du rôle
+      </h3>
+
+      <div class="grid grid-cols-1 gap-5 md:grid-cols-2">
+
+        <!-- Nom technique -->
+        <div>
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Nom technique Spatie
+            <span class="text-red-500">*</span>
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="nouveauRole.name"
+            placeholder="ex: responsable-agence"
+            class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 font-mono text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+          <p class="mt-1.5 text-xs text-gray-400">
+            Nom utilisé par Laravel Spatie.
+          </p>
+
+        </div>
+
+
+        <!-- Libellé -->
+        <div>
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Nom affiché
+            <span class="text-red-500">*</span>
+          </label>
+
+          <input
+            type="text"
+            [(ngModel)]="nouveauRole.label"
+            placeholder="ex: Responsable d’agence"
+            class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+        </div>
+
+
+        <!-- Description -->
+        <div class="md:col-span-2">
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Description
+          </label>
+
+          <textarea
+            [(ngModel)]="nouveauRole.description"
+            rows="3"
+            placeholder="Décrivez les responsabilités associées à ce rôle..."
+            class="w-full resize-none rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          ></textarea>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Permissions -->
+    <div>
+
+      <div class="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+
+        <div>
+          <h3 class="text-sm font-bold uppercase tracking-wide text-gray-700">
+            Permissions
+          </h3>
+
+          <p class="mt-1 text-xs text-gray-500">
+            Sélectionnez les permissions accordées à ce rôle.
+          </p>
+        </div>
+
+
+        <div class="flex items-center gap-2">
+
+          <button
+            type="button"
+            (click)="toutSelectionner()"
+            class="rounded-lg border border-green-200 bg-green-50 px-3 py-2 text-xs font-semibold text-green-700 transition hover:bg-green-100"
+          >
+            Tout sélectionner
+          </button>
+
+          <button
+            type="button"
+            (click)="toutDeselectionner()"
+            class="rounded-lg border border-gray-200 bg-white px-3 py-2 text-xs font-semibold text-gray-600 transition hover:bg-gray-50"
+          >
+            Tout désélectionner
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- Modules -->
+      <div class="space-y-4">
+
+        <div
+          *ngFor="let module of modulesPermissions"
+          class="overflow-hidden rounded-xl border border-gray-200"
+        >
+
+          <!-- Header module -->
+          <div class="flex items-center justify-between border-b border-gray-100 bg-gray-50 px-4 py-3">
+
+            <div class="flex items-center gap-3">
+
+              <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-green-100 text-green-700">
+
+                <svg
+                  class="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622C17.176 19.29 21 14.591 21 9c0-.677-.056-1.34-.164-1.976z"
+                  />
+                </svg>
+
+              </div>
+
+              <div>
+
+                <p class="text-sm font-semibold text-gray-800">
+                  {{ module }}
+                </p>
+
+                <p class="text-xs text-gray-500">
+                  {{ permissionsParModule(module).length }} permission(s)
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <button
+              type="button"
+              (click)="toggleModule(module)"
+              class="text-xs font-semibold text-green-700 hover:text-green-800"
+            >
+              {{
+                toutesPermissionsActives(module)
+                  ? 'Tout retirer'
+                  : 'Tout sélectionner'
+              }}
+            </button>
+
+          </div>
+
+
+          <!-- Permissions du module -->
+          <div class="grid grid-cols-1 gap-3 p-4 sm:grid-cols-2">
+
+            <label
+              *ngFor="let permission of permissionsParModule(module)"
+              class="flex cursor-pointer items-start gap-3 rounded-lg border border-transparent p-3 transition hover:border-green-100 hover:bg-green-50"
+            >
+
+              <input
+                type="checkbox"
+                [checked]="permissionEstActive(permission.name)"
+                (change)="togglePermission(permission.name)"
+                class="mt-0.5 h-4 w-4 rounded border-gray-300 text-green-600 focus:ring-green-500"
+              />
+
+              <div>
+
+                <p class="text-sm font-medium text-gray-700">
+                  {{ permission.label }}
+                </p>
+
+                <p class="mt-0.5 font-mono text-xs text-gray-400">
+                  {{ permission.name }}
+                </p>
+
+              </div>
+
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- Footer modal -->
+  <div class="flex flex-col-reverse gap-3 border-t border-gray-100 bg-gray-50 px-6 py-4 sm:flex-row sm:justify-end">
+
+    <button
+      type="button"
+      (click)="fermerModalRole()"
+      class="rounded-xl border border-gray-200 bg-white px-5 py-2.5 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
+    >
+      Annuler
+    </button>
+
+    <button
+      type="button"
+      (click)="enregistrerRole()"
+      class="rounded-xl bg-green-600 px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+    >
+      {{ modeEdition ? 'Enregistrer les modifications' : 'Créer le rôle' }}
+    </button>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- MODAL DÉTAILS -->
+
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalDetails && roleSelectionne"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+  >
+
+<div class="max-h-[90vh] w-full max-w-3xl overflow-hidden rounded-2xl bg-white shadow-2xl">
+
+  <!-- Header -->
+  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+    <div class="flex items-center gap-4">
+
+      <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-lg font-bold text-green-700">
+        {{ roleSelectionne.label.charAt(0) }}
+      </div>
+
+      <div>
+
+        <h2 class="text-xl font-bold text-gray-900">
+          {{ roleSelectionne.label }}
+        </h2>
+
+        <p class="mt-1 font-mono text-xs text-gray-500">
+          {{ roleSelectionne.name }}
+        </p>
+
+      </div>
+
+    </div>
+
+    <button
+      type="button"
+      (click)="fermerModalDetails()"
+      class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-700"
+    >
+
+      <svg
+        class="h-5 w-5"
+        fill="none"
+        stroke="currentColor"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+
+    </button>
+
+  </div>
+
+
+  <!-- Contenu -->
+  <div class="max-h-[calc(90vh-130px)] overflow-y-auto p-6">
+
+    <!-- Description -->
+    <div class="mb-6 rounded-xl bg-gray-50 p-4">
+
+      <p class="text-sm leading-6 text-gray-600">
+        {{ roleSelectionne.description }}
+      </p>
+
+    </div>
+
+
+    <!-- Résumé -->
+    <div class="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-3">
+
+      <div class="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+
+        <p class="text-xs font-medium text-gray-500">
+          Permissions
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-gray-900">
+          {{ roleSelectionne.permissions.length }}
+        </p>
+
+      </div>
+
+      <div class="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+
+        <p class="text-xs font-medium text-gray-500">
+          Utilisateurs
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-gray-900">
+          {{ roleSelectionne.utilisateurs }}
+        </p>
+
+      </div>
+
+      <div class="rounded-xl border border-gray-100 bg-white p-4 shadow-sm">
+
+        <p class="text-xs font-medium text-gray-500">
+          Couverture
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-green-600">
+          {{ pourcentagePermissions(roleSelectionne) }}%
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- Permissions -->
+    <div>
+
+      <h3 class="mb-4 text-sm font-bold uppercase tracking-wide text-gray-700">
+        Permissions accordées
+      </h3>
+
+      <div class="space-y-4">
+
+        <div
+          *ngFor="let module of modulesPermissions"
+          class="rounded-xl border border-gray-200 p-4"
+        >
+
+          <div class="mb-3 flex items-center justify-between">
+
+            <p class="text-sm font-semibold text-gray-800">
+              {{ module }}
+            </p>
+
+            <span class="text-xs font-medium text-gray-500">
+              {{
+                permissionsParModule(module)
+                  .filter(p => roleSelectionne!.permissions.includes(p.name))
+                  .length
+              }}
+              /
+              {{ permissionsParModule(module).length }}
+            </span>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 gap-2 sm:grid-cols-2">
+
+            <div
+              *ngFor="let permission of permissionsParModule(module)"
+              class="flex items-center gap-2"
+              [class.opacity-40]="!roleSelectionne.permissions.includes(permission.name)"
+            >
+
+              <div
+                class="flex h-5 w-5 items-center justify-center rounded-full"
+                [ngClass]="
+                  roleSelectionne.permissions.includes(permission.name)
+                    ? 'bg-green-100 text-green-600'
+                    : 'bg-gray-100 text-gray-400'
+                "
+              >
+
+                <svg
+                  *ngIf="roleSelectionne.permissions.includes(permission.name)"
+                  class="h-3 w-3"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="3"
+                    d="M5 13l4 4L19 7"
+                  />
+                </svg>
+
+              </div>
+
+              <span class="text-sm text-gray-700">
+                {{ permission.label }}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+  </div>
+
+</div>

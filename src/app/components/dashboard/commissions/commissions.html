@@ -1,0 +1,666 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ========================================================= -->
+  <!-- EN-TÊTE -->
+  <!-- ========================================================= -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+      <div class="flex items-center gap-3">
+
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 10v2m0-12c-1.11 0-2.08.402-2.599 1M12 4C7.582 4 4 5.79 4 8v8c0 2.21 3.582 4 8 4s8-1.79 8-4V8c0-2.21-3.582-4-8-4z"
+            />
+          </svg>
+        </div>
+
+        <div>
+          <h1 class="text-2xl font-bold text-gray-900">
+            Commissions
+          </h1>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Configuration de la commission appliquée lors des retraits
+          </p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- MESSAGE SUCCÈS -->
+  <!-- ========================================================= -->
+
+  <div
+    *ngIf="messageSucces"
+    class="mb-6 flex items-center gap-3 rounded-xl border border-green-200 bg-green-50 px-5 py-4 text-sm text-green-700"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5 shrink-0"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M5 13l4 4L19 7"
+      />
+    </svg>
+
+    {{ messageSucces }}
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- MESSAGE ERREUR -->
+  <!-- ========================================================= -->
+
+  <div
+    *ngIf="messageErreur"
+    class="mb-6 flex items-center gap-3 rounded-xl border border-red-200 bg-red-50 px-5 py-4 text-sm text-red-700"
+  >
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="h-5 w-5 shrink-0"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      stroke-width="2"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        d="M12 9v3m0 4h.01M5.07 19h13.86c1.54 0 2.5-1.67 1.73-3L13.73 4c-.77-1.33-2.69-1.33-3.46 0L3.34 16c-.77 1.33.19 3 1.73 3z"
+      />
+    </svg>
+
+    {{ messageErreur }}
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- STATUT ACTUEL -->
+  <!-- ========================================================= -->
+
+  <div class="mb-6 grid grid-cols-1 gap-5 md:grid-cols-3">
+
+    <!-- Type -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Type de commission
+          </p>
+
+          <p class="mt-2 text-xl font-bold text-gray-900">
+            {{ libelleTypeCommission }}
+          </p>
+        </div>
+
+        <div class="rounded-xl bg-blue-50 p-3 text-blue-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 14l6-6m-5-.5h.01M14.5 14.5h.01M19 21H5a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v14a2 2 0 01-2 2z"
+            />
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Taux -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Taux configuré
+          </p>
+
+          <p class="mt-2 text-xl font-bold text-gray-900">
+
+            <ng-container *ngIf="commission.type === 'pourcentage'">
+              {{ commission.taux }} %
+            </ng-container>
+
+            <ng-container *ngIf="commission.type === 'fixe'">
+              {{ formaterMontant(commission.taux) }} FCFA
+            </ng-container>
+
+          </p>
+        </div>
+
+        <div class="rounded-xl bg-green-50 p-3 text-green-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V6m0 10v2"
+            />
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- Statut -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm font-medium text-gray-500">
+            Statut
+          </p>
+
+          <div class="mt-2 flex items-center gap-2">
+
+            <span
+              class="h-2.5 w-2.5 rounded-full"
+              [ngClass]="commission.active ? 'bg-green-500' : 'bg-gray-400'"
+            ></span>
+
+            <span class="text-xl font-bold text-gray-900">
+              {{ libelleStatut }}
+            </span>
+
+          </div>
+        </div>
+
+        <div
+          class="rounded-xl p-3"
+          [ngClass]="
+            commission.active
+              ? 'bg-green-50 text-green-600'
+              : 'bg-gray-100 text-gray-500'
+          "
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 3c-2.755 0-5.29.928-7.312 2.489A12.02 12.02 0 003 12c0 2.21.598 4.281 1.64 6.015A11.955 11.955 0 0012 21c2.755 0 5.29-.928 7.312-2.489A12.02 12.02 0 0021 12c0-2.21-.598-4.281-1.64-6.015z"
+            />
+          </svg>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- CONFIGURATION -->
+  <!-- ========================================================= -->
+
+  <div class="grid grid-cols-1 gap-6 lg:grid-cols-3">
+
+    <!-- FORMULAIRE -->
+    <div class="lg:col-span-2 rounded-2xl border border-gray-200 bg-white shadow-sm">
+
+      <div class="border-b border-gray-200 px-6 py-5">
+
+        <h2 class="text-lg font-semibold text-gray-900">
+          Configuration de la commission
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Cette configuration sera utilisée automatiquement lors
+          du calcul des retraits.
+        </p>
+
+      </div>
+
+
+      <div class="space-y-6 p-6">
+
+        <!-- Type -->
+        <div>
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+            Type de commission
+          </label>
+
+          <select
+            [(ngModel)]="typeCommission"
+            class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          >
+            <option value="pourcentage">
+              Pourcentage
+            </option>
+
+            <option value="fixe">
+              Montant fixe
+            </option>
+          </select>
+
+        </div>
+
+
+        <!-- Taux -->
+        <div>
+
+          <label class="mb-2 block text-sm font-medium text-gray-700">
+
+            <span *ngIf="typeCommission === 'pourcentage'">
+              Taux de commission (%)
+            </span>
+
+            <span *ngIf="typeCommission === 'fixe'">
+              Montant de la commission (FCFA)
+            </span>
+
+          </label>
+
+          <div class="relative">
+
+            <input
+              type="number"
+              min="0"
+              [(ngModel)]="tauxCommission"
+              class="w-full rounded-xl border border-gray-300 px-4 py-3 pr-16 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+            />
+
+            <span
+              class="absolute right-4 top-1/2 -translate-y-1/2 text-sm font-medium text-gray-400"
+            >
+              {{ typeCommission === 'pourcentage' ? '%' : 'FCFA' }}
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- Activation -->
+        <div class="rounded-xl border border-gray-200 bg-gray-50 p-4">
+
+          <label class="flex cursor-pointer items-center justify-between">
+
+            <div>
+              <p class="text-sm font-semibold text-gray-900">
+                Activer la commission
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                Si désactivée, aucun montant ne sera prélevé lors
+                du retrait.
+              </p>
+            </div>
+
+            <div class="relative">
+
+              <input
+                type="checkbox"
+                [(ngModel)]="commissionActive"
+                class="peer sr-only"
+              />
+
+              <div
+                class="h-6 w-11 rounded-full bg-gray-300 transition peer-checked:bg-green-600"
+              ></div>
+
+              <div
+                class="absolute left-1 top-1 h-4 w-4 rounded-full bg-white transition peer-checked:translate-x-5"
+              ></div>
+
+            </div>
+
+          </label>
+
+        </div>
+
+
+        <!-- Bouton -->
+        <div class="flex justify-end border-t border-gray-100 pt-5">
+
+          <button
+            type="button"
+            (click)="modifierCommission()"
+            class="inline-flex items-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+          >
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M5 13l4 4L19 7"
+              />
+            </svg>
+
+            Enregistrer la configuration
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- APERÇU -->
+    <div class="rounded-2xl border border-gray-200 bg-white shadow-sm">
+
+      <div class="border-b border-gray-200 px-6 py-5">
+
+        <h2 class="text-lg font-semibold text-gray-900">
+          Aperçu du calcul
+        </h2>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Exemple appliqué à un retrait
+        </p>
+
+      </div>
+
+
+      <div class="space-y-5 p-6">
+
+        <div>
+          <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+            Solde disponible
+          </p>
+
+          <p class="mt-1 text-2xl font-bold text-gray-900">
+            {{ formaterMontant(montantExemple) }} FCFA
+          </p>
+        </div>
+
+
+        <div class="rounded-xl bg-gray-50 p-4">
+
+          <div class="flex items-center justify-between">
+
+            <span class="text-sm text-gray-500">
+              Commission
+            </span>
+
+            <span class="text-sm font-semibold text-gray-700">
+              Calcul système
+            </span>
+
+          </div>
+
+          <div class="mt-3 text-sm text-gray-500">
+            La commission est calculée automatiquement à partir
+            de la configuration définie par UNACREP.
+          </div>
+
+        </div>
+
+
+        <div class="border-t border-gray-100 pt-4">
+
+          <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+            Montant net après calcul
+          </p>
+
+          <p class="mt-1 text-2xl font-bold text-green-600">
+            {{ formaterMontant(montantNetExemple) }} FCFA
+          </p>
+
+        </div>
+
+
+        <div class="rounded-xl border border-green-100 bg-green-50 p-4">
+
+          <div class="flex gap-3">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="mt-0.5 h-5 w-5 shrink-0 text-green-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M13 16h-1v-4h-1m1-4h.01M12 21a9 9 0 100-18 9 9 0 000 18z"
+              />
+            </svg>
+
+            <p class="text-xs leading-5 text-green-700">
+              Le montant de la commission est destiné à UNACREP.
+              Le client voit uniquement le montant net qu'il recevra.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- INFORMATIONS -->
+  <!-- ========================================================= -->
+
+  <div class="mt-6 rounded-2xl border border-green-100 bg-green-50 p-6">
+
+    <div class="flex gap-4">
+
+      <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-green-600 shadow-sm">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13 16h-1v-4h1m0-4h.01M12 21a9 9 0 100-18 9 9 0 000 18z"
+          />
+        </svg>
+
+      </div>
+
+      <div>
+
+        <h3 class="font-semibold text-green-900">
+          Fonctionnement
+        </h3>
+
+        <p class="mt-1 text-sm leading-6 text-green-800">
+          La commission est appliquée une seule fois, au moment
+          du retrait à la fin du cycle de la carte. Elle n'est
+          pas appliquée sur chaque cotisation.
+        </p>
+
+        <p class="mt-2 text-sm leading-6 text-green-800">
+          La configuration est globale et est définie par UNACREP.
+          Le système récupérera automatiquement cette configuration
+          lors du traitement d'un retrait.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- MODAL CONFIRMATION -->
+  <!-- ========================================================= -->
+
+  <div
+    *ngIf="afficherConfirmation"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4"
+  >
+
+    <div
+      class="w-full max-w-md rounded-2xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+
+      <div class="p-6">
+
+        <div class="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-green-600">
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+
+        </div>
+
+        <h3 class="mt-4 text-center text-lg font-bold text-gray-900">
+          Confirmer la configuration
+        </h3>
+
+        <p class="mt-2 text-center text-sm text-gray-500">
+          Voulez-vous enregistrer cette nouvelle configuration
+          de commission ?
+        </p>
+
+
+        <div class="mt-5 rounded-xl bg-gray-50 p-4 text-sm">
+
+          <div class="flex justify-between">
+            <span class="text-gray-500">
+              Type
+            </span>
+
+            <span class="font-semibold text-gray-900">
+              {{ typeCommission === 'pourcentage'
+                ? 'Pourcentage'
+                : 'Montant fixe' }}
+            </span>
+          </div>
+
+
+          <div class="mt-3 flex justify-between">
+            <span class="text-gray-500">
+              Valeur
+            </span>
+
+            <span class="font-semibold text-gray-900">
+              {{ tauxCommission }}
+              {{ typeCommission === 'pourcentage' ? '%' : 'FCFA' }}
+            </span>
+          </div>
+
+
+          <div class="mt-3 flex justify-between">
+            <span class="text-gray-500">
+              Statut
+            </span>
+
+            <span
+              class="font-semibold"
+              [ngClass]="commissionActive ? 'text-green-600' : 'text-gray-500'"
+            >
+              {{ commissionActive ? 'Active' : 'Inactive' }}
+            </span>
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="flex justify-end gap-3 border-t border-gray-100 bg-gray-50 px-6 py-4">
+
+        <button
+          type="button"
+          (click)="annulerModification()"
+          class="rounded-xl border border-gray-300 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 hover:bg-gray-50"
+        >
+          Annuler
+        </button>
+
+        <button
+          type="button"
+          (click)="confirmerModification()"
+          class="rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white hover:bg-green-700"
+        >
+          Confirmer
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

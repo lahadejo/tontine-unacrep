@@ -1,0 +1,1196 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">
+        Cotisations
+      </h1>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Gérez vos cotisations et effectuez vos paiements directement par Mobile Money.
+      </p>
+    </div>
+
+    <button
+      type="button"
+      (click)="ouvrirModalCotisation()"
+      class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700"
+    >
+      <span class="text-lg">+</span>
+      Effectuer une cotisation
+    </button>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- INFORMATIONS CLIENT -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+    <div class="flex items-center gap-4">
+
+      <div
+        class="flex h-12 w-12 items-center justify-center rounded-full bg-green-100 text-lg font-bold text-green-700"
+      >
+        {{ clientConnecte.nom.charAt(0) }}
+      </div>
+
+      <div>
+        <h2 class="font-semibold text-gray-900">
+          {{ clientConnecte.nom }}
+        </h2>
+
+        <p class="text-sm text-gray-500">
+          Matricule : {{ clientConnecte.matricule }}
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+    <!-- TOTAL -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            Total cotisations
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-gray-900">
+            {{ totalCotisations }}
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+          €
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CONFIRMÉES -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            Confirmées
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-green-600">
+            {{ cotisationsConfirmees }}
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+          ✓
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- EN ATTENTE -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            En attente
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-orange-500">
+            {{ cotisationsEnAttente }}
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-orange-50 text-orange-500">
+          ⏳
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- MONTANT -->
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+          <p class="text-sm text-gray-500">
+            Montant cotisé
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-green-600">
+            {{ formaterMontant(montantTotalCotise) }}
+            <span class="text-sm font-medium">
+              FCFA
+            </span>
+          </p>
+        </div>
+
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+          ₣
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-4 md:grid-cols-4">
+
+      <!-- RECHERCHE -->
+
+      <div class="md:col-span-2">
+
+        <label class="mb-2 block text-sm font-medium text-gray-700">
+          Rechercher
+        </label>
+
+        <div class="relative">
+
+          <input
+            type="text"
+            [(ngModel)]="recherche"
+            placeholder="Référence, carte ou opérateur..."
+            class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- STATUT -->
+
+      <div>
+
+        <label class="mb-2 block text-sm font-medium text-gray-700">
+          Statut
+        </label>
+
+        <select
+          [(ngModel)]="filtreStatut"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+          <option value="Tous">
+            Tous
+          </option>
+
+          <option value="Confirmée">
+            Confirmées
+          </option>
+
+          <option value="En attente">
+            En attente
+          </option>
+
+          <option value="Échouée">
+            Échouées
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- TYPE -->
+
+      <div>
+
+        <label class="mb-2 block text-sm font-medium text-gray-700">
+          Type de carte
+        </label>
+
+        <select
+          [(ngModel)]="filtreType"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+          <option value="Tous">
+            Tous
+          </option>
+
+          <option value="Journalière">
+            Journalière
+          </option>
+
+          <option value="Mensuelle">
+            Mensuelle
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- RESET -->
+
+    <div class="mt-4 flex justify-end">
+
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="text-sm font-medium text-gray-500 transition hover:text-green-600"
+      >
+        Réinitialiser les filtres
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- HISTORIQUE -->
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+
+    <div class="border-b border-gray-200 px-5 py-4">
+
+      <h2 class="font-semibold text-gray-900">
+        Historique des cotisations
+      </h2>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Retrouvez ici l'ensemble de vos cotisations.
+      </p>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="overflow-x-auto">
+
+      <table class="min-w-full divide-y divide-gray-200">
+
+        <thead class="bg-gray-50">
+
+          <tr>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Référence
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Carte
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Montant
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Mobile Money
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Date
+            </th>
+
+            <th class="px-5 py-4 text-left text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Statut
+            </th>
+
+            <th class="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500">
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-gray-100">
+
+          <tr
+            *ngFor="let cotisation of cotisationsFiltrees"
+            class="transition hover:bg-gray-50"
+          >
+
+            <!-- RÉFÉRENCE -->
+
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <p class="font-semibold text-gray-900">
+                {{ cotisation.reference }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ cotisation.cycle }}
+              </p>
+
+            </td>
+
+
+            <!-- CARTE -->
+
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <p class="font-medium text-gray-900">
+                {{ cotisation.carte }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ cotisation.typeCarte }}
+              </p>
+
+            </td>
+
+
+            <!-- MONTANT -->
+
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <p class="font-bold text-green-600">
+                {{ formaterMontant(cotisation.montant) }}
+                FCFA
+              </p>
+
+            </td>
+
+
+            <!-- MOBILE MONEY -->
+
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <p class="font-medium text-gray-800">
+                {{ getLabelOperateur(cotisation.operateur) }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ cotisation.numeroMobileMoney }}
+              </p>
+
+            </td>
+
+
+            <!-- DATE -->
+
+            <td class="whitespace-nowrap px-5 py-4 text-sm text-gray-600">
+              {{ formaterDate(cotisation.date) }}
+            </td>
+
+
+            <!-- STATUT -->
+
+            <td class="whitespace-nowrap px-5 py-4">
+
+              <span
+                class="rounded-full px-3 py-1 text-xs font-medium"
+                [ngClass]="getClasseStatut(cotisation.statut)"
+              >
+                {{ cotisation.statut }}
+              </span>
+
+            </td>
+
+
+            <!-- ACTION -->
+
+            <td class="whitespace-nowrap px-5 py-4 text-right">
+
+              <button
+                type="button"
+                (click)="voirDetails(cotisation)"
+                class="rounded-lg px-3 py-2 text-sm font-medium text-green-600 transition hover:bg-green-50"
+              >
+                Détails
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <!-- AUCUN RÉSULTAT -->
+
+          <tr *ngIf="cotisationsFiltrees.length === 0">
+
+            <td
+              colspan="7"
+              class="px-5 py-12 text-center"
+            >
+
+              <div class="text-4xl">
+                💳
+              </div>
+
+              <p class="mt-3 font-semibold text-gray-900">
+                Aucune cotisation trouvée
+              </p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                Aucune cotisation ne correspond aux critères sélectionnés.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL : EFFECTUER UNE COTISATION -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="afficherModalCotisation"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+    (click)="fermerModalCotisation()"
+  >
+
+    <div
+      class="max-h-[95vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- ================================================= -->
+      <!-- EN-TÊTE MODAL -->
+      <!-- ================================================= -->
+
+      <div class="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white px-6 py-5">
+
+        <div>
+
+          <h2 class="text-xl font-bold text-gray-900">
+            Effectuer une cotisation
+          </h2>
+
+          <p class="mt-1 text-sm text-gray-500">
+            Payez votre cotisation par Mobile Money.
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerModalCotisation()"
+          [disabled]="cotisationEnCours"
+          class="flex h-10 w-10 items-center justify-center rounded-xl text-xl text-gray-500 transition hover:bg-gray-100 hover:text-gray-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- CONTENU MODAL -->
+      <!-- ================================================= -->
+
+      <div class="p-6">
+
+
+        <!-- MESSAGE ERREUR -->
+
+        <div
+          *ngIf="messageErreur"
+          class="mb-5 flex items-start gap-3 rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-700"
+        >
+
+          <span class="font-bold">
+            !
+          </span>
+
+          <p>
+            {{ messageErreur }}
+          </p>
+
+        </div>
+
+
+        <!-- MESSAGE SUCCÈS -->
+
+        <div
+          *ngIf="messageSucces"
+          class="mb-5 flex items-start gap-3 rounded-xl border border-green-200 bg-green-50 p-4 text-sm text-green-700"
+        >
+
+          <span class="font-bold">
+            ✓
+          </span>
+
+          <p>
+            {{ messageSucces }}
+          </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ÉTAPE 1 : CHOIX DE LA CARTE -->
+        <!-- ================================================= -->
+
+        <div class="mb-6">
+
+          <div class="mb-4">
+
+            <h3 class="font-semibold text-gray-900">
+              1. Sélectionnez votre carte
+            </h3>
+
+            <p class="mt-1 text-sm text-gray-500">
+              Le montant de la cotisation sera automatiquement récupéré.
+            </p>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+
+            <button
+              *ngFor="let carte of cartes"
+              type="button"
+              (click)="selectionnerCarte(carte)"
+              [disabled]="carte.statut !== 'Active' || cotisationEnCours"
+              class="relative rounded-2xl border-2 p-5 text-left transition"
+              [ngClass]="
+                carteSelectionnee?.id === carte.id
+                  ? 'border-green-500 bg-green-50 shadow-sm'
+                  : carte.statut === 'Active'
+                    ? 'border-gray-200 bg-white hover:border-green-300 hover:bg-green-50/40'
+                    : 'cursor-not-allowed border-gray-200 bg-gray-50 opacity-60'
+              "
+            >
+
+              <!-- CHECK -->
+
+              <div
+                *ngIf="carteSelectionnee?.id === carte.id"
+                class="absolute right-4 top-4 flex h-7 w-7 items-center justify-center rounded-full bg-green-600 text-sm font-bold text-white"
+              >
+                ✓
+              </div>
+
+
+              <!-- TYPE -->
+
+              <p class="text-xs font-medium uppercase tracking-wide text-gray-500">
+                {{ carte.type }}
+              </p>
+
+
+              <!-- NUMÉRO -->
+
+              <h4 class="mt-1 text-lg font-bold text-gray-900">
+                {{ carte.numero }}
+              </h4>
+
+
+              <!-- CYCLE -->
+
+              <p class="mt-2 text-xs text-gray-500">
+                Cycle : {{ carte.cycle }}
+              </p>
+
+
+              <!-- MONTANT -->
+
+              <div class="mt-5">
+
+                <p class="text-xs text-gray-500">
+                  Cotisation
+                </p>
+
+                <p class="mt-1 text-xl font-bold text-green-600">
+                  {{ formaterMontant(carte.montant) }}
+                  <span class="text-sm font-medium">
+                    FCFA
+                  </span>
+                </p>
+
+              </div>
+
+
+              <!-- STATUT -->
+
+              <div class="mt-4">
+
+                <span
+                  class="rounded-full px-3 py-1 text-xs font-medium"
+                  [ngClass]="
+                    carte.statut === 'Active'
+                      ? 'bg-green-100 text-green-700'
+                      : 'bg-gray-100 text-gray-500'
+                  "
+                >
+                  {{ carte.statut }}
+                </span>
+
+              </div>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ÉTAPE 2 : RÉSUMÉ -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="carteSelectionnee"
+          class="mb-6 rounded-2xl border border-green-100 bg-green-50 p-5"
+        >
+
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+            <div>
+
+              <p class="text-xs font-medium uppercase tracking-wide text-green-700">
+                Carte sélectionnée
+              </p>
+
+              <p class="mt-1 font-semibold text-gray-900">
+                {{ carteSelectionnee.numero }}
+              </p>
+
+              <p class="mt-1 text-sm text-gray-500">
+                {{ carteSelectionnee.type }}
+              </p>
+
+            </div>
+
+
+            <div class="sm:text-right">
+
+              <p class="text-xs text-green-700">
+                Montant à payer
+              </p>
+
+              <p class="mt-1 text-2xl font-bold text-green-700">
+                {{ formaterMontant(montantCotisation) }}
+                <span class="text-sm font-medium">
+                  FCFA
+                </span>
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ÉTAPE 3 : OPÉRATEUR -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="carteSelectionnee"
+          class="mb-6"
+        >
+
+          <div class="mb-4">
+
+            <h3 class="font-semibold text-gray-900">
+              2. Choisissez votre opérateur
+            </h3>
+
+            <p class="mt-1 text-sm text-gray-500">
+              Sélectionnez le compte Mobile Money qui sera utilisé.
+            </p>
+
+          </div>
+
+
+          <div class="grid grid-cols-1 gap-3 sm:grid-cols-3">
+
+
+            <!-- MTN -->
+
+            <button
+              type="button"
+              (click)="selectionnerOperateur('MTN')"
+              [disabled]="cotisationEnCours"
+              class="rounded-2xl border-2 p-4 text-left transition disabled:cursor-not-allowed disabled:opacity-60"
+              [ngClass]="
+                operateurSelectionne === 'MTN'
+                  ? 'border-green-500 bg-green-50'
+                  : 'border-gray-200 bg-white hover:border-green-300'
+              "
+            >
+
+              <div class="flex items-center gap-3">
+
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-yellow-50">
+
+                  <img
+                    src="images/operators/mtn.png"
+                    alt="MTN Mobile Money"
+                    class="h-full w-full object-contain p-1"
+                  />
+
+                </div>
+
+                <div>
+
+                  <p class="font-semibold text-gray-900">
+                    MTN
+                  </p>
+
+                  <p class="text-xs text-gray-500">
+                    MoMo
+                  </p>
+
+                </div>
+
+              </div>
+
+            </button>
+
+
+            <!-- MOOV -->
+
+            <button
+              type="button"
+              (click)="selectionnerOperateur('MOOV')"
+              [disabled]="cotisationEnCours"
+              class="rounded-2xl border-2 p-4 text-left transition disabled:cursor-not-allowed disabled:opacity-60"
+              [ngClass]="
+                operateurSelectionne === 'MOOV'
+                  ? 'border-green-500 bg-green-50'
+                  : 'border-gray-200 bg-white hover:border-green-300'
+              "
+            >
+
+              <div class="flex items-center gap-3">
+
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white">
+
+                  <img
+                    src="images/operators/moov.png"
+                    alt="Moov Money"
+                    class="h-full w-full object-contain p-1"
+                  />
+
+                </div>
+
+                <div>
+
+                  <p class="font-semibold text-gray-900">
+                    Moov
+                  </p>
+
+                  <p class="text-xs text-gray-500">
+                    Money
+                  </p>
+
+                </div>
+
+              </div>
+
+            </button>
+
+
+            <!-- CELTIIS -->
+
+            <button
+              type="button"
+              (click)="selectionnerOperateur('CELTIS')"
+              [disabled]="cotisationEnCours"
+              class="rounded-2xl border-2 p-4 text-left transition disabled:cursor-not-allowed disabled:opacity-60"
+              [ngClass]="
+                operateurSelectionne === 'CELTIS'
+                  ? 'border-green-500 bg-green-50'
+                  : 'border-gray-200 bg-white hover:border-green-300'
+              "
+            >
+
+              <div class="flex items-center gap-3">
+
+                <div class="flex h-12 w-12 shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white">
+
+                  <img
+                    src="images/operators/celtis-cash.png"
+                    alt="Celtiis Cash"
+                    class="h-full w-full object-contain p-1"
+                  />
+
+                </div>
+
+                <div>
+
+                  <p class="font-semibold text-gray-900">
+                    Celtiis
+                  </p>
+
+                  <p class="text-xs text-gray-500">
+                    Cash
+                  </p>
+
+                </div>
+
+              </div>
+
+            </button>
+
+          </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ÉTAPE 4 : NUMÉRO -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="carteSelectionnee && operateurSelectionne"
+          class="mb-6"
+        >
+
+          <h3 class="mb-4 font-semibold text-gray-900">
+            3. Numéro Mobile Money
+          </h3>
+
+
+          <label
+            for="numeroMobileMoney"
+            class="mb-2 block text-sm font-medium text-gray-700"
+          >
+            Numéro utilisé pour le paiement
+          </label>
+
+
+          <div class="relative">
+
+            <input
+              id="numeroMobileMoney"
+              type="tel"
+              inputmode="numeric"
+              maxlength="10"
+              [(ngModel)]="numeroMobileMoney"
+              placeholder="01 XX XX XX XX"
+              [disabled]="cotisationEnCours"
+              class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 pr-12 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100 disabled:bg-gray-100"
+            />
+
+
+            <span
+              *ngIf="numeroMobileMoney"
+              class="absolute right-4 top-1/2 -translate-y-1/2"
+            >
+
+              <span
+                *ngIf="numeroValide()"
+                class="text-green-600"
+              >
+                ✓
+              </span>
+
+              <span
+                *ngIf="!numeroValide()"
+                class="text-red-500"
+              >
+                !
+              </span>
+
+            </span>
+
+          </div>
+
+
+          <p class="mt-2 text-xs text-gray-500">
+            Saisissez le numéro {{ getLabelOperateur(operateurSelectionne) }}
+            qui sera utilisé pour effectuer le paiement.
+          </p>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- INFORMATION -->
+        <!-- ================================================= -->
+
+        <div
+          *ngIf="carteSelectionnee && operateurSelectionne"
+          class="rounded-xl bg-gray-50 p-4"
+        >
+
+          <p class="text-xs leading-5 text-gray-500">
+
+            Après validation, le paiement sera envoyé à l'opérateur
+            sélectionné. La cotisation sera enregistrée uniquement
+            après confirmation effective du paiement.
+
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- FOOTER MODAL -->
+      <!-- ================================================= -->
+
+      <div class="sticky bottom-0 flex flex-col-reverse gap-3 border-t border-gray-200 bg-white px-6 py-5 sm:flex-row sm:justify-end">
+
+        <button
+          type="button"
+          (click)="fermerModalCotisation()"
+          [disabled]="cotisationEnCours"
+          class="rounded-xl border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          Annuler
+        </button>
+
+
+        <button
+          type="button"
+          (click)="effectuerCotisation()"
+          [disabled]="!formulaireCotisationValide()"
+          class="flex items-center justify-center gap-3 rounded-xl bg-green-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-green-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+
+          <span
+            *ngIf="cotisationEnCours"
+            class="h-5 w-5 animate-spin rounded-full border-2 border-white border-t-transparent"
+          ></span>
+
+          <span *ngIf="!cotisationEnCours">
+            Cotiser {{ formaterMontant(montantCotisation) }} FCFA
+          </span>
+
+          <span *ngIf="cotisationEnCours">
+            Traitement du paiement...
+          </span>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- MODAL DÉTAILS -->
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="afficherDetails && cotisationSelectionnee"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4 backdrop-blur-sm"
+    (click)="fermerDetails()"
+  >
+
+    <div
+      class="w-full max-w-lg rounded-3xl bg-white shadow-2xl"
+      (click)="$event.stopPropagation()"
+    >
+
+      <!-- HEADER -->
+
+      <div class="flex items-center justify-between border-b border-gray-200 px-6 py-5">
+
+        <div>
+
+          <h2 class="text-xl font-bold text-gray-900">
+            Détails de la cotisation
+          </h2>
+
+          <p class="mt-1 text-sm text-gray-500">
+            {{ cotisationSelectionnee.reference }}
+          </p>
+
+        </div>
+
+
+        <button
+          type="button"
+          (click)="fermerDetails()"
+          class="flex h-10 w-10 items-center justify-center rounded-xl text-xl text-gray-500 transition hover:bg-gray-100"
+        >
+          ×
+        </button>
+
+      </div>
+
+
+      <!-- CONTENU -->
+
+      <div class="space-y-5 p-6">
+
+
+        <!-- STATUT -->
+
+        <div class="flex items-center justify-between">
+
+          <span class="text-sm text-gray-500">
+            Statut
+          </span>
+
+          <span
+            class="rounded-full px-3 py-1 text-xs font-medium"
+            [ngClass]="getClasseStatut(cotisationSelectionnee.statut)"
+          >
+            {{ cotisationSelectionnee.statut }}
+          </span>
+
+        </div>
+
+
+        <!-- CARTE -->
+
+        <div class="rounded-xl bg-gray-50 p-4">
+
+          <p class="text-xs text-gray-500">
+            Carte
+          </p>
+
+          <p class="mt-1 font-semibold text-gray-900">
+            {{ cotisationSelectionnee.carte }}
+          </p>
+
+          <p class="mt-1 text-sm text-gray-500">
+            {{ cotisationSelectionnee.typeCarte }}
+          </p>
+
+        </div>
+
+
+        <!-- MONTANT -->
+
+        <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+
+          <span class="text-sm text-gray-500">
+            Montant cotisé
+          </span>
+
+          <span class="font-bold text-green-600">
+            {{ formaterMontant(cotisationSelectionnee.montant) }}
+            FCFA
+          </span>
+
+        </div>
+
+
+        <!-- OPÉRATEUR -->
+
+        <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+
+          <span class="text-sm text-gray-500">
+            Opérateur
+          </span>
+
+          <span class="font-medium text-gray-900">
+            {{ getLabelOperateur(cotisationSelectionnee.operateur) }}
+          </span>
+
+        </div>
+
+
+        <!-- NUMÉRO -->
+
+        <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+
+          <span class="text-sm text-gray-500">
+            Numéro Mobile Money
+          </span>
+
+          <span class="font-medium text-gray-900">
+            {{ cotisationSelectionnee.numeroMobileMoney }}
+          </span>
+
+        </div>
+
+
+        <!-- CYCLE -->
+
+        <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+
+          <span class="text-sm text-gray-500">
+            Cycle
+          </span>
+
+          <span class="font-medium text-gray-900">
+            {{ cotisationSelectionnee.cycle }}
+          </span>
+
+        </div>
+
+
+        <!-- DATE -->
+
+        <div class="flex items-center justify-between">
+
+          <span class="text-sm text-gray-500">
+            Date
+          </span>
+
+          <span class="font-medium text-gray-900">
+            {{ formaterDate(cotisationSelectionnee.date) }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- FOOTER -->
+
+      <div class="border-t border-gray-200 px-6 py-5">
+
+        <button
+          type="button"
+          (click)="fermerDetails()"
+          class="w-full rounded-xl bg-green-600 px-5 py-3 font-semibold text-white transition hover:bg-green-700"
+        >
+          Fermer
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,1414 @@
+<div class="min-h-screen bg-slate-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-7 flex flex-col gap-5 xl:flex-row xl:items-center xl:justify-between">
+
+    <div>
+
+      <div class="flex items-center gap-3">
+
+        <!-- ICÔNE RAPPORT -->
+        <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 13.5 8.25 8.25l3.5 3.5L18 5.5M18 5.5H14M18 5.5v4" />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 19.5h16" />
+
+          </svg>
+        </div>
+
+        <div>
+
+          <h1 class="text-2xl font-bold tracking-tight text-slate-900">
+            Rapport statistique global
+          </h1>
+
+          <p class="mt-1 text-sm text-slate-500">
+            Vue d’ensemble de l’activité du système UNACREP
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- ACTIONS -->
+
+    <div class="flex flex-wrap gap-3">
+
+      <!-- ACTUALISER -->
+
+      <button
+        type="button"
+        (click)="actualiser()"
+        class="inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-4 py-2.5 text-sm font-medium text-slate-700 shadow-sm transition hover:bg-slate-50">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4.5 12a7.5 7.5 0 0 1 12.8-5.3L20 9.4" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20 5.5v3.9h-3.9" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19.5 12a7.5 7.5 0 0 1-12.8 5.3L4 14.6" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 18.5v-3.9h3.9" />
+
+        </svg>
+
+        Actualiser
+
+      </button>
+
+
+      <!-- EXCEL -->
+
+      <button
+        type="button"
+        (click)="exporterExcel()"
+        class="inline-flex items-center gap-2 rounded-xl border border-green-200 bg-green-50 px-4 py-2.5 text-sm font-semibold text-green-700 transition hover:bg-green-100">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 3.75h7l4 4v12.5H7z" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14 3.75v4h4" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="m9.5 11 5 5M14.5 11l-5 5" />
+
+        </svg>
+
+        Exporter Excel
+
+      </button>
+
+
+      <!-- PDF -->
+
+      <button
+        type="button"
+        (click)="exporterPDF()"
+        class="inline-flex items-center gap-2 rounded-xl bg-green-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700">
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M7 3.75h7l4 4v12.5H7z" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M14 3.75v4h4" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 16v-4h1.5a1.5 1.5 0 0 1 0 3H9" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M13 12v4h1a2 2 0 0 0 0-4z" />
+
+        </svg>
+
+        Exporter PDF
+
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-7 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-12 lg:items-end">
+
+      <!-- PÉRIODE -->
+
+      <div class="lg:col-span-3">
+
+        <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Période
+        </label>
+
+        <div class="relative">
+
+          <!-- CALENDRIER -->
+
+          <div class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <rect
+                x="3.5"
+                y="5"
+                width="17"
+                height="15.5"
+                rx="2" />
+
+              <path
+                stroke-linecap="round"
+                d="M7.5 3.5v3M16.5 3.5v3M3.5 9h17" />
+
+            </svg>
+
+          </div>
+
+          <select
+            [(ngModel)]="periode"
+            (ngModelChange)="changerPeriode()"
+            class="w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-10 text-sm text-slate-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100">
+
+            <option
+              *ngFor="let item of periodes"
+              [value]="item.value">
+
+              {{ item.label }}
+
+            </option>
+
+          </select>
+
+
+          <!-- CHEVRON -->
+
+          <div class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m6.5 9 5.5 5.5L17.5 9" />
+
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- AGENCE -->
+
+      <div class="lg:col-span-4">
+
+        <label class="mb-2 block text-xs font-semibold uppercase tracking-wide text-slate-500">
+          Agence
+        </label>
+
+        <div class="relative">
+
+          <!-- AGENCE -->
+
+          <div class="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 20.25h16M5.5 20.25V8.5L12 4l6.5 4.5v11.75M8.5 20.25v-5h7v5" />
+
+              <path
+                stroke-linecap="round"
+                d="M8.5 10h.01M12 10h.01M15.5 10h.01" />
+
+            </svg>
+
+          </div>
+
+          <select
+            [(ngModel)]="agenceSelectionnee"
+            (ngModelChange)="changerAgence()"
+            class="w-full appearance-none rounded-xl border border-slate-200 bg-white py-2.5 pl-10 pr-10 text-sm text-slate-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100">
+
+            <option
+              *ngFor="let agence of agences"
+              [value]="agence">
+
+              {{ agence }}
+
+            </option>
+
+          </select>
+
+
+          <!-- CHEVRON -->
+
+          <div class="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-slate-400">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m6.5 9 5.5 5.5L17.5 9" />
+
+            </svg>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- PÉRIODE ACTIVE -->
+
+      <div class="lg:col-span-5">
+
+        <div class="flex h-[42px] items-center gap-2 rounded-xl border border-green-100 bg-green-50 px-4 text-sm text-green-700">
+
+          <!-- CALENDRIER ACTIF -->
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 shrink-0"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m5 12 4 4L19 6" />
+
+            <rect
+              x="3.5"
+              y="3.5"
+              width="17"
+              height="17"
+              rx="3" />
+
+          </svg>
+
+          <span>
+            Rapport :
+            <strong>
+              {{ getPeriodeLabel() }}
+            </strong>
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- INDICATEURS PRINCIPAUX -->
+  <!-- ===================================================== -->
+
+  <div class="mb-7 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <!-- CLIENTS -->
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+
+        <!-- CLIENTS -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <circle
+            cx="9"
+            cy="8"
+            r="3" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M15 5.5a3 3 0 0 1 0 5.8M17 14a5.5 5.5 0 0 1 3.5 5" />
+
+        </svg>
+
+      </div>
+
+      <div class="mt-5">
+
+        <p class="text-sm font-medium text-slate-500">
+          Clients
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-slate-900">
+          {{ formatNombre(statistiques.clients.total) }}
+        </p>
+
+        <div class="mt-3 flex items-center justify-between text-xs">
+
+          <span class="font-medium text-green-600">
+            {{ formatNombre(statistiques.clients.actifs) }} actifs
+          </span>
+
+          <span class="text-slate-400">
+            +{{ formatNombre(statistiques.clients.nouveaux) }} nouveaux
+          </span>
+
+        </div>
+
+        <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
+
+          <div
+            class="h-full rounded-full bg-blue-500 transition-all"
+            [style.width.%]="getTauxClientsActifs()">
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- CARTES -->
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-50 text-purple-600">
+
+        <!-- CARTE -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <rect
+            x="3"
+            y="5"
+            width="18"
+            height="14"
+            rx="2" />
+
+          <path
+            stroke-linecap="round"
+            d="M3 9h18" />
+
+          <path
+            stroke-linecap="round"
+            d="M7 14h4" />
+
+        </svg>
+
+      </div>
+
+      <div class="mt-5">
+
+        <p class="text-sm font-medium text-slate-500">
+          Cartes
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-slate-900">
+          {{ formatNombre(statistiques.cartes.total) }}
+        </p>
+
+        <div class="mt-3 flex items-center justify-between text-xs">
+
+          <span class="font-medium text-green-600">
+            {{ formatNombre(statistiques.cartes.actives) }} actives
+          </span>
+
+          <span class="text-slate-400">
+            {{ formatNombre(statistiques.cartes.terminees) }} terminées
+          </span>
+
+        </div>
+
+        <div class="mt-2 h-1.5 overflow-hidden rounded-full bg-slate-100">
+
+          <div
+            class="h-full rounded-full bg-purple-500 transition-all"
+            [style.width.%]="getTauxCartesActives()">
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- COTISATIONS -->
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+
+        <!-- PAIEMENT -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <rect
+            x="3"
+            y="5"
+            width="18"
+            height="14"
+            rx="2" />
+
+          <path
+            stroke-linecap="round"
+            d="M3 9h18M7 14h3" />
+
+          <path
+            stroke-linecap="round"
+            d="M16 13v4M14 15h4" />
+
+        </svg>
+
+      </div>
+
+      <div class="mt-5">
+
+        <p class="text-sm font-medium text-slate-500">
+          Cotisations
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-slate-900">
+
+          {{ formatNombre(statistiques.cotisations.total) }}
+
+          <span class="text-sm font-semibold">
+            F
+          </span>
+
+        </p>
+
+        <div class="mt-3 flex items-center justify-between text-xs">
+
+          <span class="font-medium text-green-600">
+            +{{ formatNombre(statistiques.cotisations.aujourdHui) }} F aujourd'hui
+          </span>
+
+          <span class="text-slate-400">
+            {{ formatNombre(statistiques.cotisations.operations) }} opérations
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PORTEFEUILLES -->
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition duration-200 hover:-translate-y-0.5 hover:shadow-md">
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50 text-teal-600">
+
+        <!-- PORTEFEUILLE -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 7.5h14.5A1.5 1.5 0 0 1 20 9v9.5a1.5 1.5 0 0 1-1.5 1.5H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16 12h4v4h-4a2 2 0 0 1 0-4z" />
+
+          <circle
+            cx="16.5"
+            cy="14"
+            r=".5"
+            fill="currentColor" />
+
+        </svg>
+
+      </div>
+
+      <div class="mt-5">
+
+        <p class="text-sm font-medium text-slate-500">
+          Portefeuilles
+        </p>
+
+        <p class="mt-1 text-2xl font-bold text-slate-900">
+
+          {{ formatNombre(statistiques.portefeuilles.soldeTotal) }}
+
+          <span class="text-sm font-semibold">
+            F
+          </span>
+
+        </p>
+
+        <p class="mt-3 text-xs text-slate-400">
+          Somme des soldes de toutes les cartes
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- INDICATEURS SECONDAIRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-7 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
+
+    <!-- RETRAITS -->
+
+    <div class="grid grid-cols-[1fr_auto] gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div>
+
+        <p class="text-sm font-medium text-slate-500">
+          Retraits effectués
+        </p>
+
+        <p class="mt-2 text-xl font-bold text-slate-900">
+          {{ formatNombre(statistiques.retraits.total) }} F
+        </p>
+
+      </div>
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-blue-50 text-blue-600">
+
+        <!-- PORTEFEUILLE -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 7.5h14.5A1.5 1.5 0 0 1 20 9v9.5a1.5 1.5 0 0 1-1.5 1.5H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13" />
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M16 12h4v4h-4a2 2 0 0 1 0-4z" />
+
+        </svg>
+
+      </div>
+
+      <div class="col-span-full flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
+
+        <span class="font-medium text-blue-600">
+          {{ formatNombre(statistiques.retraits.effectues) }} effectués
+        </span>
+
+        <span class="font-medium text-orange-500">
+          {{ formatNombre(statistiques.retraits.attente) }} en attente
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- COMMISSIONS -->
+
+    <div class="grid grid-cols-[1fr_auto] gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div>
+
+        <p class="text-sm font-medium text-slate-500">
+          Commissions UNACREP
+        </p>
+
+        <p class="mt-2 text-xl font-bold text-slate-900">
+          {{ formatNombre(statistiques.commissions.total) }} F
+        </p>
+
+      </div>
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-orange-50 text-orange-600">
+
+        <!-- POURCENTAGE -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <circle
+            cx="7"
+            cy="7"
+            r="2.5" />
+
+          <circle
+            cx="17"
+            cy="17"
+            r="2.5" />
+
+          <path
+            stroke-linecap="round"
+            d="m19 5-14 14" />
+
+        </svg>
+
+      </div>
+
+      <div class="col-span-full border-t border-slate-100 pt-3 text-xs text-slate-400">
+        Commissions appliquées lors des retraits
+      </div>
+
+    </div>
+
+
+    <!-- CYCLES -->
+
+    <div class="grid grid-cols-[1fr_auto] gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div>
+
+        <p class="text-sm font-medium text-slate-500">
+          Cycles
+        </p>
+
+        <p class="mt-2 text-xl font-bold text-slate-900">
+
+          {{ formatNombre(
+            statistiques.cycles.enCours +
+            statistiques.cycles.termines
+          ) }}
+
+        </p>
+
+      </div>
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-purple-50 text-purple-600">
+
+        <!-- CYCLE -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M20 11a8 8 0 0 0-14.9-4M4 5v4h4M4 13a8 8 0 0 0 14.9 4M20 19v-4h-4" />
+
+        </svg>
+
+      </div>
+
+      <div class="col-span-full flex items-center justify-between border-t border-slate-100 pt-3 text-xs">
+
+        <span class="font-medium text-green-600">
+          {{ formatNombre(statistiques.cycles.enCours) }} en cours
+        </span>
+
+        <span class="text-slate-400">
+          {{ formatNombre(statistiques.cycles.termines) }} terminés
+        </span>
+
+      </div>
+
+    </div>
+
+
+    <!-- AGENCES -->
+
+    <div class="grid grid-cols-[1fr_auto] gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div>
+
+        <p class="text-sm font-medium text-slate-500">
+          Agences actives
+        </p>
+
+        <p class="mt-2 text-xl font-bold text-slate-900">
+          {{ formatNombre(statistiques.agences.actives) }}
+        </p>
+
+      </div>
+
+      <div class="flex h-11 w-11 items-center justify-center rounded-full bg-green-50 text-green-600">
+
+        <!-- AGENCE -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M4 20h16M5 20V8l7-4 7 4v12M8 20v-5h8v5" />
+
+          <path
+            stroke-linecap="round"
+            d="M9 10h.01M12 10h.01M15 10h.01" />
+
+        </svg>
+
+      </div>
+
+      <div class="col-span-full border-t border-slate-100 pt-3 text-xs text-slate-400">
+        Réseau d'agences UNACREP
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- GRAPHIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-7 grid grid-cols-1 gap-6 xl:grid-cols-2">
+
+    <!-- ÉVOLUTION -->
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div class="mb-5 flex items-start justify-between">
+
+        <div>
+
+          <h2 class="text-base font-semibold text-slate-900">
+            Évolution de l'activité
+          </h2>
+
+          <p class="mt-1 text-xs text-slate-400">
+            Évolution des cotisations et des retraits
+          </p>
+
+        </div>
+
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-green-50 text-green-600">
+
+          <!-- GRAPHIQUE LIGNE -->
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M4 18V6M4 18h17" />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="m6 15 4-4 3 2 5-6" />
+
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M15.5 7H18v2.5" />
+
+          </svg>
+
+        </div>
+
+      </div>
+
+      <div class="h-[320px] w-full">
+        <canvas #evolutionChart></canvas>
+      </div>
+
+    </div>
+
+
+    <!-- ACTIVITÉ PAR AGENCE -->
+
+    <div class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+
+      <div class="mb-5 flex items-start justify-between">
+
+        <div>
+
+          <h2 class="text-base font-semibold text-slate-900">
+            Activité par agence
+          </h2>
+
+          <p class="mt-1 text-xs text-slate-400">
+            Comparaison des cotisations et retraits
+          </p>
+
+        </div>
+
+        <div class="flex h-9 w-9 items-center justify-center rounded-lg bg-blue-50 text-blue-600">
+
+          <!-- GRAPHIQUE BARRES -->
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="1.8">
+
+            <path
+              stroke-linecap="round"
+              d="M4 20V10M10 20V5M16 20v-8M22 20H2" />
+
+          </svg>
+
+        </div>
+
+      </div>
+
+      <div class="h-[320px] w-full">
+        <canvas #agenceChart></canvas>
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- TABLEAU + ACTIVITÉ RÉCENTE -->
+  <!-- ===================================================== -->
+
+  <div class="grid grid-cols-1 gap-6 xl:grid-cols-3">
+
+    <!-- TABLEAU DES AGENCES -->
+
+    <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm xl:col-span-2">
+
+      <div class="flex items-center justify-between border-b border-slate-100 px-5 py-4">
+
+        <div>
+
+          <h2 class="text-base font-semibold text-slate-900">
+            Répartition par agence
+          </h2>
+
+          <p class="mt-1 text-xs text-slate-400">
+            Situation globale du réseau UNACREP
+          </p>
+
+        </div>
+
+        <span class="rounded-full bg-green-50 px-3 py-1 text-xs font-semibold text-green-700">
+
+          {{ statistiquesAgences.length }}
+          agences
+
+        </span>
+
+      </div>
+
+
+      <div class="overflow-x-auto">
+
+        <table class="min-w-full">
+
+          <thead>
+
+            <tr class="border-b border-slate-100 bg-slate-50/70">
+
+              <th class="whitespace-nowrap px-5 py-3 text-left text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Agence
+              </th>
+
+              <th class="whitespace-nowrap px-5 py-3 text-right text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Clients
+              </th>
+
+              <th class="whitespace-nowrap px-5 py-3 text-right text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Cartes
+              </th>
+
+              <th class="whitespace-nowrap px-5 py-3 text-right text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Cotisations
+              </th>
+
+              <th class="whitespace-nowrap px-5 py-3 text-right text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Retraits
+              </th>
+
+              <th class="whitespace-nowrap px-5 py-3 text-right text-[11px] font-bold uppercase tracking-wide text-slate-500">
+                Solde
+              </th>
+
+            </tr>
+
+          </thead>
+
+
+          <tbody>
+
+            <tr
+              *ngFor="let agence of statistiquesAgences"
+              class="border-b border-slate-100 last:border-0 transition hover:bg-slate-50/60">
+
+              <td class="px-5 py-4">
+
+                <div class="flex items-center gap-3">
+
+                  <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-green-50 text-green-600">
+
+                    <!-- AGENCE -->
+
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      class="h-[18px] w-[18px]"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      stroke-width="1.8">
+
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M4 20h16M5 20V8l7-4 7 4v12M8 20v-5h8v5" />
+
+                      <path
+                        stroke-linecap="round"
+                        d="M9 10h.01M12 10h.01M15 10h.01" />
+
+                    </svg>
+
+                  </div>
+
+                  <span class="whitespace-nowrap text-sm font-semibold text-slate-700">
+                    {{ agence.agence }}
+                  </span>
+
+                </div>
+
+              </td>
+
+              <td class="px-5 py-4 text-right text-sm text-slate-600">
+                {{ formatNombre(agence.clients) }}
+              </td>
+
+              <td class="px-5 py-4 text-right text-sm text-slate-600">
+                {{ formatNombre(agence.cartes) }}
+              </td>
+
+              <td class="px-5 py-4 text-right text-sm font-semibold text-green-600">
+                {{ formatNombre(agence.cotisations) }} F
+              </td>
+
+              <td class="px-5 py-4 text-right text-sm font-semibold text-blue-600">
+                {{ formatNombre(agence.retraits) }} F
+              </td>
+
+              <td class="px-5 py-4 text-right text-sm font-bold text-slate-800">
+                {{ formatNombre(agence.solde) }} F
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+
+      </div>
+
+    </div>
+
+
+    <!-- ACTIVITÉ RÉCENTE -->
+
+    <div class="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+      <div class="border-b border-slate-100 px-5 py-4">
+
+        <h2 class="text-base font-semibold text-slate-900">
+          Activité récente
+        </h2>
+
+        <p class="mt-1 text-xs text-slate-400">
+          Dernières opérations enregistrées
+        </p>
+
+      </div>
+
+
+      <div class="divide-y divide-slate-100">
+
+        <div
+          *ngFor="let activite of activitesRecentes"
+          class="flex gap-3 px-5 py-4 transition hover:bg-slate-50/60">
+
+          <div
+            class="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl"
+            [ngClass]="{
+              'bg-green-50 text-green-600': activite.type === 'cotisation',
+              'bg-blue-50 text-blue-600': activite.type === 'retrait',
+              'bg-purple-50 text-purple-600': activite.type === 'client',
+              'bg-orange-50 text-orange-600': activite.type === 'carte',
+              'bg-teal-50 text-teal-600': activite.type === 'commission'
+            }">
+
+            <!-- COTISATION -->
+
+            <svg
+              *ngIf="activite.type === 'cotisation'"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-[18px] w-[18px]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <rect
+                x="3"
+                y="5"
+                width="18"
+                height="14"
+                rx="2" />
+
+              <path
+                stroke-linecap="round"
+                d="M3 9h18M7 14h3" />
+
+            </svg>
+
+
+            <!-- RETRAIT -->
+
+            <svg
+              *ngIf="activite.type === 'retrait'"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-[18px] w-[18px]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M4 7.5h14.5A1.5 1.5 0 0 1 20 9v9.5a1.5 1.5 0 0 1-1.5 1.5H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h13" />
+
+              <path
+                stroke-linecap="round"
+                d="M16 12h4v4h-4a2 2 0 0 1 0-4z" />
+
+            </svg>
+
+
+            <!-- CLIENT -->
+
+            <svg
+              *ngIf="activite.type === 'client'"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-[18px] w-[18px]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <circle
+                cx="9"
+                cy="8"
+                r="3" />
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M3.5 19a5.5 5.5 0 0 1 11 0" />
+
+              <path
+                stroke-linecap="round"
+                d="M17 8v6M14 11h6" />
+
+            </svg>
+
+
+            <!-- CARTE -->
+
+            <svg
+              *ngIf="activite.type === 'carte'"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-[18px] w-[18px]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <rect
+                x="3"
+                y="5"
+                width="18"
+                height="14"
+                rx="2" />
+
+              <path
+                stroke-linecap="round"
+                d="M3 9h18M7 14h4" />
+
+            </svg>
+
+
+            <!-- COMMISSION -->
+
+            <svg
+              *ngIf="activite.type === 'commission'"
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-[18px] w-[18px]"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="1.8">
+
+              <circle
+                cx="7"
+                cy="7"
+                r="2.5" />
+
+              <circle
+                cx="17"
+                cy="17"
+                r="2.5" />
+
+              <path
+                stroke-linecap="round"
+                d="m19 5-14 14" />
+
+            </svg>
+
+          </div>
+
+
+          <div class="min-w-0 flex-1">
+
+            <div class="flex items-start justify-between gap-2">
+
+              <p class="text-sm font-semibold text-slate-700">
+                {{ activite.titre }}
+              </p>
+
+              <span class="whitespace-nowrap text-[10px] text-slate-400">
+                {{ activite.date }}
+              </span>
+
+            </div>
+
+            <p class="mt-1 truncate text-xs text-slate-400">
+              {{ activite.description }}
+            </p>
+
+            <p
+              *ngIf="activite.montant !== undefined"
+              class="mt-1 text-xs font-semibold text-slate-600">
+
+              {{ formatMontant(activite.montant) }}
+
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- INFORMATION MÉTIER -->
+  <!-- ===================================================== -->
+
+  <div class="mt-6 rounded-2xl border border-green-100 bg-green-50/70 p-4">
+
+    <div class="flex gap-3">
+
+      <div class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-green-100 text-green-600">
+
+        <!-- INFORMATION -->
+
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="1.8">
+
+          <circle
+            cx="12"
+            cy="12"
+            r="8.5" />
+
+          <path
+            stroke-linecap="round"
+            d="M12 10.5v5" />
+
+          <circle
+            cx="12"
+            cy="7.5"
+            r=".6"
+            fill="currentColor"
+            stroke="none" />
+
+        </svg>
+
+      </div>
+
+      <div>
+
+        <h3 class="text-sm font-semibold text-green-800">
+          Information sur les portefeuilles
+        </h3>
+
+        <p class="mt-1 text-xs leading-5 text-green-700">
+
+          Le solde global présenté dans ce rapport correspond à la somme
+          des soldes disponibles sur les différentes cartes des clients.
+          Chaque carte conserve son propre portefeuille indépendamment
+          des autres cartes du même client.
+
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>

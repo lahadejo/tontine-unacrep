@@ -1,0 +1,1265 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+
+  <!-- EN-TÊTE -->
+
+  <!-- ===================================================== -->
+
+  <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+<div>
+  <div class="flex items-center gap-3">
+
+    <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-100 text-green-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-6h6v6M9 10h.01M12 10h.01M15 10h.01"
+        />
+      </svg>
+    </div>
+
+    <div>
+      <h1 class="text-2xl font-bold text-gray-900">
+        Agences
+      </h1>
+
+      <p class="mt-1 text-sm text-gray-500">
+        Gestion des agences et de leurs responsables.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<button
+  type="button"
+  (click)="ouvrirModalAjout()"
+  class="inline-flex items-center justify-center gap-2 rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="h-5 w-5"
+    fill="none"
+    viewBox="0 0 24 24"
+    stroke="currentColor"
+    stroke-width="2"
+  >
+    <path
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      d="M12 4v16m8-8H4"
+    />
+  </svg>
+
+  Nouvelle agence
+</button>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- STATISTIQUES -->
+
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-5 sm:grid-cols-2 xl:grid-cols-4">
+
+<!-- Total agences -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Total agences
+      </p>
+
+      <p class="mt-2 text-2xl font-bold text-gray-900">
+        {{ totalAgences() }}
+      </p>
+    </div>
+
+    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 21h18M5 21V7l7-4 7 4v14"
+        />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Agences actives -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Agences actives
+      </p>
+
+      <p class="mt-2 text-2xl font-bold text-gray-900">
+        {{ totalAgencesActives() }}
+      </p>
+    </div>
+
+    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-50 text-green-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M5 13l4 4L19 7"
+        />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Agences inactives -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Agences inactives
+      </p>
+
+      <p class="mt-2 text-2xl font-bold text-gray-900">
+        {{ totalAgencesInactives() }}
+      </p>
+    </div>
+
+    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-red-50 text-red-500">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- Total clients -->
+<div class="rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+  <div class="flex items-center justify-between">
+
+    <div>
+      <p class="text-sm font-medium text-gray-500">
+        Total clients
+      </p>
+
+      <p class="mt-2 text-2xl font-bold text-gray-900">
+        {{ totalClients() }}
+      </p>
+    </div>
+
+    <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-50 text-blue-600">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M17 20h5v-2a4 4 0 00-4-4h-1M9 20H4v-2a4 4 0 014-4h1m4-4a4 4 0 10-8 0 4 4 0 008 0zm6 0a3 3 0 10-6 0"
+        />
+      </svg>
+    </div>
+
+  </div>
+</div>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- FILTRES -->
+
+  <!-- ===================================================== -->
+
+  <section class="mb-6 rounded-2xl border border-gray-100 bg-white p-5 shadow-sm">
+
+<div class="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+
+  <div>
+    <h2 class="text-lg font-bold text-gray-900">
+      Liste des agences
+    </h2>
+
+    <p class="mt-1 text-sm text-gray-500">
+      {{ agencesFiltrees.length }} agence(s) affichée(s)
+    </p>
+  </div>
+
+  <div class="flex flex-col gap-3 sm:flex-row">
+
+    <!-- Recherche -->
+    <div class="relative w-full sm:w-80">
+
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z"
+        />
+      </svg>
+
+      <input
+        type="text"
+        [(ngModel)]="recherche"
+        placeholder="Rechercher une agence..."
+        class="w-full rounded-xl border border-gray-200 bg-gray-50 py-2.5 pl-10 pr-4 text-sm text-gray-700 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:bg-white focus:ring-2 focus:ring-green-100"
+      />
+
+    </div>
+
+
+    <!-- Filtre statut -->
+    <select
+      [ngModel]="statutFiltre"
+      (ngModelChange)="filterStatut($event)"
+      class="rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-medium text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+    >
+      <option value="Tous">
+        Tous
+      </option>
+
+      <option value="Active">
+        Actives
+      </option>
+
+      <option value="Inactive">
+        Inactives
+      </option>
+    </select>
+
+  </div>
+
+</div>
+
+  </section>
+
+  <!-- ===================================================== -->
+
+  <!-- TABLEAU DES AGENCES -->
+
+  <!-- ===================================================== -->
+
+  <section class="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm">
+
+<div class="overflow-x-auto">
+
+  <table class="min-w-full">
+
+    <thead class="bg-gray-50">
+
+      <tr>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Agence
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Localisation
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Responsable
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Clients
+        </th>
+
+        <th class="px-6 py-4 text-left text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Statut
+        </th>
+
+        <th class="px-6 py-4 text-right text-xs font-semibold uppercase tracking-wider text-gray-500">
+          Actions
+        </th>
+
+      </tr>
+
+    </thead>
+
+
+    <tbody class="divide-y divide-gray-100">
+
+      <!-- Agences -->
+      <tr
+        *ngFor="let agence of agencesFiltrees"
+        class="transition hover:bg-gray-50"
+      >
+
+        <!-- Agence -->
+        <td class="whitespace-nowrap px-6 py-4">
+
+          <div class="flex items-center gap-3">
+
+            <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-green-50 font-bold text-green-600">
+              {{ agence.code ? agence.code.substring(3, 4) : '?' }}
+            </div>
+
+            <div>
+
+              <p class="text-sm font-semibold text-gray-900">
+                {{ agence.nom }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ agence.code }}
+              </p>
+
+            </div>
+
+          </div>
+
+        </td>
+
+
+        <!-- Localisation -->
+        <td class="px-6 py-4">
+
+          <div class="text-sm text-gray-600">
+
+            <p class="font-medium text-gray-900">
+              {{ agence.commune }}
+            </p>
+
+            <p class="mt-1 text-xs text-gray-500">
+              {{ agence.departement }}
+              <span *ngIf="agence.arrondissement">
+                · {{ agence.arrondissement }}
+              </span>
+            </p>
+
+            <p
+              *ngIf="agence.village"
+              class="mt-1 text-xs text-gray-400"
+            >
+              {{ agence.village }}
+            </p>
+
+          </div>
+
+        </td>
+
+
+        <!-- Responsable -->
+        <td class="whitespace-nowrap px-6 py-4">
+
+          <p class="text-sm font-medium text-gray-900">
+            {{ agence.responsable }}
+          </p>
+
+        </td>
+
+
+        <!-- Clients -->
+        <td class="whitespace-nowrap px-6 py-4">
+
+          <span class="text-sm font-semibold text-gray-900">
+            {{ agence.clients }}
+          </span>
+
+        </td>
+
+
+        <!-- Statut -->
+        <td class="whitespace-nowrap px-6 py-4">
+
+          <button
+            type="button"
+            (click)="changerStatut(agence)"
+            [class.bg-green-50]="agence.statut === 'Active'"
+            [class.text-green-700]="agence.statut === 'Active'"
+            [class.bg-red-50]="agence.statut === 'Inactive'"
+            [class.text-red-700]="agence.statut === 'Inactive'"
+            class="inline-flex rounded-full px-3 py-1 text-xs font-semibold transition hover:opacity-80"
+          >
+            {{ agence.statut }}
+          </button>
+
+        </td>
+
+
+        <!-- Actions -->
+        <td class="whitespace-nowrap px-6 py-4 text-right">
+
+          <div class="flex justify-end gap-2">
+
+            <!-- Voir -->
+            <button
+              type="button"
+              (click)="voirAgence(agence)"
+              title="Voir"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 hover:text-gray-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
+                />
+
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"
+                />
+              </svg>
+            </button>
+
+
+            <!-- Modifier -->
+            <button
+              type="button"
+              (click)="ouvrirModalModification(agence)"
+              title="Modifier"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-blue-500 transition hover:bg-blue-50 hover:text-blue-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5"
+                />
+
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"
+                />
+              </svg>
+            </button>
+
+
+            <!-- Supprimer -->
+            <button
+              type="button"
+              (click)="supprimerAgence(agence)"
+              title="Supprimer"
+              class="flex h-9 w-9 items-center justify-center rounded-lg text-red-500 transition hover:bg-red-50 hover:text-red-700"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 011-1h4a1 1 0 011 1v3m-9 0h14"
+                />
+              </svg>
+            </button>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+
+      <!-- Aucun résultat -->
+      <tr *ngIf="agencesFiltrees.length === 0">
+
+        <td
+          colspan="6"
+          class="px-6 py-12 text-center"
+        >
+
+          <div class="flex flex-col items-center">
+
+            <div class="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400">
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-7 w-7"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M21 21l-4.35-4.35m2.35-5.65a8 8 0 11-16 0 8 8 0 0116 0z"
+                />
+              </svg>
+
+            </div>
+
+            <p class="mt-3 text-sm font-semibold text-gray-900">
+              Aucune agence trouvée
+            </p>
+
+            <p class="mt-1 text-sm text-gray-500">
+              Essayez avec un autre terme de recherche ou modifiez le filtre.
+            </p>
+
+          </div>
+
+        </td>
+
+      </tr>
+
+    </tbody>
+
+  </table>
+
+</div>
+
+  </section>
+
+  <!-- ===================================================== -->
+
+  <!-- MODAL AJOUT / MODIFICATION -->
+
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="modalOuvert"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4"
+    (click)="fermerModal()"
+  >
+
+<div
+  class="max-h-[90vh] w-full max-w-3xl overflow-y-auto rounded-2xl bg-white shadow-2xl"
+  (click)="$event.stopPropagation()"
+>
+
+  <!-- En-tête modal -->
+  <div class="flex items-center justify-between border-b border-gray-100 px-6 py-5">
+
+    <div>
+
+      <h2 class="text-lg font-bold text-gray-900">
+        {{ modeEdition ? 'Modifier l’agence' : 'Nouvelle agence' }}
+      </h2>
+
+      <p class="mt-1 text-sm text-gray-500">
+        {{
+          modeEdition
+            ? 'Modifiez les informations de l’agence.'
+            : 'Renseignez les informations de la nouvelle agence.'
+        }}
+      </p>
+
+    </div>
+
+    <button
+      type="button"
+      (click)="fermerModal()"
+      title="Fermer"
+      class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="h-5 w-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M6 18L18 6M6 6l12 12"
+        />
+      </svg>
+    </button>
+
+  </div>
+
+
+  <!-- Formulaire -->
+  <form
+    (ngSubmit)="enregistrerAgence()"
+    class="p-6"
+  >
+
+    <div class="grid grid-cols-1 gap-5 sm:grid-cols-2">
+
+      <!-- ================================================= -->
+      <!-- CODE -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="code"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Code agence
+        </label>
+
+        <input
+          id="code"
+          type="text"
+          name="code"
+          [(ngModel)]="nouvelleAgence.code"
+          placeholder="Ex : AG-006"
+          required
+          class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        />
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- NOM -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="nom"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Nom de l’agence
+        </label>
+
+        <input
+          id="nom"
+          type="text"
+          name="nom"
+          [(ngModel)]="nouvelleAgence.nom"
+          placeholder="Ex : Agence Natitingou"
+          required
+          class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        />
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- LOCALISATION -->
+      <!-- ================================================= -->
+
+      <div class="sm:col-span-2">
+
+        <div class="mb-1 flex items-center gap-2">
+
+          <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-green-50 text-green-600">
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-4 w-4"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.657 16.657L13.414 20.9a2 2 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"
+              />
+
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+
+          </div>
+
+          <div>
+
+            <h3 class="text-sm font-semibold text-gray-900">
+              Localisation administrative
+            </h3>
+
+            <p class="text-xs text-gray-500">
+              Département → Commune → Arrondissement → Village / Quartier
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- DÉPARTEMENT -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="departement"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Département
+        </label>
+
+        <select
+          id="departement"
+          name="departement"
+          [(ngModel)]="nouvelleAgence.departement"
+          (change)="changementDepartement()"
+          required
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="">
+            Sélectionner un département
+          </option>
+
+          <option
+            *ngFor="let departement of departements"
+            [value]="departement"
+          >
+            {{ departement }}
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- COMMUNE -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="commune"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Commune
+        </label>
+
+        <select
+          id="commune"
+          name="commune"
+          [(ngModel)]="nouvelleAgence.commune"
+          (change)="changementCommune()"
+          [disabled]="!nouvelleAgence.departement"
+          required
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="">
+            {{
+              nouvelleAgence.departement
+                ? 'Sélectionner une commune'
+                : 'Choisissez d’abord un département'
+            }}
+          </option>
+
+          <!-- CORRECTION : commune est un objet -->
+          <option
+            *ngFor="let commune of communesDisponibles"
+            [value]="commune.nom"
+          >
+            {{ commune.nom }}
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- ARRONDISSEMENT -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="arrondissement"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Arrondissement
+        </label>
+
+        <select
+          id="arrondissement"
+          name="arrondissement"
+          [(ngModel)]="nouvelleAgence.arrondissement"
+          (change)="changementArrondissement()"
+          [disabled]="!nouvelleAgence.commune"
+          required
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="">
+            {{
+              nouvelleAgence.commune
+                ? 'Sélectionner un arrondissement'
+                : 'Choisissez d’abord une commune'
+            }}
+          </option>
+
+          <option
+            *ngFor="let arrondissement of arrondissementsDisponibles"
+            [value]="arrondissement"
+          >
+            {{ arrondissement }}
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- VILLAGE / QUARTIER -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="village"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Village / Quartier
+        </label>
+
+
+        <!-- Liste lorsqu'elle existe -->
+        <select
+          *ngIf="villageListeDisponible"
+          id="village"
+          name="village"
+          [(ngModel)]="nouvelleAgence.village"
+          [disabled]="!nouvelleAgence.arrondissement"
+          required
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="">
+            {{
+              nouvelleAgence.arrondissement
+                ? 'Sélectionner un village / quartier'
+                : 'Choisissez d’abord un arrondissement'
+            }}
+          </option>
+
+          <option
+            *ngFor="let village of villagesDisponibles"
+            [value]="village"
+          >
+            {{ village }}
+          </option>
+
+        </select>
+
+
+        <!-- Saisie manuelle si la liste n'existe pas encore -->
+        <input
+          *ngIf="!villageListeDisponible"
+          id="village"
+          type="text"
+          name="village"
+          [(ngModel)]="nouvelleAgence.village"
+          [disabled]="!nouvelleAgence.arrondissement"
+          required
+          placeholder="Ex : Village / Quartier"
+          class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition disabled:cursor-not-allowed disabled:bg-gray-100 disabled:bg-gray-100 disabled:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        />
+
+        <p
+          *ngIf="nouvelleAgence.arrondissement && !villageListeDisponible"
+          class="mt-1 text-xs text-gray-400"
+        >
+          Saisissez le village ou quartier.
+        </p>
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- RESPONSABLE -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="responsable"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Responsable
+        </label>
+
+        <input
+          id="responsable"
+          type="text"
+          name="responsable"
+          [(ngModel)]="nouvelleAgence.responsable"
+          placeholder="Nom du responsable"
+          required
+          class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        />
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- CLIENTS -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="clients"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Nombre de clients
+        </label>
+
+        <input
+          id="clients"
+          type="number"
+          name="clients"
+          [(ngModel)]="nouvelleAgence.clients"
+          min="0"
+          required
+          class="w-full rounded-xl border border-gray-200 px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        />
+
+      </div>
+
+
+      <!-- ================================================= -->
+      <!-- STATUT -->
+      <!-- ================================================= -->
+
+      <div>
+
+        <label
+          for="statut"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Statut
+        </label>
+
+        <select
+          id="statut"
+          name="statut"
+          [(ngModel)]="nouvelleAgence.statut"
+          class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-sm outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="Active">
+            Active
+          </option>
+
+          <option value="Inactive">
+            Inactive
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- BOUTONS -->
+    <!-- ================================================= -->
+
+    <div class="mt-7 flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+
+      <button
+        type="button"
+        (click)="fermerModal()"
+        class="rounded-xl border border-gray-200 px-5 py-3 text-sm font-semibold text-gray-600 transition hover:bg-gray-50"
+      >
+        Annuler
+      </button>
+
+      <button
+        type="submit"
+        class="rounded-xl bg-green-600 px-5 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2"
+      >
+        {{
+          modeEdition
+            ? 'Enregistrer les modifications'
+            : 'Créer l’agence'
+        }}
+      </button>
+
+    </div>
+
+  </form>
+
+</div>
+
+  </div>
+
+  <!-- ===================================================== -->
+
+  <!-- MODAL DÉTAIL -->
+
+  <!-- ===================================================== -->
+
+  <div
+    *ngIf="agenceSelectionnee && !modalOuvert"
+    class="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/50 p-4"
+    (click)="fermerDetails()"
+  >
+
+<div
+  class="max-h-[90vh] w-full max-w-lg overflow-y-auto rounded-2xl bg-white shadow-2xl"
+  (click)="$event.stopPropagation()"
+>
+
+  <!-- En-tête -->
+  <div class="border-b border-gray-100 px-6 py-5">
+
+    <div class="flex items-center justify-between">
+
+      <div class="flex items-center gap-3">
+
+        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-green-100 text-lg font-bold text-green-600">
+          {{
+            agenceSelectionnee.code
+              ? agenceSelectionnee.code.substring(3, 4)
+              : '?'
+          }}
+        </div>
+
+        <div>
+
+          <h2 class="font-bold text-gray-900">
+            {{ agenceSelectionnee.nom }}
+          </h2>
+
+          <p class="text-sm text-gray-500">
+            {{ agenceSelectionnee.code }}
+          </p>
+
+        </div>
+
+      </div>
+
+      <button
+        type="button"
+        (click)="fermerDetails()"
+        title="Fermer"
+        class="flex h-9 w-9 items-center justify-center rounded-lg text-gray-400 transition hover:bg-gray-100 hover:text-gray-600"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-5 w-5"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18L18 6M6 6l12 12"
+          />
+        </svg>
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- Informations -->
+  <div class="space-y-4 p-6">
+
+    <!-- Département -->
+    <div class="rounded-xl bg-gray-50 p-4">
+
+      <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+        Département
+      </p>
+
+      <p class="mt-1 text-sm font-semibold text-gray-900">
+        {{ agenceSelectionnee.departement }}
+      </p>
+
+    </div>
+
+
+    <!-- Commune -->
+    <div class="rounded-xl bg-gray-50 p-4">
+
+      <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+        Commune
+      </p>
+
+      <p class="mt-1 text-sm font-semibold text-gray-900">
+        {{ agenceSelectionnee.commune }}
+      </p>
+
+    </div>
+
+
+    <!-- Arrondissement -->
+    <div class="rounded-xl bg-gray-50 p-4">
+
+      <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+        Arrondissement
+      </p>
+
+      <p class="mt-1 text-sm font-semibold text-gray-900">
+        {{ agenceSelectionnee.arrondissement || 'Non renseigné' }}
+      </p>
+
+    </div>
+
+
+    <!-- Village -->
+    <div class="rounded-xl bg-gray-50 p-4">
+
+      <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+        Village / Quartier
+      </p>
+
+      <p class="mt-1 text-sm font-semibold text-gray-900">
+        {{ agenceSelectionnee.village || 'Non renseigné' }}
+      </p>
+
+    </div>
+
+
+    <!-- Responsable -->
+    <div class="rounded-xl bg-gray-50 p-4">
+
+      <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+        Responsable
+      </p>
+
+      <p class="mt-1 text-sm font-semibold text-gray-900">
+        {{ agenceSelectionnee.responsable }}
+      </p>
+
+    </div>
+
+
+    <!-- Clients -->
+    <div class="rounded-xl bg-gray-50 p-4">
+
+      <p class="text-xs font-medium uppercase tracking-wide text-gray-400">
+        Clients
+      </p>
+
+      <p class="mt-1 text-sm font-semibold text-gray-900">
+        {{ agenceSelectionnee.clients }}
+      </p>
+
+    </div>
+
+
+    <!-- Statut -->
+    <div class="flex items-center justify-between rounded-xl bg-gray-50 p-4">
+
+      <span class="text-sm text-gray-500">
+        Statut
+      </span>
+
+      <span
+        [class.bg-green-50]="agenceSelectionnee.statut === 'Active'"
+        [class.text-green-700]="agenceSelectionnee.statut === 'Active'"
+        [class.bg-red-50]="agenceSelectionnee.statut === 'Inactive'"
+        [class.text-red-700]="agenceSelectionnee.statut === 'Inactive'"
+        class="rounded-full px-3 py-1 text-xs font-semibold"
+      >
+        {{ agenceSelectionnee.statut }}
+      </span>
+
+    </div>
+
+  </div>
+
+
+  <!-- Pied modal -->
+  <div class="border-t border-gray-100 p-6">
+
+    <button
+      type="button"
+      (click)="fermerDetails()"
+      class="w-full rounded-xl bg-gray-100 px-5 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-200"
+    >
+      Fermer
+    </button>
+
+  </div>
+
+</div>
+
+  </div>
+
+</div>

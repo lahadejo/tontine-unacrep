@@ -1,0 +1,669 @@
+<div class="min-h-screen bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+  <!-- ===================================================== -->
+  <!-- EN-TÊTE -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8">
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+      <div>
+
+        <h1 class="text-2xl font-bold text-gray-900">
+          Portefeuilles
+        </h1>
+
+        <p class="mt-1 text-sm text-gray-500">
+          Consultez et gérez les portefeuilles associés aux cartes de tontine.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- STATISTIQUES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-8 grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+
+    <!-- TOTAL PORTEFEUILLES -->
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Total portefeuilles
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-gray-900">
+            {{ totalPortefeuilles }}
+          </p>
+
+        </div>
+
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3 7h18M5 7v12a2 2 0 002 2h10a2 2 0 002-2V7M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2M9 12h6M9 16h4"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- PORTEFEUILLES ACTIFS -->
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Portefeuilles actifs
+          </p>
+
+          <p class="mt-2 text-2xl font-bold text-green-600">
+            {{ portefeuillesActifs }}
+          </p>
+
+        </div>
+
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-green-100 text-green-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M5 13l4 4L19 7"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- SOLDE TOTAL -->
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Solde total
+          </p>
+
+          <p class="mt-2 text-xl font-bold text-green-600">
+            {{ formaterMontant(soldeTotal) }} FCFA
+          </p>
+
+        </div>
+
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-blue-100 text-blue-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <!-- TOTAL COTISÉ -->
+
+    <div class="rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+      <div class="flex items-center justify-between">
+
+        <div>
+
+          <p class="text-sm font-medium text-gray-500">
+            Total cotisé
+          </p>
+
+          <p class="mt-2 text-xl font-bold text-gray-900">
+            {{ formaterMontant(totalCotise) }} FCFA
+          </p>
+
+        </div>
+
+        <div
+          class="flex h-11 w-11 items-center justify-center rounded-xl bg-purple-100 text-purple-600"
+        >
+
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            stroke-width="2"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- RÉSUMÉ FINANCIER -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-green-100 bg-green-50 p-5">
+
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+
+      <div>
+
+        <p class="text-sm font-medium text-green-700">
+          Solde cumulé des portefeuilles
+        </p>
+
+        <p class="mt-1 text-xs text-green-600">
+          Somme des soldes disponibles de toutes les cartes.
+        </p>
+
+      </div>
+
+      <div class="sm:text-right">
+
+        <p class="text-2xl font-bold text-green-700">
+          {{ formaterMontant(soldeTotal) }} FCFA
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- FILTRES -->
+  <!-- ===================================================== -->
+
+  <div class="mb-6 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm">
+
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-4">
+
+      <!-- RECHERCHE -->
+
+      <div class="lg:col-span-2">
+
+        <label
+          for="recherche"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Rechercher
+        </label>
+
+        <div class="relative">
+
+          <div
+            class="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3"
+          >
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="h-5 w-5 text-gray-400"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M21 21l-4.35-4.35m1.35-5.65a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+
+          </div>
+
+          <input
+            id="recherche"
+            type="text"
+            [(ngModel)]="recherche"
+            placeholder="Portefeuille, client, matricule ou carte..."
+            class="w-full rounded-xl border border-gray-300 bg-white py-3 pl-10 pr-4 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-green-500 focus:ring-2 focus:ring-green-100"
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- STATUT -->
+
+      <div>
+
+        <label
+          for="filtreStatut"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Statut
+        </label>
+
+        <select
+          id="filtreStatut"
+          [(ngModel)]="filtreStatut"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="Tous">
+            Tous les statuts
+          </option>
+
+          <option value="Actif">
+            Actif
+          </option>
+
+          <option value="Bloqué">
+            Bloqué
+          </option>
+
+          <option value="Fermé">
+            Fermé
+          </option>
+
+        </select>
+
+      </div>
+
+
+      <!-- TYPE -->
+
+      <div>
+
+        <label
+          for="filtreType"
+          class="mb-2 block text-sm font-medium text-gray-700"
+        >
+          Type de carte
+        </label>
+
+        <select
+          id="filtreType"
+          [(ngModel)]="filtreType"
+          class="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-sm text-gray-700 outline-none transition focus:border-green-500 focus:ring-2 focus:ring-green-100"
+        >
+
+          <option value="Tous">
+            Tous les types
+          </option>
+
+          <option value="Journalière">
+            Journalière
+          </option>
+
+          <option value="Mensuelle">
+            Mensuelle
+          </option>
+
+        </select>
+
+      </div>
+
+    </div>
+
+
+    <!-- RÉINITIALISER -->
+
+    <div class="mt-4 flex justify-end">
+
+      <button
+        type="button"
+        (click)="reinitialiserFiltres()"
+        class="text-sm font-medium text-gray-500 transition hover:text-green-600"
+      >
+        Réinitialiser les filtres
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- ===================================================== -->
+  <!-- TABLEAU -->
+  <!-- ===================================================== -->
+
+  <div class="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm">
+
+    <!-- EN-TÊTE -->
+
+    <div
+      class="flex flex-col gap-3 border-b border-gray-200 px-5 py-4 sm:flex-row sm:items-center sm:justify-between"
+    >
+
+      <div>
+
+        <h2 class="font-semibold text-gray-900">
+          Liste des portefeuilles
+        </h2>
+
+        <p class="mt-1 text-xs text-gray-500">
+          {{ portefeuillesFiltres.length }} portefeuille(s) trouvé(s)
+        </p>
+
+      </div>
+
+    </div>
+
+
+    <!-- TABLE -->
+
+    <div class="overflow-x-auto">
+
+      <table class="w-full min-w-[1250px] text-left">
+
+        <thead class="border-b border-gray-200 bg-gray-50">
+
+          <tr>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Portefeuille
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Client
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Carte
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Solde
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Total cotisé
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Cotisations
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Dernière cotisation
+            </th>
+
+            <th
+              class="px-5 py-4 text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Statut
+            </th>
+
+            <th
+              class="px-5 py-4 text-right text-xs font-semibold uppercase tracking-wide text-gray-500"
+            >
+              Action
+            </th>
+
+          </tr>
+
+        </thead>
+
+
+        <tbody class="divide-y divide-gray-100">
+
+          <tr
+            *ngFor="let portefeuille of portefeuillesFiltres"
+            class="transition hover:bg-gray-50"
+          >
+
+            <!-- PORTEFEUILLE -->
+
+            <td class="px-5 py-4">
+
+              <p class="font-semibold text-gray-900">
+                {{ portefeuille.numero }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                ID : {{ portefeuille.id }}
+              </p>
+
+            </td>
+
+
+            <!-- CLIENT -->
+
+            <td class="px-5 py-4">
+
+              <p class="font-medium text-gray-900">
+                {{ portefeuille.client }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ portefeuille.matricule }}
+              </p>
+
+            </td>
+
+
+            <!-- CARTE -->
+
+            <td class="px-5 py-4">
+
+              <p class="font-medium text-gray-900">
+                {{ portefeuille.carte }}
+              </p>
+
+              <p class="mt-1 text-xs text-gray-500">
+                {{ portefeuille.typeCarte }}
+              </p>
+
+            </td>
+
+
+            <!-- SOLDE -->
+
+            <td class="px-5 py-4">
+
+              <p class="font-semibold text-green-600">
+                {{ formaterMontant(portefeuille.solde) }}
+                FCFA
+              </p>
+
+            </td>
+
+
+            <!-- TOTAL COTISÉ -->
+
+            <td class="px-5 py-4">
+
+              <p class="text-sm font-semibold text-gray-900">
+                {{ formaterMontant(portefeuille.totalCotise) }}
+                FCFA
+              </p>
+
+            </td>
+
+
+            <!-- NOMBRE DE COTISATIONS -->
+
+            <td class="px-5 py-4">
+
+              <span
+                class="inline-flex rounded-lg bg-gray-100 px-3 py-1.5 text-xs font-medium text-gray-700"
+              >
+                {{ portefeuille.nombreCotisations }}
+              </span>
+
+            </td>
+
+
+            <!-- DERNIÈRE COTISATION -->
+
+            <td class="px-5 py-4">
+
+              <p class="text-sm text-gray-700">
+                {{ formaterDate(portefeuille.derniereCotisation) }}
+              </p>
+
+            </td>
+
+
+            <!-- STATUT -->
+
+            <td class="px-5 py-4">
+
+              <span
+                class="inline-flex rounded-full px-3 py-1 text-xs font-medium"
+                [ngClass]="getClasseStatut(portefeuille.statut)"
+              >
+                {{ portefeuille.statut }}
+              </span>
+
+            </td>
+
+
+            <!-- ACTION -->
+
+            <td class="px-5 py-4 text-right">
+
+              <button
+                type="button"
+                class="rounded-lg border border-gray-200 px-3 py-2 text-xs font-medium text-gray-600 transition hover:border-green-300 hover:bg-green-50 hover:text-green-700"
+              >
+                Voir détails
+              </button>
+
+            </td>
+
+          </tr>
+
+
+          <!-- ================================================= -->
+          <!-- AUCUN RÉSULTAT -->
+          <!-- ================================================= -->
+
+          <tr *ngIf="portefeuillesFiltres.length === 0">
+
+            <td
+              colspan="9"
+              class="px-5 py-12 text-center"
+            >
+
+              <div
+                class="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-gray-400"
+              >
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="h-7 w-7"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M9 13h6m-3-3v6m8-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                  />
+                </svg>
+
+              </div>
+
+              <h3 class="mt-4 font-semibold text-gray-900">
+                Aucun portefeuille trouvé
+              </h3>
+
+              <p class="mt-2 text-sm text-gray-500">
+                Aucun portefeuille ne correspond aux critères de recherche.
+              </p>
+
+            </td>
+
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+
+  </div>
+
+</div>
